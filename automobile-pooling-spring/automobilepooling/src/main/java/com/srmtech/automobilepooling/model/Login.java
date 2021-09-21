@@ -17,7 +17,7 @@ public class Login implements Serializable{
 	private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name="user_id")
+    @Column(name="id")
     private long id;
 
   
@@ -36,7 +36,6 @@ public class Login implements Serializable{
     @Size(max= 240)
     @Column(name="password")
     private String password;
-
 
     public String getEmail() {
         return email;
