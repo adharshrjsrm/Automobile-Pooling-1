@@ -46,7 +46,7 @@ public class UserController {
 		return response;
 	}
 
-	@GetMapping(value = "/user/{userId}")
+	@GetMapping(value = "/{userId}")
 	public ResponseEntity<User> findUserById(@PathVariable Long userId) throws Exception {
 		User userList = userservice.getUserById(userId);
 		ResponseEntity<User> response = new ResponseEntity<User>(userList, HttpStatus.OK);
