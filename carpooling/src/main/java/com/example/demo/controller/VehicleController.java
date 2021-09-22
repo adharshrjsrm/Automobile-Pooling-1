@@ -28,10 +28,26 @@ public class VehicleController {
 	@Autowired
 	private VehicleService vehicleservice;
 	
-	@GetMapping(value = "/vehicle/{vehicleId}")
+	@GetMapping(value = "/{vehicleId}")
 	public ResponseEntity<Vehicle> findUserById(@PathVariable int vehicleId) throws Exception {
 		Vehicle vehicleList = vehicleservice.getVehicleById(vehicleId);
 		ResponseEntity<Vehicle> response = new ResponseEntity<Vehicle>(vehicleList, HttpStatus.OK);
+		return response;
+	}
+	
+	
+	@PostMapping(value="/addvehicle")
+    public ResponseEntity<String> saveVehicle(@RequestBody Vehicle vehicle)
+    {    
+		vehicleservice.getdetails(vehicle);
+		String successMessage = "Vehicle  added successfully.";
+		return new ResponseEntity<String>(successMessage,HttpStatus.CREATED);
+    }
+	
+	@GetMapping(value = "/getvehicle")
+	public ResponseEntity<List<Vehicle>> findAllVehicle() throws Exception {
+		List<Vehicle> VehicleList = vehicleservice.getVehicle();
+		ResponseEntity<List<Vehicle>> response = new ResponseEntity<List<Vehicle>>(VehicleList, HttpStatus.OK);
 		return response;
 	}
 	
@@ -39,20 +55,7 @@ public class VehicleController {
 	public ResponseEntity<String> updateUser(@Valid @RequestBody Vehicle vehicle) {
 		vehicleservice.updateVehicle(vehicle);
 		String successMessage = "Vehicle  updated successfully.";
-		ResponseEntity<String> response = new ResponseEntity<String>(successMessage, HttpStatus.OK);
-		return response;
-	}
-	@PostMapping(value="/post")
-    public ResponseEntity<Vehicle> saveVehicle(@RequestBody Vehicle vehicle)
-    {    
-       
-		return new ResponseEntity<Vehicle>(vehicleservice.getdetails(vehicle),HttpStatus.OK);
-    }
-	
-	@GetMapping(value = "/get")
-	public ResponseEntity<List<Vehicle>> findAllVehicle() throws Exception {
-		List<Vehicle> VehicleList = vehicleservice.getVehicle();
-		ResponseEntity<List<Vehicle>> response = new ResponseEntity<List<Vehicle>>(VehicleList, HttpStatus.OK);
+		ResponseEntity<String> response = new ResponseEntity<String>(successMessage, HttpStatus.ACCEPTED);
 		return response;
 	}
 	

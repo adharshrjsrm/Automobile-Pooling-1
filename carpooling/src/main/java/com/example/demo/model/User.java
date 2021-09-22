@@ -5,6 +5,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,6 +15,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 
@@ -23,34 +26,36 @@ public class User implements Serializable{
 	private static final long serialVersionUID = 1L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Long id;
     
    
-   
+    @NotBlank(message = "Name is mandatory")
     @Column(name="name")
     private String name;
     
-    
+   
     @Column(name="mobile_number")
     private long mobile;
     
     
-    
+    @NotBlank(message = "UserType is mandatory")
     @Column(name="user_type")
-    private int usertype;
+    private String usertype;
     
+   
    
     @Column(name="source_latitude")
     private double source_lat;
     
     
-   
+    
     @Column(name="source_longitude")
     private double source_lon;
     
     
-   
+    
     @Column(name="destination_latitude")
     private double destination_lat;
     
@@ -60,8 +65,8 @@ public class User implements Serializable{
     
     	
     
-    @Column(name="availibity_status")
-    private boolean availibiltystatus;
+    @Column(name="availability_status")
+    private boolean availabilitystatus;
 
     
 	public Long getId() {
@@ -84,14 +89,24 @@ public class User implements Serializable{
 	}
 
 
-	
-	public int getUsertype() {
+
+	public String getUsertype() {
 		return usertype;
 	}
 
 
-	public void setUsertype(int usertype) {
+	public void setUsertype(String usertype) {
 		this.usertype = usertype;
+	}
+
+
+	public boolean isAvailabilitystatus() {
+		return availabilitystatus;
+	}
+
+
+	public void setAvailabilitystatus(boolean availabilitystatus) {
+		this.availabilitystatus = availabilitystatus;
 	}
 
 
@@ -135,14 +150,7 @@ public class User implements Serializable{
 	}
 
 
-	public boolean isAvailibiltystatus() {
-		return availibiltystatus;
-	}
-
-
-	public void setAvailibiltystatus(boolean availibiltystatus) {
-		this.availibiltystatus = availibiltystatus;
-	}
+	
 
 
 	

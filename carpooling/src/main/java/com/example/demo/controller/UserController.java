@@ -46,7 +46,7 @@ public class UserController {
 		return response;
 	}
 
-	@GetMapping(value = "/user/{userId}")
+	@GetMapping(value = "/{userId}")
 	public ResponseEntity<User> findUserById(@PathVariable Long userId) throws Exception {
 		User userList = userservice.getUserById(userId);
 		ResponseEntity<User> response = new ResponseEntity<User>(userList, HttpStatus.OK);
@@ -60,6 +60,14 @@ public class UserController {
 		String successMessage = "User deleted successfully.";
 		ResponseEntity<String> response = new ResponseEntity<String>(successMessage, HttpStatus.OK);
 		return response;
+	}
+	
+	@PutMapping("/update")
+	public ResponseEntity<String> updateUser(@Valid @RequestBody User user) {
+	userservice.updateUser(user);
+	String successMessage = "User updated successfully.";
+	ResponseEntity<String> response = new ResponseEntity<String>(successMessage, HttpStatus.ACCEPTED);
+	return response;
 	}
 	
 
