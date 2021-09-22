@@ -45,7 +45,7 @@ public class DepartmentController {
 		return response;
 	}
 	
-	@PostMapping("/adddept")
+	@PostMapping("/save")
 	public ResponseEntity<String> updateDept(@Valid @RequestBody Department dept) {
 		service.saveDept(dept);
 		String successMessage = "dept  added successfully.";
