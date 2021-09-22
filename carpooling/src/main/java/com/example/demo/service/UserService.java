@@ -31,30 +31,17 @@ public class UserService {
 		return repository.findAll();
 	}
 
-	public User getUserById(int id) {
+	public User getUserById(Long id) {
 
 		return repository.findById(id).orElse(null);
 
 	}
 
-	public String deleteUser(int id) {
+	public String deleteUser(Long id) {
 		repository.deleteById(id);
 		return "product removed !! " + id;
 	}
 	
-	public User updateUser(User user) {
-	User existingUser = repository.findById(user.getId()).orElse(null);
-	existingUser.setId(user.getId());
-	existingUser.setName(user.getName());
-	existingUser.setMobile(user.getMobile());
-	existingUser.setUsertype(user.getUsertype());
-	existingUser.setDepartment(user.getDepartment());
-	existingUser.setSource_lat(user.getSource_lat());
-	existingUser.setSource_lon(user.getSource_lon());
-	existingUser.setDestination_lat(user.getDestination_lat());
-	existingUser.setDestination_lon(user.getDestination_lat());
-	return repository.save(existingUser);
-}
 
 
 }

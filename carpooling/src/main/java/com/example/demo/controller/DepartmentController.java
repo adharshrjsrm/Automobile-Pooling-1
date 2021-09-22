@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,9 +45,9 @@ public class DepartmentController {
 		return response;
 	}
 	
-	@PutMapping("/update")
+	@PostMapping("/save")
 	public ResponseEntity<String> updateDept(@Valid @RequestBody Department dept) {
-		service.updateDept(dept);
+		service.saveDept(dept);
 		String successMessage = "dept  updated successfully.";
 		ResponseEntity<String> response = new ResponseEntity<String>(successMessage, HttpStatus.OK);
 		return response;

@@ -22,19 +22,18 @@ import com.example.demo.service.UserService;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(value = "user")
 public class UserController {
 
 	
 	@Autowired
-	private UserService service;
+	private UserService userservice;
 	
 	
 
 	@PostMapping(value = "/adduser")
 	public ResponseEntity<String> addDetails(@Valid @RequestBody User user) {
-		service.saveUser(user);
+		userservice.saveUser(user);
 		String successMessage = "User added successfully.";
 		ResponseEntity<String> response = new ResponseEntity<String>(successMessage, HttpStatus.CREATED);
 		return response;
@@ -42,29 +41,22 @@ public class UserController {
 
 	@GetMapping(value = "/getuser")
 	public ResponseEntity<List<User>> findAllUsers() throws Exception {
-		List<User> UserList = service.getUser();
+		List<User> UserList = userservice.getUser();
 		ResponseEntity<List<User>> response = new ResponseEntity<List<User>>(UserList, HttpStatus.OK);
 		return response;
 	}
 
 	@GetMapping(value = "/user/{userId}")
-	public ResponseEntity<User> findUserById(@PathVariable int userId) throws Exception {
-		User userList = service.getUserById(userId);
+	public ResponseEntity<User> findUserById(@PathVariable Long userId) throws Exception {
+		User userList = userservice.getUserById(userId);
 		ResponseEntity<User> response = new ResponseEntity<User>(userList, HttpStatus.OK);
 		return response;
 	}
 	
-	@PutMapping("/update")
-	public ResponseEntity<String> updateUser(@Valid @RequestBody User user) {
-		service.updateUser(user);
-		String successMessage = "User  updated successfully.";
-		ResponseEntity<String> response = new ResponseEntity<String>(successMessage, HttpStatus.OK);
-		return response;
-	}
 
 	@DeleteMapping(value = "/delete/{id}")
-	public ResponseEntity<String> deleteUser(@PathVariable int id) throws Exception {
-		service.deleteUser(id);
+	public ResponseEntity<String> deleteUser(@PathVariable Long id) throws Exception {
+		userservice.deleteUser(id);
 		String successMessage = "User deleted successfully.";
 		ResponseEntity<String> response = new ResponseEntity<String>(successMessage, HttpStatus.OK);
 		return response;
