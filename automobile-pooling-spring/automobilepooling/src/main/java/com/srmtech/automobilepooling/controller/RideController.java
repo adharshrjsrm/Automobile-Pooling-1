@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import javax.validation.Valid;
 
+import com.srmtech.automobilepooling.exception.ResourceNotFoundException;
 import com.srmtech.automobilepooling.model.Ride;
 import com.srmtech.automobilepooling.repo.RideRepository;
 
@@ -15,15 +16,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 // @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
@@ -71,6 +69,20 @@ public class RideController {
                 ride4.setOwnerSourceLon(ride3.getOwnerSourceLon());
                 ride4.setOwnerDestinationLat(ride3.getOwnerDestinationLat());
                 ride4.setOwnerDestinationLon(ride3.getOwnerDestinationLon());
+                ride4.setRideTime(ride3.getRideTime());
+                ride4.setVehicleId(ride3.getVehicleId());
+                ride4.setVehiclecolor(ride3.getVehiclecolor());
+                ride4.setVehiclenumber(ride3.getVehiclenumber());
+                ride4.setNumberofseats(ride3.getNumberofseats());
+                ride4.setPassengerId(ride3.getPassengerId());
+                ride4.setPassengerName(ride3.getPassengerName());
+                ride4.setPassengerMobile(ride3.getPassengerMobile());
+                ride4.setPassengerDepartment(ride3.getPassengerDepartment());
+                ride4.setPassengerSourceLat(ride3.getPassengerSourceLat());
+                ride4.setPassengerSourceLon(ride3.getPassengerSourceLon());
+                ride4.setPassengerDestinationLat(ride3.getOwnerDestinationLat());
+                ride4.setPassengerDestinationLon(ride3.getOwnerDestinationLon());
+
 
         final Ride updatedRide = rideRepo.save(ride4);
         log.info("Ride Updated!...");
