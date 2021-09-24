@@ -41,6 +41,21 @@ public class UserService {
 		repository.deleteById(id);
 		return "product removed !! " + id;
 	}
+	public User updateUser(User user) {
+		User existingUser = repository.findById(user.getId()).orElse(null);
+		existingUser.setId(user.getId());
+		existingUser.setName(user.getName());
+		existingUser.setMobile(user.getMobile());
+		existingUser.setUsertype(user.getUsertype());
+		existingUser.setSource_lat(user.getSource_lat());
+		existingUser.setSource_lon(user.getSource_lon());
+		existingUser.setDestination_lat(user.getDestination_lat());
+		existingUser.setDestination_lon(user.getDestination_lat());
+		existingUser.setAvailabilitystatus(user.isAvailabilitystatus());
+		existingUser.setDepartment(user.getDepartment());
+		existingUser.setVehicle(user.getVehicle());
+		return repository.save(existingUser);
+		}
 	
 
 
