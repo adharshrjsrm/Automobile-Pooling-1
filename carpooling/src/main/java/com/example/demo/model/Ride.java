@@ -26,7 +26,7 @@ public class Ride {
     private Long id;
     
     
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIME)
     private Date Date=new Date();
     
     
