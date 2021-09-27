@@ -1,8 +1,4 @@
 package com.srmtech.automobilepoolingapp.controller;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -23,11 +19,10 @@ import com.srmtech.automobilepoolingapp.model.*;
 import com.srmtech.automobilepoolingapp.payload.request.*;
 import com.srmtech.automobilepoolingapp.payload.response.*;
 import com.srmtech.automobilepoolingapp.repo.*;
-import com.srmtech.automobilepoolingapp.security.*;
 import com.srmtech.automobilepoolingapp.security.jwt.*;
 import com.srmtech.automobilepoolingapp.security.services.*;
 
-@CrossOrigin(origins = "https://localhost:3000", maxAge = 3000)
+@CrossOrigin(origins = "*", maxAge = 3000)
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -43,33 +38,18 @@ public class AuthController {
 	@Autowired
 	JwtUtils jwtUtils;
 
-	@PostMapping("/signin")
-	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-
-		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-		String jwt = jwtUtils.generateJwtToken(authentication);
-		
-		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();		
-
-		return ResponseEntity.ok(new JwtResponse(jwt, 
-												 userDetails.getId(), 
-												 userDetails.getUsername(), 
-												 userDetails.getEmail() 
-												 ));
-	}
+	@Autowired
+	RefreshTokenService refreshTokenService;
 
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+		if (Boolean.TRUE.equals(userRepository.existsByUsername(signUpRequest.getUsername()))) {
 			return ResponseEntity
 					.badRequest()
 					.body(new MsgResponse("Error: Username is already taken!"));
 		}
 
-		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
+		if (Boolean.TRUE.equals(userRepository.existsByEmail(signUpRequest.getEmail()))) {
 			return ResponseEntity
 					.badRequest()
 					.body(new MsgResponse("Error: Email is already in use!"));
@@ -83,5 +63,30 @@ public class AuthController {
 		userRepository.save(user);
 
 		return ResponseEntity.ok(new MsgResponse("Registered successfully!"));
+	}
+
+	@PostMapping("/signin")
+	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+  
+	  Authentication authentication = authenticationManager
+		  .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+  
+	  SecurityContextHolder.getContext().setAuthentication(authentication);
+  
+	  UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+  
+	  String jwt = jwtUtils.generateJwtToken(userDetails);
+  
+  
+	  RefreshToken refreshToken = refreshTokenService.createRefreshToken(userDetails.getId());
+  
+	  return ResponseEntity.ok(new JwtResponse(jwt, refreshToken.getToken(), userDetails.getId(),
+		  userDetails.getUsername(), userDetails.getEmail()));
+	}
+
+	@PostMapping("/logout")
+	public ResponseEntity<?> logoutUser(@Valid @RequestBody LogOutRequest logOutRequest) {
+	  refreshTokenService.deleteByUserId(logOutRequest.getUserId());
+	  return ResponseEntity.ok(new MsgResponse("Log out successful!"));
 	}
 }

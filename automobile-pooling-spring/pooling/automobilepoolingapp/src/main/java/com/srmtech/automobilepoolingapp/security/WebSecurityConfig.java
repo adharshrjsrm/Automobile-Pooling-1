@@ -53,14 +53,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.cors().and()
-			.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+		http.csrf().disable()
+			.authorizeRequests().antMatchers("/").permitAll()
+			.antMatchers("/api/auth/**").permitAll()
+			.antMatchers("/api/test/**").permitAll()
+			.antMatchers("/api/**").permitAll()
+			.antMatchers("/v2/api-docs", "/swagger-resources/**", "/swagger-ui.html", "/webjars/springfox-swagger-ui/**").permitAll()
+			.anyRequest().authenticated().and()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-			.authorizeRequests().antMatchers("/api/auth/**").permitAll().and()
-			.authorizeRequests().antMatchers("/api/test/**").permitAll().and()
-			.authorizeRequests().antMatchers("/api/**").permitAll().and()
-			.authorizeRequests().antMatchers("/v2/api-docs", "/swagger-resources/**", "/swagger-ui.html", "/webjars/springfox-swagger-ui/**").permitAll()
-			.anyRequest().authenticated();
+			.exceptionHandling().authenticationEntryPoint(unauthorizedHandler);
 
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
