@@ -22,6 +22,7 @@ import com.example.demo.service.UserService;
 
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(value = "user")
 public class UserController {
 
