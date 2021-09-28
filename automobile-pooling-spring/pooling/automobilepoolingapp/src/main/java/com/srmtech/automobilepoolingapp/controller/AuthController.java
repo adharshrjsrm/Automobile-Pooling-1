@@ -10,7 +10,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -89,4 +91,16 @@ public class AuthController {
 	  refreshTokenService.deleteByUserId(logOutRequest.getUserId());
 	  return ResponseEntity.ok(new MsgResponse("Log out successful!"));
 	}
+
+	@PutMapping("/resetpassword/{id}")
+	public ResponseEntity<?> updateAdmin(@Valid @PathVariable(value = "id") Long userLong,
+            @Valid @RequestBody UserLogin userlogin1) throws ResourceNotFoundException {
+                UserLogin userlogin2 = userRepository.findById(userLong)
+                .orElseThrow();
+
+                userlogin2.setPassword(userlogin1.getPassword());
+        userRepository.save(userlogin2);
+        return ResponseEntity.ok(new MsgResponse("PAssword reset successful!"));
+    }
+
 }
