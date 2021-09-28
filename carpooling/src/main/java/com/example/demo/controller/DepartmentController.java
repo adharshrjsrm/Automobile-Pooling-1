@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Department;
+import com.example.demo.model.User;
 import com.example.demo.service.DepartmentService;
 
 
@@ -30,6 +31,14 @@ public class DepartmentController {
 	@Autowired
 	private DepartmentService service;
 	
+	
+	@PostMapping(value = "/adddept")
+	public ResponseEntity<String> addDetails(@Valid @RequestBody Department dept) {
+		service.saveDept(dept);
+		String successMessage = "User added successfully.";
+		ResponseEntity<String> response = new ResponseEntity<String>(successMessage, HttpStatus.CREATED);
+		return response;
+	}
 	
 	@GetMapping(value = "/getdept")
 	public ResponseEntity<List<Department>> findAll() throws Exception {
@@ -45,11 +54,11 @@ public class DepartmentController {
 		return response;
 	}
 	
-	@PostMapping("/adddept")
+	@PutMapping("/update")
 	public ResponseEntity<String> updateDept(@Valid @RequestBody Department dept) {
-		service.saveDept(dept);
-		String successMessage = "dept  added successfully.";
-		ResponseEntity<String> response = new ResponseEntity<String>(successMessage, HttpStatus.CREATED);
+		service.updateDept(dept);
+		String successMessage = "dept  updated successfully.";
+		ResponseEntity<String> response = new ResponseEntity<String>(successMessage, HttpStatus.OK);
 		return response;
 	}
 

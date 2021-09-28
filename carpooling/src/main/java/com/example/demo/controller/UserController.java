@@ -28,13 +28,13 @@ public class UserController {
 
 	
 	@Autowired
-	private UserService userservice;
+	private UserService service;
 	
 	
 
 	@PostMapping(value = "/adduser")
-	public ResponseEntity<String> addDetails(@Valid @RequestBody User user) {
-		userservice.saveUser(user);
+	public ResponseEntity<String> addDetails( @RequestBody User user) {
+		service.saveUser(user);
 		String successMessage = "User added successfully.";
 		ResponseEntity<String> response = new ResponseEntity<String>(successMessage, HttpStatus.CREATED);
 		return response;
@@ -42,33 +42,32 @@ public class UserController {
 
 	@GetMapping(value = "/getuser")
 	public ResponseEntity<List<User>> findAllUsers() throws Exception {
-		List<User> UserList = userservice.getUser();
+		List<User> UserList = service.getUser();
 		ResponseEntity<List<User>> response = new ResponseEntity<List<User>>(UserList, HttpStatus.OK);
 		return response;
 	}
 
-	@GetMapping(value = "/{userId}")
-	public ResponseEntity<User> findUserById(@PathVariable Long userId) throws Exception {
-		User userList = userservice.getUserById(userId);
+	@GetMapping(value = "/user/{userId}")
+	public ResponseEntity<User> findUserById(@PathVariable int userId) throws Exception {
+		User userList = service.getUserById(userId);
 		ResponseEntity<User> response = new ResponseEntity<User>(userList, HttpStatus.OK);
 		return response;
 	}
 	
-
-	@DeleteMapping(value = "/delete/{id}")
-	public ResponseEntity<String> deleteUser(@PathVariable Long id) throws Exception {
-		userservice.deleteUser(id);
-		String successMessage = "User deleted successfully.";
+	@PutMapping("/update")
+	public ResponseEntity<String> updateUser( @RequestBody User user) {
+		service.updateUser(user);
+		String successMessage = "User  updated successfully.";
 		ResponseEntity<String> response = new ResponseEntity<String>(successMessage, HttpStatus.OK);
 		return response;
 	}
-	
-	@PutMapping("/update")
-	public ResponseEntity<String> updateUser(@Valid @RequestBody User user) {
-	userservice.updateUser(user);
-	String successMessage = "User updated successfully.";
-	ResponseEntity<String> response = new ResponseEntity<String>(successMessage, HttpStatus.ACCEPTED);
-	return response;
+
+	@DeleteMapping(value = "/delete/{id}")
+	public ResponseEntity<String> deleteUser(@PathVariable int id) throws Exception {
+		service.deleteUser(id);
+		String successMessage = "User deleted successfully.";
+		ResponseEntity<String> response = new ResponseEntity<String>(successMessage, HttpStatus.OK);
+		return response;
 	}
 	
 

@@ -4,8 +4,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -23,20 +21,11 @@ public class Department implements Serializable{
     
     @Id
     @Column(name="id")
-   @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
     
-    public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-	
-
     @Column(name="department_name")
-    @NotBlank
+//    @NotBlank
     @Size(max = 45)
     private String departmentname;
 
@@ -47,5 +36,17 @@ public class Department implements Serializable{
     public void setDepartmentname(String departmentname) {
         this.departmentname = departmentname;
     }
-       
+    
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+	
+
+	
+	
+    
 }

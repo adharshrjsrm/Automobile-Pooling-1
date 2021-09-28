@@ -1,11 +1,12 @@
 package com.example.demo.repo;
 
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.model.Vehicle;
+import com.example.demo.model.Login;
 
 @Repository
-public interface VehicleRepo extends JpaRepository<Vehicle,Integer> {
-
+public interface LoginRepo extends JpaRepository<Login,Long> {
+    Login findByEmail(String email);
 }

@@ -1,23 +1,18 @@
 package com.example.demo.model;
 import java.io.Serializable;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+//import com.rsc.api.model.UserInfo;
 
 @Entity
 @Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = "mobile_number")}) 
@@ -26,55 +21,72 @@ public class User implements Serializable{
 	private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
-    private Long id;
+    private int id;
     
-   
-    @NotBlank(message = "Name is mandatory")
+//    @NotBlank(message = "Name is mandatory")
+    @Size(max = 45)
     @Column(name="name")
     private String name;
     
-   
+    
+//    @NotBlank(message = "Mobile Number is mandatory")
     @Column(name="mobile_number")
     private long mobile;
     
     
-    @NotBlank(message = "UserType is mandatory")
+//    @NotBlank(message = "User Type is mandatory")
     @Column(name="user_type")
-    private String usertype;
+    private int usertype;
     
-   
-   
+//    @NotBlank(message = "Department is mandatory")
+//    @Column(name="department")
+//    private int department;
+
+//    
+//    @NotBlank(message = "Source Latitude is mandatory")
     @Column(name="source_latitude")
     private double source_lat;
     
     
-    
+//    @NotBlank(message = "Source Longitude is mandatory")
     @Column(name="source_longitude")
     private double source_lon;
     
     
-    
+//    @NotBlank(message = "Destination Latitude is mandatory")
     @Column(name="destination_latitude")
     private double destination_lat;
     
-    
+//    @NotBlank(message = "Destination Longitude is mandatory")
     @Column(name="destination_longitude")
     private double destination_lon;
     
-    	
     
-    @Column(name="availability_status")
-    private boolean availabilitystatus;
+//    @NotBlank(message = "Availibity Status is mandatory")
+    @Column(name="availibity_status")
+    private boolean availibiltystatus;
 
     
-	public Long getId() {
+//    
+//  @OneToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "id", referencedColumnName = "id")
+//
+//	private Login login;
+  
+  @ManyToOne(fetch = FetchType.EAGER)
+ 	@JoinColumn(name = "department_id", referencedColumnName = "id")
+
+ 	private Department department;
+    
+
+
+	public int getId() {
 		return id;
 	}
 
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -89,24 +101,23 @@ public class User implements Serializable{
 	}
 
 
+	public long getMobile() {
+		return mobile;
+	}
 
-	public String getUsertype() {
+
+	public void setMobile(long mobile) {
+		this.mobile = mobile;
+	}
+
+
+	public int getUsertype() {
 		return usertype;
 	}
 
 
-	public void setUsertype(String usertype) {
+	public void setUsertype(int usertype) {
 		this.usertype = usertype;
-	}
-
-
-	public boolean isAvailabilitystatus() {
-		return availabilitystatus;
-	}
-
-
-	public void setAvailabilitystatus(boolean availabilitystatus) {
-		this.availabilitystatus = availabilitystatus;
 	}
 
 
@@ -150,21 +161,13 @@ public class User implements Serializable{
 	}
 
 
-	
-
-
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "department_id", referencedColumnName = "id")
-	private Department department;
-
-
-	public long getMobile() {
-		return mobile;
+	public boolean isAvailibiltystatus() {
+		return availibiltystatus;
 	}
 
-	public void setMobile(long mobile) {
-		this.mobile = mobile;
+
+	public void setAvailibiltystatus(boolean availibiltystatus) {
+		this.availibiltystatus = availibiltystatus;
 	}
 
 
@@ -176,22 +179,11 @@ public class User implements Serializable{
 	public void setDepartment(Department department) {
 		this.department = department;
 	}
+
+
 	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "vehicle_id", referencedColumnName = "id")
-	private Vehicle vehicle;
 
-
-	public Vehicle getVehicle() {
-		return vehicle;
-	}
-
-
-	public void setVehicle(Vehicle vehicle) {
-		this.vehicle = vehicle;
-	}
-
-
+		
 }
 	
 	
