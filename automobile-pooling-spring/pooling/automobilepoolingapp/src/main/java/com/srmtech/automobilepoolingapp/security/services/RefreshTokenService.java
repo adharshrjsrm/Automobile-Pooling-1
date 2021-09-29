@@ -9,10 +9,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.srmtech.automobilepoolingapp.exception.TokenRefreshException;
 import com.srmtech.automobilepoolingapp.model.RefreshToken;
+import com.srmtech.automobilepoolingapp.model.UserLogin;
 import com.srmtech.automobilepoolingapp.repo.RefreshTokenRepo;
 import com.srmtech.automobilepoolingapp.repo.LoginRepo;
+import com.srmtech.automobilepoolingapp.exception.*;
 @Service
 public class RefreshTokenService {
   @Value("${automobilepooling.app.jwtRefreshExpirationMs}")
@@ -28,10 +29,13 @@ public class RefreshTokenService {
     return refreshTokenRepository.findByToken(token);
   }
 
-  public RefreshToken createRefreshToken(Long userId) {
+  public RefreshToken createRefreshToken(Long userId) throws ResourceNotFoundException {
     RefreshToken refreshToken = new RefreshToken();
-
-    refreshToken.setUser(userRepository.findById(userId).get());
+    Optional<UserLogin> value = userRepository.findById(userId);
+    if (value.isEmpty()) {
+      throw new ResourceNotFoundException("User id not found");
+    }
+    refreshToken.setUser(value.get());
     refreshToken.setExpiryDate(Instant.now().plusMillis(refreshTokenDurationMs));
     refreshToken.setToken(UUID.randomUUID().toString());
 
@@ -49,7 +53,12 @@ public class RefreshTokenService {
   }
 
   @Transactional
-  public int deleteByUserId(Long userId) {
-    return refreshTokenRepository.deleteByUser(userRepository.findById(userId).get());
+  public int deleteByUserId(Long userId) throws ResourceNotFoundException {
+    Optional<UserLogin> value = userRepository.findById(userId);
+    if (value.isEmpty()) {
+      throw new ResourceNotFoundException("User id not found");
+    }
+    return refreshTokenRepository.deleteByUser(value.get());
   }
+
 }

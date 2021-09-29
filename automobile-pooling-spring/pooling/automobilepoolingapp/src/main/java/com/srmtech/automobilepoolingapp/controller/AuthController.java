@@ -45,7 +45,7 @@ public class AuthController {
 	RefreshTokenService refreshTokenService;
 
 	@PostMapping("/signup")
-	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+	public ResponseEntity<MsgResponse> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
 		if (Boolean.TRUE.equals(userRepository.existsByUsername(signUpRequest.getUsername()))) {
 			return ResponseEntity
 					.badRequest()
@@ -69,7 +69,7 @@ public class AuthController {
 	}
 
 	@PostMapping("/signin")
-	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) throws ResourceNotFoundException {
+	public ResponseEntity<JwtResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) throws ResourceNotFoundException {
   
 	  Authentication authentication = authenticationManager
 		  .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
@@ -88,13 +88,14 @@ public class AuthController {
 	}
 
 	@PostMapping("/logout")
-	public ResponseEntity<?> logoutUser(@Valid @RequestBody LogOutRequest logOutRequest) throws ResourceNotFoundException {
+	public ResponseEntity<MsgResponse> logoutUser(@Valid @RequestBody LogOutRequest logOutRequest) throws ResourceNotFoundException {
 	  refreshTokenService.deleteByUserId(logOutRequest.getUserId());
 	  return ResponseEntity.ok(new MsgResponse("Log out successful!"));
 	}
 
+
 	@PutMapping("/resetpassword/{id}")
-	public ResponseEntity<?> updateAdmin(@Valid @PathVariable(value = "id") Long userLong,
+	public ResponseEntity<MsgResponse> updateAdmin(@Valid @PathVariable(value = "id") Long userLong,
             @Valid @RequestBody LoginDTO loginDTO) throws ResourceNotFoundException {
                 UserLogin userLogin = userRepository.findById(userLong)
                 .orElseThrow();

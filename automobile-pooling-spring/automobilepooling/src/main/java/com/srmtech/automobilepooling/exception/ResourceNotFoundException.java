@@ -13,3 +13,14 @@ super(message);
 }
 }
 
+
+    {
+        "vehiclenumber": "Creta",
+        "vehiclecolor": "blue",
+        "numberofseats": 4
+    }
+
+{
+   "username": "adh1",
+    "password": "123456890"
+}

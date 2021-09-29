@@ -14,7 +14,15 @@ public class RefreshToken {
   @JoinColumn(name = "user_login_id", referencedColumnName = "id")
   private UserLogin user;
 
+  private String uname;
 
+  public String getUname() {
+    return this.uname;
+  }
+
+  public void setUname(String uname) {
+    this.uname = uname;
+  }
 
   @Column(nullable = false, unique = true)
   private String token;
@@ -23,6 +31,7 @@ public class RefreshToken {
   private Instant expiryDate;
 
   public RefreshToken() {
+    // Empty Constructor
   }
 
   public long getId() {
