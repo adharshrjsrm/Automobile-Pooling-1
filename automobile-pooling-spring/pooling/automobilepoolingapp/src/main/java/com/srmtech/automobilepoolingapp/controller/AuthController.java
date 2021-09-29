@@ -23,6 +23,7 @@ import com.srmtech.automobilepoolingapp.payload.response.*;
 import com.srmtech.automobilepoolingapp.repo.*;
 import com.srmtech.automobilepoolingapp.security.jwt.*;
 import com.srmtech.automobilepoolingapp.security.services.*;
+import com.srmtech.automobilepoolingapp.exception.*;
 
 @CrossOrigin(origins = "*", maxAge = 3000)
 @RestController
@@ -68,7 +69,7 @@ public class AuthController {
 	}
 
 	@PostMapping("/signin")
-	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) throws ResourceNotFoundException {
   
 	  Authentication authentication = authenticationManager
 		  .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
@@ -87,20 +88,20 @@ public class AuthController {
 	}
 
 	@PostMapping("/logout")
-	public ResponseEntity<?> logoutUser(@Valid @RequestBody LogOutRequest logOutRequest) {
+	public ResponseEntity<?> logoutUser(@Valid @RequestBody LogOutRequest logOutRequest) throws ResourceNotFoundException {
 	  refreshTokenService.deleteByUserId(logOutRequest.getUserId());
 	  return ResponseEntity.ok(new MsgResponse("Log out successful!"));
 	}
 
 	@PutMapping("/resetpassword/{id}")
 	public ResponseEntity<?> updateAdmin(@Valid @PathVariable(value = "id") Long userLong,
-            @Valid @RequestBody UserLogin userlogin1) throws ResourceNotFoundException {
-                UserLogin userlogin2 = userRepository.findById(userLong)
+            @Valid @RequestBody LoginDTO loginDTO) throws ResourceNotFoundException {
+                UserLogin userLogin = userRepository.findById(userLong)
                 .orElseThrow();
 
-                userlogin2.setPassword(userlogin1.getPassword());
-        userRepository.save(userlogin2);
-        return ResponseEntity.ok(new MsgResponse("PAssword reset successful!"));
+                userLogin.setPassword(encoder.encode(loginDTO.getPassword()));
+        		userRepository.save(userLogin);
+        return ResponseEntity.ok(new MsgResponse("Password reset successful!"));
     }
 
 }
