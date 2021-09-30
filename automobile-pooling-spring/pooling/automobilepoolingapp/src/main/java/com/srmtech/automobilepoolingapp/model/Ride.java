@@ -7,12 +7,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import java.io.Serializable;
-import java.util.Collection;
 
 @Entity
 public class Ride implements Serializable {
@@ -25,10 +24,18 @@ public class Ride implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateTime = new Date(System.currentTimeMillis());
 
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name="ride_id",referencedColumnName="id")
-	private Collection<RideDetails> ridedetails;
 		
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="owner_id", referencedColumnName = "id")
+	private User owner;
+
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
 
 	public Ride() {
 		//Empty
@@ -50,17 +57,6 @@ public class Ride implements Serializable {
 	public void setDateTime(Date dateTime) {
 		this.dateTime = dateTime;
 	}
-
-
-	public Collection<RideDetails> getRidedetails() {
-		return ridedetails;
-	}
-
-	public void setRidedetails(Collection<RideDetails> ridedetails) {
-		this.ridedetails = ridedetails;
-	}
-
-
 
 	  
 

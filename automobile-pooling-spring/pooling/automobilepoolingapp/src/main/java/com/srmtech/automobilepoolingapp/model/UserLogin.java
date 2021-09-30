@@ -10,6 +10,7 @@ import javax.validation.constraints.Size;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
+
 @Entity
 @Table(name = "user_login", uniqueConstraints = {@UniqueConstraint(columnNames = "email")})
 public class UserLogin{

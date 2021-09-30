@@ -1,6 +1,5 @@
 package com.srmtech.automobilepoolingapp.model;
 import java.io.Serializable;
-import java.util.Collection;
 
 
 import javax.persistence.Column;
@@ -11,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -29,16 +27,6 @@ public class User implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Long id;
-    
-    
-    @OneToMany(fetch=FetchType.LAZY)
-    @JoinColumn(name="owner_id",referencedColumnName="id")
-    private Collection<Ride> ride;
-    
-    
-    @OneToMany(fetch=FetchType.LAZY)
-    @JoinColumn(name="passenger_id",referencedColumnName="id")
-    private Collection<RideDetails> ridedetails;
     
     @NotBlank(message = "Name is mandatory")
     @Column(name="name")
@@ -195,31 +183,6 @@ public class User implements Serializable{
 	public void setVehicle(Vehicle vehicle2) {
 		this.vehicle = vehicle2;
 	}
-
-
-	public Collection<Ride> getRide() {
-		return ride;
-	}
-
-
-	public void setRide(Collection<Ride> ride) {
-		this.ride = ride;
-	}
-
-
-	public Collection<RideDetails> getRidedetails() {
-		return ridedetails;
-	}
-
-
-	public void setRidedetails(Collection<RideDetails> ridedetails) {
-		this.ridedetails = ridedetails;
-	}
-
-
-	
-	
-	
 
 }
 	

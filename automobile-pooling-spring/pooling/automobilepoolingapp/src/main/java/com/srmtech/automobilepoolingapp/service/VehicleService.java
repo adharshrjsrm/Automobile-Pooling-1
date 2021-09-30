@@ -37,7 +37,6 @@ public class VehicleService {
 		
 		return vehiclerepo.save(vehicle);
 	}
-	
 	public List<Vehicle> getVehicle() throws ResourceNotFoundException {
 	return vehiclerepo.findAll();
 }
