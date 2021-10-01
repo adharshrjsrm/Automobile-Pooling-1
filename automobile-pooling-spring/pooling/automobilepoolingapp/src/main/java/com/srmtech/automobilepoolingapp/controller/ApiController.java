@@ -36,7 +36,7 @@ public class ApiController extends BaseController {
     @PostMapping(value = "/user/add")
     public ResponseEntity<MsgResponse> addDetails(@Valid @RequestBody User user) {
         userservice.saveUser(user);
-        return new ResponseEntity<>(new MsgResponse("User deleted successfully."), HttpStatus.CREATED);
+        return new ResponseEntity<>(new MsgResponse("User added successfully."), HttpStatus.CREATED);
     }
 
     @PreAuthorize("isAuthenticated()")
