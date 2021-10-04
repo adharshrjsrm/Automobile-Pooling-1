@@ -31,16 +31,10 @@ public class Vehicle implements Serializable {
     @Column(name="number_of_seats")
     private int numberofseats;
     
- 
-    public String getVehiclecolor() {
-		return vehiclecolor;
-	}
+	@Column(name="vehicle_model")
+	private String vehiclemodel;
 
 
-	public void setVehiclecolor(String vehiclecolor) {
-		this.vehiclecolor = vehiclecolor;
-	}
- 
   public long getId() {
 		return id;
 	}
@@ -70,6 +64,22 @@ public class Vehicle implements Serializable {
 		this.numberofseats = numberofseats;
 	}
 	
-	
+	public String getVehiclemodel() {
+		return this.vehiclemodel;
+	}
+
+	public void setVehiclemodel(String vehiclemodel) {
+		this.vehiclemodel = vehiclemodel;
+	}
+
+    public String getVehiclecolor() {
+		return vehiclecolor;
+	}
+
+
+	public void setVehiclecolor(String vehiclecolor) {
+		this.vehiclecolor = vehiclecolor;
+	}
+ 
 
 }
