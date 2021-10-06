@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -41,7 +40,9 @@ public class User implements Serializable{
     @Column(name="user_type")
     private String usertype;
     
-   
+	@NotBlank(message = "Designation is mandatory")
+    @Column(name="designation")
+    private String designation;
    
     @Column(name="source_latitude")
     private double sourcelat;
@@ -51,47 +52,6 @@ public class User implements Serializable{
     @Column(name="source_longitude")
     private double sourcelon;
     
-    
-    
-    public double getSourcelat() {
-		return sourcelat;
-	}
-
-
-	public void setSourcelat(double sourcelat) {
-		this.sourcelat = sourcelat;
-	}
-
-
-	public double getSourcelon() {
-		return sourcelon;
-	}
-
-
-	public void setSourcelon(double sourcelon) {
-		this.sourcelon = sourcelon;
-	}
-
-
-	public double getDestinationlat() {
-		return destinationlat;
-	}
-
-
-	public void setDestinationlat(double destinationlat) {
-		this.destinationlat = destinationlat;
-	}
-
-
-	public double getDestinationlon() {
-		return destinationlon;
-	}
-
-
-	public void setDestinationlon(double destinationlon) {
-		this.destinationlon = destinationlon;
-	}
-
 
 	@Column(name="destination_latitude")
     private double destinationlat;
@@ -104,6 +64,11 @@ public class User implements Serializable{
     
     @Column(name="availability_status")
     private boolean availabilitystatus;
+
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "vehicle_id", referencedColumnName = "id")
+	private Vehicle vehicle;
+
 
     
 	public Long getId() {
@@ -146,11 +111,6 @@ public class User implements Serializable{
 		this.availabilitystatus = availabilitystatus;
 	}
 
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "department_id", referencedColumnName = "id")
-	private Department department;
-
 
 	public long getMobile() {
 		return mobile;
@@ -159,21 +119,57 @@ public class User implements Serializable{
 	public void setMobile(long mobile) {
 		this.mobile = mobile;
 	}
-
-
-	public Department getDepartment() {
-		return department;
-	}
-
-
-	public void setDepartment(Department department2) {
-		this.department = department2;
-	}
 	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "vehicle_id", referencedColumnName = "id")
-	private Vehicle vehicle;
+	public String getDesignation() {
+		return this.designation;
+	}
 
+	public void setDesignation(String designation) {
+		this.designation = designation;
+	}
+
+	public double getSourcelat() {
+		return sourcelat;
+	}
+
+
+	public void setSourcelat(double sourcelat) {
+		this.sourcelat = sourcelat;
+	}
+
+
+	public double getSourcelon() {
+		return sourcelon;
+	}
+
+
+	public void setSourcelon(double sourcelon) {
+		this.sourcelon = sourcelon;
+	}
+
+
+	public double getDestinationlat() {
+		return destinationlat;
+	}
+
+
+	public void setDestinationlat(double destinationlat) {
+		this.destinationlat = destinationlat;
+	}
+
+
+	public double getDestinationlon() {
+		return destinationlon;
+	}
+
+
+	public void setDestinationlon(double destinationlon) {
+		this.destinationlon = destinationlon;
+	}
+
+	public boolean getAvailabilitystatus() {
+		return this.availabilitystatus;
+	}
 
 	public Vehicle getVehicle() {
 		return vehicle;

@@ -68,30 +68,6 @@ public class ApiController extends BaseController {
         return new ResponseEntity<>(new MsgResponse("User updated successfully."), HttpStatus.ACCEPTED);
     }
 
-    // Department
-    @Autowired
-    private DepartmentService departmentService;
-
-    @PreAuthorize("isAuthenticated()")
-    @GetMapping(value = "/dept/get")
-    public ResponseEntity<List<Department>> findAll() throws ResourceNotFoundException {
-        List<Department> deptList = departmentService.getDept();
-        return new ResponseEntity<>(deptList, HttpStatus.OK);
-    }
-
-    @PreAuthorize("isAuthenticated()")
-    @GetMapping(value = "/dept/{Id}")
-    public ResponseEntity<Department> findDeptById(@PathVariable int deptId) throws ResourceNotFoundException {
-        Department deptList = departmentService.getById(deptId);
-        return new ResponseEntity<>(deptList, HttpStatus.OK);
-    }
-
-    @PreAuthorize("isAuthenticated()")
-    @PostMapping("/dept/add")
-    public ResponseEntity<MsgResponse> updateDept(@Valid @RequestBody Department dept) {
-        departmentService.saveDept(dept);
-        return new ResponseEntity<>(new MsgResponse("Department added successfully"), HttpStatus.CREATED);
-    }
 
     // Vehicle
     @Autowired

@@ -53,7 +53,7 @@ public class UserService {
 		existingUser.setDestinationlat(user.getDestinationlat());
 		existingUser.setDestinationlon(user.getDestinationlat());
 		existingUser.setAvailabilitystatus(user.isAvailabilitystatus());
-		existingUser.setDepartment(user.getDepartment());
+		existingUser.setDesignation(user.getDesignation());
 		existingUser.setVehicle(user.getVehicle());
 		return repository.save(existingUser);
 	}

@@ -3,3 +3,7 @@
     font-style: bold;
 }
 
+body{
+    background-image: url(../bg.jpg);
+    background-size: 120%;
+}
