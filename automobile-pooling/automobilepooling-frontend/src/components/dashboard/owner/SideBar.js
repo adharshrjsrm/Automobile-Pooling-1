@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {Nav,Navbar} from 'react-bootstrap';
 import './Ride.css'
-import * as FaIcons from 'react-icons/fa';
+//import * as FaIcons from 'react-icons/fa';
 export default function SideBar (){
   
     return(

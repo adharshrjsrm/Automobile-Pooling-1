@@ -4,7 +4,7 @@ import {useFormik} from 'formik';
 import * as Yup from 'yup';
 import swal from 'sweetalert';
 import {useHistory } from "react-router-dom";
-import "./user.css"
+
 
 
 

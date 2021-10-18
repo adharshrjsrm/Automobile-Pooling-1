@@ -1,8 +1,18 @@
 import React from 'react'
 import './MyFooter.css'
+import Wave from 'react-wavify';
 export default function MyFooter() {
     return (
         <div className="footer">
+           {/* <Wave fill=''
+        paused={false}
+        options={{
+          height: 5,
+          amplitude: 20,
+          speed: 0.15,
+          points: 6
+        }}
+  /> */}
     <div className='Copyright'>
       Copyright &copy; {new Date().getFullYear()} {' '}
         <a className='Adharsh' href="https://www.srmtech.com/">

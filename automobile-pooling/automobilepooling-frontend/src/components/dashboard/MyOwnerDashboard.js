@@ -1,4 +1,4 @@
-import './App.css';
+
 import NavBar from './owner/NavBar.js';
 import { Route, BrowserRouter as Router, Switch, Link } from "react-router-dom";
 import Vehicle from './owner/Vehicle';

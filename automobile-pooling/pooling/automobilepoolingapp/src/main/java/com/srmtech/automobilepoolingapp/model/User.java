@@ -43,22 +43,23 @@ public class User implements Serializable{
 	@NotBlank(message = "Designation is mandatory")
     @Column(name="designation")
     private String designation;
+
    
-    @Column(name="source_latitude")
-    private double sourcelat;
+    // @Column(name="source_latitude")
+    // private double sourcelat;
     
     
     
-    @Column(name="source_longitude")
-    private double sourcelon;
+    // @Column(name="source_longitude")
+    // private double sourcelon;
     
 
-	@Column(name="destination_latitude")
-    private double destinationlat;
+	// @Column(name="destination_latitude")
+    // private double destinationlat;
     
     
-    @Column(name="destination_longitude")
-    private double destinationlon;
+    // @Column(name="destination_longitude")
+    // private double destinationlon;
     
     	
     
@@ -69,8 +70,19 @@ public class User implements Serializable{
 	@JoinColumn(name = "vehicle_id", referencedColumnName = "id")
 	private Vehicle vehicle;
 
+	@Column(name="source")
+	private String source;
 
-    
+	@Column(name="destination")
+	private String destination;
+
+	@Column(name="stopa")
+    public String stopa;
+
+	@Column(name="stopb")
+	public String stopb;
+
+
 	public Long getId() {
 		return id;
 	}
@@ -128,44 +140,44 @@ public class User implements Serializable{
 		this.designation = designation;
 	}
 
-	public double getSourcelat() {
-		return sourcelat;
-	}
+	// public double getSourcelat() {
+	// 	return sourcelat;
+	// }
 
 
-	public void setSourcelat(double sourcelat) {
-		this.sourcelat = sourcelat;
-	}
+	// public void setSourcelat(double sourcelat) {
+	// 	this.sourcelat = sourcelat;
+	// }
 
 
-	public double getSourcelon() {
-		return sourcelon;
-	}
+	// public double getSourcelon() {
+	// 	return sourcelon;
+	// }
 
 
-	public void setSourcelon(double sourcelon) {
-		this.sourcelon = sourcelon;
-	}
+	// public void setSourcelon(double sourcelon) {
+	// 	this.sourcelon = sourcelon;
+	// }
 
 
-	public double getDestinationlat() {
-		return destinationlat;
-	}
+	// public double getDestinationlat() {
+	// 	return destinationlat;
+	// }
 
 
-	public void setDestinationlat(double destinationlat) {
-		this.destinationlat = destinationlat;
-	}
+	// public void setDestinationlat(double destinationlat) {
+	// 	this.destinationlat = destinationlat;
+	// }
 
 
-	public double getDestinationlon() {
-		return destinationlon;
-	}
+	// public double getDestinationlon() {
+	// 	return destinationlon;
+	// }
 
 
-	public void setDestinationlon(double destinationlon) {
-		this.destinationlon = destinationlon;
-	}
+	// public void setDestinationlon(double destinationlon) {
+	// 	this.destinationlon = destinationlon;
+	// }
 
 	public boolean getAvailabilitystatus() {
 		return this.availabilitystatus;
@@ -179,6 +191,43 @@ public class User implements Serializable{
 	public void setVehicle(Vehicle vehicle2) {
 		this.vehicle = vehicle2;
 	}
+
+
+	public String getSource() {
+		return this.source;
+	}
+
+	public void setSource(String source) {
+		this.source = source;
+	}
+
+	public String getDestination() {
+		return this.destination;
+	}
+
+	public void setDestination(String destination) {
+		this.destination = destination;
+	}
+
+
+	public String getStopa() {
+		return this.stopa;
+	}
+
+	public void setStopa(String stopa) {
+		this.stopa = stopa;
+	}
+
+	public String getStopb() {
+		return this.stopb;
+	}
+
+	public void setStopb(String stopb) {
+		this.stopb = stopb;
+	}
+	
+
+
 
 }
 	

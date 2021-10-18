@@ -48,10 +48,14 @@ public class UserService {
 		existingUser.setName(user.getName());
 		existingUser.setMobile(user.getMobile());
 		existingUser.setUsertype(user.getUsertype());
-		existingUser.setSourcelat(user.getSourcelat());
-		existingUser.setSourcelon(user.getSourcelon());
-		existingUser.setDestinationlat(user.getDestinationlat());
-		existingUser.setDestinationlon(user.getDestinationlat());
+		// existingUser.setSourcelat(user.getSourcelat());
+		// existingUser.setSourcelon(user.getSourcelon());
+		// existingUser.setDestinationlat(user.getDestinationlat());
+		// existingUser.setDestinationlon(user.getDestinationlat());
+		existingUser.setSource(user.getSource());
+		existingUser.setDestination(user.getDestination());
+		existingUser.setStopa(user.getStopa());
+		existingUser.setStopb(user.getStopb());
 		existingUser.setAvailabilitystatus(user.isAvailabilitystatus());
 		existingUser.setDesignation(user.getDesignation());
 		existingUser.setVehicle(user.getVehicle());
