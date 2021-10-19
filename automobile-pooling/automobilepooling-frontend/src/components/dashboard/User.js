@@ -19,26 +19,10 @@ export default function User() {
     
 }) 
 
+const config = {
+  headers: authHeader() 
+};
 
-
-  const [lat, setLat] = useState(null);
-  const [lng, setLng] = useState(null);
-  const [status, setStatus] = useState(null);
-
-  const getLocation = () => {
-    if (!navigator.geolocation) {
-      setStatus('Geolocation is not supported by your browser');
-    } else {
-      setStatus('Locating...');
-      navigator.geolocation.watchPosition((position) => {
-        setStatus(null);
-        setLat(position.coords.latitude);
-        setLng(position.coords.longitude);
-      }, () => {
-        setStatus('Unable to retrieve your location');
-      });
-    }
-  }
 
 
 const hist = useHistory();
@@ -61,7 +45,7 @@ const { handleSubmit,handleChange,values,errors} = useFormik({
   validationSchema,
   onSubmit(values) {
       console.log(values);
-    axios.post("http://localhost:8001/user/add",values).then(res=>{
+    axios.post("http://localhost:8001/user/add",values,config).then(res=>{
           //alert("User Onboarded successfully");
           console.log("=============Submitted");
           

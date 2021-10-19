@@ -12,8 +12,8 @@ import EventBus from "./common/EventBus";
 
 function App() {
 
-  const [showProfBoard, setShowPassengerBoard] = useState(false);
-  const [showAdminBoard, setShowOwnerBoard] = useState(false);
+  const [showPassengerBoard, setShowPassengerBoard] = useState(false);
+  const [showOwnerBoard, setShowOwnerBoard] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
 
   
