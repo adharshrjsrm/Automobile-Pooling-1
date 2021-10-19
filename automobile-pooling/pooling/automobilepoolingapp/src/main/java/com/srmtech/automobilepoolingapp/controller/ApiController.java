@@ -150,7 +150,6 @@ public class ApiController extends BaseController {
     }
 
     // Places
-
     @Autowired
     private PlacesService placesservice;
 
@@ -166,7 +165,7 @@ public class ApiController extends BaseController {
     @PostMapping(value = "/places/add")
     public ResponseEntity<MsgResponse> addPlaces(@RequestBody Places places) {
 
-        Places p1 = new Places("1	", "Adambakkam	");
+        Places p1 = new Places(1L, "Adambakkam");
         Places p2 = new Places("2	", "Adyar	");
         Places p3 = new Places("3	", "Alandur	");
         Places p4 = new Places("4	", "Alapakkam	");
@@ -276,7 +275,7 @@ public class ApiController extends BaseController {
         Places p108 = new Places("108	", "Perungalathur	");
         Places p109 = new Places("109	", "Perungudi	");
         Places p110 = new Places("110	", "Pozhichalur	");
-        Places p111 = new Places("", "Poonamallee	");
+        Places p111 = new Places("111", "Poonamallee	");
         Places p112 = new Places("112	", "Porur	");
         Places p113 = new Places("113	", "Pudupet	");
         Places p114 = new Places("114	", "Pulianthope	");

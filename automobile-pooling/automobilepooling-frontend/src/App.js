@@ -46,16 +46,15 @@ function App() {
   return (
     <Router>
     <div className="App">
-    {/* <MyOwnerDashboard/> */}
-    <MyPassengerDashboard/>
+ 
     <Switch>
-                {/* <Route exact path='/' component={MyHome} />
+                <Route exact path='/' component={MyHome} />
                 <Route path='/home' component={MyHome} />
                 <Route path='/owner' component={MyOwnerLogin} />
                 <Route path='/passenger' component={MyPassengerLogin} />
                 <Route protected path="/profdash" component={MyPassengerDashboard} />
                 <Route protected path="/admindash" component={MyOwnerDashboard}/>
-                <Route protected path="/register" component={MyRegister}/> */}
+                <Route protected path="/register" component={MyRegister}/>
     </Switch>
     </div>
     </Router>
