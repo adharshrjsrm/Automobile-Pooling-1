@@ -46,8 +46,8 @@ function App() {
   return (
     <Router>
     <div className="App">
- 
-    <Switch>
+    <MyPassengerDashboard/>
+    {/* <Switch>
                 <Route exact path='/' component={MyHome} />
                 <Route path='/home' component={MyHome} />
                 <Route path='/owner' component={MyOwnerLogin} />
@@ -55,7 +55,7 @@ function App() {
                 <Route protected path="/profdash" component={MyPassengerDashboard} />
                 <Route protected path="/admindash" component={MyOwnerDashboard}/>
                 <Route protected path="/register" component={MyRegister}/>
-    </Switch>
+    </Switch> */}
     </div>
     </Router>
     
