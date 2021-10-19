@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -329,7 +329,7 @@ public class ApiController extends BaseController {
         Places p162 = new Places(162L, "Washermanpet");
         Places p163 = new Places(163L, "West Mambalam");
 
-        List<Places> places = Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17,
+        List<Places> place = Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17,
                 p18, p19, p20, p21, p22, p23, p24, p25, p26, p27, p28, p29, p30, p31, p32, p33, p34, p35, p36, p37, p38,
                 p39, p40, p41, p42, p43, p44, p45, p46, p47, p48, p49, p50, p51, p52, p53, p54, p55, p56, p57, p58, p59,
                 p60, p61, p62, p63, p64, p65, p66, p67, p68, p69, p70, p71, p72, p73, p74, p75, p76, p77, p78, p79, p80,
@@ -338,7 +338,7 @@ public class ApiController extends BaseController {
                 p118, p119, p120, p121, p122, p123, p124, p125, p126, p127, p128, p129, p130, p131, p132, p133, p134,
                 p135, p136, p137, p138, p139, p140, p141, p142, p143, p144, p145, p146, p147, p148, p149, p150, p151,
                 p152, p153, p154, p155, p156, p157, p158, p159, p160, p161, p162, p163);
-        placesservice.savePlaces(places);
+        placesservice.savePlaces(place);
         return new ResponseEntity<>(new MsgResponse("Ride details added successfully."), HttpStatus.CREATED);
     }
 

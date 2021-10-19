@@ -14,8 +14,8 @@ public class PlacesService {
     @Autowired
     private PlacesRepo placesRepo;
 
-    public Places savePlaces(Places places) {
-		return placesRepo.save(places);
+    public List<Places> savePlaces(List<Places> places) {
+		return placesRepo.saveAll(places);
 	}
 
 	
