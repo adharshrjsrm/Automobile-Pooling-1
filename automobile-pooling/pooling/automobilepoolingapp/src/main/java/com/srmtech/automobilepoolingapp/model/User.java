@@ -27,20 +27,22 @@ public class User implements Serializable{
     @Column(name="id")
     private Long id;
     
-    @NotBlank(message = "Name is mandatory")
-    @Column(name="name")
-    private String name;
+//    @NotBlank(message = "Name is mandatory")
+//    @Column(name="name")
+//    private String name;
     
-	@NotBlank(message = "Mobile Number is mandatory")
+    
+    @Column(name="firstname")
+    private String firstname;
+    
+    @Column(name="lastname")
+    private String lastname;
+    
     @Column(name="mobile_number")
     private long mobile;
     
     @Column(name="designation")
     private String designation;
-
-    
-    @Column(name="availability_status")
-    private boolean availabilitystatus;
 
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "vehicle_id", referencedColumnName = "id")
@@ -67,34 +69,58 @@ public class User implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	
+
+//
+//	public String getName() {
+//		return name;
+//	}
+//
+//
+//	public void setName(String name) {
+//		this.name = name;
+//	}
+//
+//
+//	public boolean isAvailabilitystatus() {
+//		return availabilitystatus;
+//	}
+//
+//	public boolean getAvailabilitystatus() {
+//		return this.availabilitystatus;
+//	}
+//
+//	public void setAvailabilitystatus(boolean availabilitystatus) {
+//		this.availabilitystatus = availabilitystatus;
+//	}
 
 
-	public String getName() {
-		return name;
-	}
-
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-
-	public boolean isAvailabilitystatus() {
-		return availabilitystatus;
-	}
-
-	public boolean getAvailabilitystatus() {
-		return this.availabilitystatus;
-	}
-
-	public void setAvailabilitystatus(boolean availabilitystatus) {
-		this.availabilitystatus = availabilitystatus;
-	}
 
 
 	public long getMobile() {
 		return mobile;
 	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+
+	public String getLastname() {
+		return lastname;
+	}
+
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
 
 	public void setMobile(long mobile) {
 		this.mobile = mobile;
