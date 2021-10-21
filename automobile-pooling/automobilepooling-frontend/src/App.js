@@ -9,6 +9,7 @@ import {getCurrentUser,logout} from "./components/services/authService";
 import MyOwnerLogin from './components/MyOwnerLogin';
 import MyPassengerLogin from './components/MyPassengerLogin';
 import EventBus from "./common/EventBus";
+import User from './components/dashboard/User';
 
 function App() {
 
@@ -46,16 +47,19 @@ function App() {
   return (
     <Router>
     <div className="App">
-    <MyPassengerDashboard/>
-    {/* <Switch>
+    {/* <MyPassengerDashboard/> */}
+    <User/>
+    <Switch>
                 <Route exact path='/' component={MyHome} />
                 <Route path='/home' component={MyHome} />
                 <Route path='/owner' component={MyOwnerLogin} />
                 <Route path='/passenger' component={MyPassengerLogin} />
+                {/* <Route path='/passenger' component={MyPassengerLogin/User} />
+                <Route path='/owner' component={MyOwnerLogin/User} /> */}
                 <Route protected path="/profdash" component={MyPassengerDashboard} />
                 <Route protected path="/admindash" component={MyOwnerDashboard}/>
                 <Route protected path="/register" component={MyRegister}/>
-    </Switch> */}
+    </Switch>
     </div>
     </Router>
     

@@ -1,41 +1,51 @@
-// package com.srmtech.automobilepoolingapp.model;
+package com.srmtech.automobilepoolingapp.model;
 
-// import javax.persistence.Entity;
-// import javax.persistence.GeneratedValue;
-// import javax.persistence.GenerationType;
-// import javax.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.io.Serializable;
 
-// import java.io.Serializable;
+@Entity
+public class Places implements Serializable {
+private static final long serialVersionUID = 1L;
 
-// @Entity
-// public class Places implements Serializable {
+     @Id
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
+     private Long id;
 
-//     private static final long serialVersionUID = 1L;
+     private String place;
 
-//     @Id
-//     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//     private Long id;
+     public Long getId() {
+         return id;
+     }
 
-//     private String place;
+     public void setId(Long id) {
+         this.id = id;
+     }
 
-//     public Long getId() {
-//         return id;
-//     }
+     public String getPlace() {
+         return place;
+     }
+     public void setPlace(String place) {
+         this.place = place;
+     }
 
-//     public void setId(Long id) {
-//         this.id = id;
-//     }
+     public Places(String place) {
+         this.place = place;
+     }
 
-//     public String getPlace() {
-//         return place;
-//     }
+	public Places(Long id, String place) {
+		super();
+		this.id = id;
+		this.place = place;
+	}
 
-//     public void setPlace(String place) {
-//         this.place = place;
-//     }
+	public Places() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+     
+     
 
-//     public Places(String place) {
-//         this.place = place;
-//     }
-
-// }
+ }

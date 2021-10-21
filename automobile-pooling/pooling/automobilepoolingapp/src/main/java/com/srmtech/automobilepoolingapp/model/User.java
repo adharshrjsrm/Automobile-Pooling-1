@@ -36,11 +36,7 @@ public class User implements Serializable{
     private long mobile;
     
     
-    @NotBlank(message = "UserType is mandatory")
-    @Column(name="user_type")
-    private String usertype;
-    
-	@NotBlank(message = "Designation is mandatory")
+	//@NotBlank(message = "Designation is mandatory")
     @Column(name="designation")
     private String designation;
 
@@ -104,14 +100,6 @@ public class User implements Serializable{
 
 
 
-	public String getUsertype() {
-		return usertype;
-	}
-
-
-	public void setUsertype(String usertype) {
-		this.usertype = usertype;
-	}
 
 
 	public boolean isAvailabilitystatus() {

@@ -152,15 +152,17 @@ public class ApiController extends BaseController {
         return new ResponseEntity<>(rideDetailsList, HttpStatus.OK);
     }
 
-    // Places
-    // @Autowired
-    // private PlacesRepo placesrepo;
-
-    // @PreAuthorize("isAuthenticated()")
-    // @GetMapping(value = "/places/get")
-    // public ResponseEntity<List<Places>> getAll() throws ResourceNotFoundException {
-    //     return new ResponseEntity<>(placesrepo.getAll(), HttpStatus.OK);
-    // }
+    //Places
+     @Autowired
+     private PlacesService placesservice;
+     
+     
+//    @PreAuthorize("isAuthenticated()")
+     @GetMapping(value = "/places/get")
+     public ResponseEntity<List<Places>> findAllPlaces() throws ResourceNotFoundException {
+         List<Places> placeList = placesservice.getPlaces();
+         return new ResponseEntity<>(placeList, HttpStatus.OK);
+     }
 
     // @PreAuthorize("isAuthenticated()")
     // @PostMapping(value = "/places/add")

@@ -1,31 +1,39 @@
-// package com.srmtech.automobilepoolingapp.service;
+ package com.srmtech.automobilepoolingapp.service;
 
-// import java.util.List;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.srmtech.automobilepoolingapp.exception.ResourceNotFoundException;
+import com.srmtech.automobilepoolingapp.model.Places;
+import com.srmtech.automobilepoolingapp.model.User;
+import com.srmtech.automobilepoolingapp.repo.PlacesRepo;
+import com.srmtech.automobilepoolingapp.repo.UserRepo;
 
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.stereotype.Service;
-
-// import com.srmtech.automobilepoolingapp.exception.ResourceNotFoundException;
-// import com.srmtech.automobilepoolingapp.model.Places;
-// import com.srmtech.automobilepoolingapp.repo.PlacesRepo;
-
-// @Service
-// public class PlacesService {
-//     @Autowired
-// 	private PlacesRepo placesrepo;
+@Service
+public class PlacesService {
+@Autowired
+private PlacesRepo repository;
 	
+	public void getPlaces(Places place) {
 
-// 	public Places savePlaces(Places places) {
-// 		return placesrepo.save(places);
-// 	}
+		repository.save(place);
+	}
 
-	
-// 	public List<Places> getPlaces() throws ResourceNotFoundException {
-// 		return placesrepo.findAll();
-// 	}
-// 	public Places getPlacesById(Long id) {
+	public Places savePlaces(Places place) {
+		return repository.save(place);
+	}
 
-// 		return placesrepo.findById(id).orElse(null);
+	public List<Places> savePlaces(List<Places> place) {
+		return repository.saveAll(place);
+	}
 
-// 	}
-// }
+	public List<Places> getPlaces() throws ResourceNotFoundException {
+		return repository.findAll();
+	}
+
+	public Places getPlacesById(Long id) {
+
+		return repository.findById(id).orElse(null);
+
+	}
+}

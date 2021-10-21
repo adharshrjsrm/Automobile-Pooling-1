@@ -4,6 +4,7 @@ import {useFormik} from 'formik';
 import * as Yup from 'yup';
 import swal from 'sweetalert';
 import {useHistory } from "react-router-dom";
+import authHeader from '../services/authHeader';
 
 
 
@@ -13,16 +14,15 @@ export default function User() {
     name : Yup.string().required("Name is mandatory"),
     mobile: Yup.number().required("Mobile number is mandatory"),
     designation:Yup.string().required("Designation is mandatory"),
-    // source:Yup.number().required("source latitude is mandatory"),  
-    // destination: Yup.number().required("destination latitude is mandatory"),
-  
-    
+    source:Yup.number().required("Source is mandatory"),  
+    destination: Yup.number().required("Destination is mandatory"), 
+    stopa:Yup.string().required("Stopping 1 is mandatory"),
+    stopb:Yup.string().required("Stopping 2 is mandatory")
 }) 
 
 const config = {
   headers: authHeader() 
 };
-
 
 
 const hist = useHistory();
@@ -32,49 +32,26 @@ const { handleSubmit,handleChange,values,errors} = useFormik({
   initialValues: {
     name:'',
     mobile:'',
-    // department:'',
     usertype:'',
     source:'',
     destination:'',
+    stopa:'',
+    stopb:'',
     designation:'',
-    sourcelat:'',
-    sourcelon:'',
-    destinationlat: '',
-    destinationlon:''
+    
   },
   validationSchema,
   onSubmit(values) {
       console.log(values);
-    axios.post("http://localhost:8001/user/add",values,config).then(res=>{
-          //alert("User Onboarded successfully");
-          console.log("=============Submitted");
-          
-          swal({
-            // title: "Good job!",
-              text: "user register successfully!",
-              icon: "success",
-            });
+
+        axios.post("http://localhost:9000/api/user/add",values,config).then(res=>{
     }
     ).catch((err)=>{
-            console.log("err")
-        })
-
-
-    //     axios.put("http://localhost:8001/user/update",values).then(res=>res.data).then((data)=>{
-    //       //alert("User Onboarded successfully");
-    //       console.log("=============Submitted");
-    //       console.log(data);
-    //       swal({
-    //         // title: "Good job!",
-    //           text: "user updated successfully!",
-    //           icon: "success",
-    //         });
-    // }
-    // ).catch((err)=>{
-    //         console.log("err")
-    //     })
-}
+            console.log("There are Errors in the Entry")
+        })   
+      }
 }) 
+
  
     return (
         <div>           
@@ -112,38 +89,59 @@ const { handleSubmit,handleChange,values,errors} = useFormik({
   </div>
 
 
-{/* <div class="mb-5 row">
-   <label for="usertype" class="col-sm-4 col-form-label">User Type</label>
-   <div class="col-sm-6">
-   <select class="form-select" name="usertype" onChange={handleChange} value={values.usertype}>
-   <option value="-1">Please select a UserType</option>
-   <option value="owner">Owner</option>
-   <option value="passenger">Passenger</option>
-   </select>
-     {errors.usertype ? errors.usertype: null}
-  </div>
-</div> */}
 
 
 <div class="mb-5 row">
 <label for="source" class="col-sm-4 col-form-label">Source</label>
-  <div class="col-sm-6">
-  <input type="text" class="form-control"  name="source" value={values.source} onChange={handleChange} />
-      <button onClick={getLocation}>Get Location</button>
-    
-    {errors.source ? errors.source : null}
-  </div>
-  </div>
+    <div class="col-sm-6">
+        <select class="form-select" name="source" onChange={handleChange} value={values.source}>
+          <option value="-1">Please select your source</option>
 
-  
+          
+          {/* <option value="1">Car</option>
+          <option value="2">Bike</option> */}
+        </select>
+        {errors.source ? errors.source: null}      
+      </div>
+</div>
+
+
 <div class="mb-5 row">
-<label for="sourcelon" class="col-sm-4 col-form-label">Destination</label>
-  <div class="col-sm-6">
-    <input type="text" class="form-control"  name="destination" value={values.destination} onChange={handleChange} />
-    {errors.destination ? errors.destination : null}
-  </div>
-  </div>
+<label for="destination" class="col-sm-4 col-form-label">Destination</label>
+    <div class="col-sm-6">
+        <select class="form-select" name="destination" onChange={handleChange} value={values.destination}>
+          <option value="-1">Please select your destination</option>
+          {/* <option value="1">Car</option>
+          <option value="2">Bike</option> */}
+        </select>
+        {errors.destination ? errors.destination: null}      
+      </div>
+</div>
 
+<div class="mb-5 row">
+<label for="stopa" class="col-sm-4 col-form-label">Stopping 1</label>
+    <div class="col-sm-6">
+        <select class="form-select" name="stopa" onChange={handleChange} value={values.stopa}>
+          <option value="-1">Please select your near loaction</option>
+          <option value="1">Adyar</option>
+          <option value="2">Velechery</option>
+        </select>
+        {errors.stopa ? errors.stopa: null}      
+      </div>
+</div>
+  
+
+<div class="mb-5 row">
+<label for="stopb" class="col-sm-4 col-form-label">Stopping 2</label>
+    <div class="col-sm-6">
+        <select class="form-select" name="stopb" onChange={handleChange} value={values.stopb}>
+          <option value="-1">Please select your near loaction</option>
+          <option value="1">Car</option>
+          <option value="2">Bike</option>
+        </select>
+        {errors.stopb ? errors.stopb: null}      
+      </div>
+</div>
   
   
   <button class="btn btn-primary" type="submit" >Register</button>
