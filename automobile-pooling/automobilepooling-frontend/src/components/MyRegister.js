@@ -26,15 +26,6 @@ const validEmail = (value) => {
   }
 };
 
-const vusername = (value) => {
-  if (value.length < 3 || value.length > 20) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        The username must be between 3 and 20 characters.
-      </div>
-    );
-  }
-};
 
 const vpassword = (value) => {
   if (value.length < 6 || value.length > 40) {
@@ -50,16 +41,11 @@ const MyRegister = (props) => {
   const form = useRef();
   const checkBtn = useRef();
 
-  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
 
-  const onChangeUsername = (e) => {
-    const username = e.target.value;
-    setUsername(username);
-  };
 
   const onChangeEmail = (e) => {
     const email = e.target.value;
@@ -80,7 +66,7 @@ const MyRegister = (props) => {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      register(username, email, password).then(
+      register(email, password).then(
         (response) => {
           setMessage(response.data.message);
           setSuccessful(true);
@@ -106,17 +92,6 @@ const MyRegister = (props) => {
         <Form onSubmit={handleRegister} ref={form}>
           {!successful && (
             <div>
-              <div className="form-group">
-                <label htmlFor="username">Username</label>
-                <Input
-                  type="text"
-                  className="form-control"
-                  name="username"
-                  value={username}
-                  onChange={onChangeUsername}
-                  validations={[required, vusername]}
-                />
-              </div>
 
               <div className="form-group">
                 <label htmlFor="email">Email</label>

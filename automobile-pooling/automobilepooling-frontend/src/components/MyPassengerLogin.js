@@ -19,17 +19,17 @@ export default function MyPassengerLogin() {
     const form = useRef();
     const checkBtn = useRef();
     
-
-    const [username, setUserName] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
    
-    const onChangeUserName = (e) => {
-        const username = e.target.value;
-        setUserName(username);
-      };
-    
+ 
+    const onChangeEmail = (e) => {
+      const email = e.target.value;
+      setEmail(email);
+    };
+
       const onChangePassword = (e) => {
         const password = e.target.value;
         setPassword(password);
@@ -46,7 +46,7 @@ export default function MyPassengerLogin() {
         form.current.validateAll();
        
         if (checkBtn.current.context._errors.length === 0) {
-          login(username, password).then(
+          login(email, password).then(
             () => {
               history.push("/ownerdash");
               window.location.reload();
@@ -70,17 +70,17 @@ export default function MyPassengerLogin() {
     return (
         <div className="MyLogin" align ="center">
         <Form onSubmit={handleLogin} ref={form}>
-      <div className="form-group">
-        <label htmlFor="username">Username</label>
-        <Input
-          type="text"
-          className="form-control"
-          name="username"
-          value={username}
-          onChange={onChangeUserName}
-          validations={[required]}
-        />
-      </div>
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <Input
+           type="text"
+           className="form-control"
+           name="email"
+           value={email}
+           onChange={onChangeEmail}
+           validations={[required, validEmail]}
+           />
+        </div>
 
       <div className="form-group">
         <label htmlFor="password">Password</label>

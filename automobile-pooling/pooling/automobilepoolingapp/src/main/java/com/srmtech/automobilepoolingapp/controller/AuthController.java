@@ -46,10 +46,10 @@ public class AuthController {
 
 	@PostMapping("/signup")
 	public ResponseEntity<MsgResponse> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-		if (Boolean.TRUE.equals(userRepository.existsByUsername(signUpRequest.getEmail()))) {
+		if (Boolean.TRUE.equals(userRepository.existsByEmail(signUpRequest.getEmail()))) {
 			return ResponseEntity
 					.badRequest()
-					.body(new MsgResponse("Error: Username is already taken!"));
+					.body(new MsgResponse("Error: Email is already taken!"));
 		}
 
 		if (Boolean.TRUE.equals(userRepository.existsByEmail(signUpRequest.getEmail()))) {
@@ -83,8 +83,7 @@ public class AuthController {
   
 	  RefreshToken refreshToken = refreshTokenService.createRefreshToken(userDetails.getId());
   
-	  return ResponseEntity.ok(new JwtResponse(jwt, refreshToken.getToken(), userDetails.getId(),
-		  userDetails.getUsername(), userDetails.getEmail()));
+	  return ResponseEntity.ok(new JwtResponse(jwt, refreshToken.getToken(), userDetails.getId(), userDetails.getEmail()));
 	}
 
 	@PostMapping("/logout")

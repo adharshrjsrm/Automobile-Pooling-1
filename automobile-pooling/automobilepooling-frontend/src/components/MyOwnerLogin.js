@@ -20,19 +20,20 @@ export default function MyOwnerLogin() {
     const checkBtn = useRef();
     
 
-    const [username, setUserName] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
    
-    const onChangeUserName = (e) => {
-        const username = e.target.value;
-        setUserName(username);
-      };
     
       const onChangePassword = (e) => {
         const password = e.target.value;
         setPassword(password);
+      };
+
+      const onChangeEmail = (e) => {
+        const email = e.target.value;
+        setEmail(email);
       };
 
     const history = useHistory();
@@ -46,7 +47,7 @@ export default function MyOwnerLogin() {
         form.current.validateAll();
        
         if (checkBtn.current.context._errors.length === 0) {
-          login(username, password).then(
+          login(email, password).then(
             () => {
               history.push("/ownerdash");
               window.location.reload();
@@ -70,17 +71,18 @@ export default function MyOwnerLogin() {
     return (
         <div className="MyOwnerLogin" align ="center">
         <Form onSubmit={handleLogin} ref={form}>
-      <div className="form-group">
-        <label htmlFor="username">Username</label>
-        <Input
-          type="text"
-          className="form-control"
-          name="username"
-          value={username}
-          onChange={onChangeUserName}
-          validations={[required]}
-        />
-      </div>
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <Input
+           type="text"
+           className="form-control"
+           name="email"
+           value={email}
+           onChange={onChangeEmail}
+           validations={[required, validEmail]}
+           />
+        </div>
+
 
       <div className="form-group">
         <label htmlFor="password">Password</label>

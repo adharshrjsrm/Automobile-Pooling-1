@@ -1,6 +1,5 @@
 package com.srmtech.automobilepoolingapp.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -29,9 +28,6 @@ public class UserLogin{
 	private String password;
 
 	private boolean enabled;
-
-	@Column(name = "verification_code", updatable = false)
-	private String verificationCode;
 
 	public UserLogin() {
 	}
