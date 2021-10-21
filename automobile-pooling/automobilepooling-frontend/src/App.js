@@ -9,15 +9,14 @@ import {getCurrentUser,logout} from "./components/services/authService";
 import MyOwnerLogin from './components/MyOwnerLogin';
 import MyPassengerLogin from './components/MyPassengerLogin';
 import EventBus from "./common/EventBus";
-<<<<<<< Updated upstream
 import User from './components/dashboard/User';
-=======
+
 import MyNavbar from './components/MyNavbar';
 import PassengerTopbar from './components/dashboard/passenger/PassengerTopbar';
 import Vehicle from './components/dashboard/Vehicle';
 import Ride from './components/dashboard/Ride';
 import Profile from './components/dashboard/Profile';
->>>>>>> Stashed changes
+
 
 function App() {
 
@@ -54,19 +53,12 @@ function App() {
   
   return (
     <Router>
-<<<<<<< Updated upstream
     <div className="App">
     {/* <MyPassengerDashboard/> */}
     <User/>
+ 
     <Switch>
-                <Route exact path='/' component={MyHome} />
-=======
-    <div >
-     <PassengerTopbar/>
-    
-    { <Switch>
                
->>>>>>> Stashed changes
                 <Route path='/home' component={MyHome} />
                 <Route path='/owner' component={MyOwnerLogin} />
                 <Route path='/passenger' component={MyPassengerLogin} />
@@ -75,12 +67,10 @@ function App() {
                 <Route protected path="/profdash" component={MyPassengerDashboard} />
                 <Route protected path="/ownerdashboard" component={MyOwnerDashboard}/>
                 <Route protected path="/register" component={MyRegister}/>
-<<<<<<< Updated upstream
+
     </Switch>
-=======
-               
-    </Switch> }
->>>>>>> Stashed changes
+
+
     </div>
     </Router>
     

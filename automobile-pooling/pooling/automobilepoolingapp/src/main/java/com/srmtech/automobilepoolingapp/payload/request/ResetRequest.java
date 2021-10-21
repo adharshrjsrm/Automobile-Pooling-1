@@ -2,18 +2,28 @@ package com.srmtech.automobilepoolingapp.payload.request;
 import javax.validation.constraints.NotBlank;
 
 public class ResetRequest {
-    @NotBlank
-	private Long userId;
+    private Long id;
 
-	@NotBlank
+    @NotBlank
+	private String email;
+
+    @NotBlank
 	private String password;
 
-    public Long getUserId() {
-        return this.userId;
+    public Long getId() {
+        return this.id;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {

@@ -46,7 +46,7 @@ public class AuthController {
 
 	@PostMapping("/signup")
 	public ResponseEntity<MsgResponse> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-		if (Boolean.TRUE.equals(userRepository.existsByUsername(signUpRequest.getUsername()))) {
+		if (Boolean.TRUE.equals(userRepository.existsByUsername(signUpRequest.getEmail()))) {
 			return ResponseEntity
 					.badRequest()
 					.body(new MsgResponse("Error: Username is already taken!"));
@@ -59,7 +59,7 @@ public class AuthController {
 		}
 
 		
-		UserLogin user = new UserLogin(signUpRequest.getUsername(), 
+		UserLogin user = new UserLogin(
 							 signUpRequest.getEmail(),
 							 encoder.encode(signUpRequest.getPassword()));
 
@@ -72,7 +72,7 @@ public class AuthController {
 	public ResponseEntity<JwtResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) throws ResourceNotFoundException {
   
 	  Authentication authentication = authenticationManager
-		  .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+		  .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
   
 	  SecurityContextHolder.getContext().setAuthentication(authentication);
   
@@ -96,11 +96,11 @@ public class AuthController {
 
 	@PutMapping("/resetpassword/{id}")
 	public ResponseEntity<MsgResponse> updateAdmin(@Valid @PathVariable(value = "id") Long userLong,
-            @Valid @RequestBody LoginDTO loginDTO) throws ResourceNotFoundException {
+            @Valid @RequestBody ResetRequest resetRequest) throws ResourceNotFoundException {
                 UserLogin userLogin = userRepository.findById(userLong)
                 .orElseThrow();
 
-                userLogin.setPassword(encoder.encode(loginDTO.getPassword()));
+                userLogin.setPassword(encoder.encode(resetRequest.getPassword()));
         		userRepository.save(userLogin);
         return ResponseEntity.ok(new MsgResponse("Password reset successful!"));
     }

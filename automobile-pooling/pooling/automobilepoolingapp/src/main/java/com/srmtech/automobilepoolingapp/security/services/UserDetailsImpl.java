@@ -14,17 +14,14 @@ public class UserDetailsImpl implements UserDetails {
 
 	private Long id;
 
-	private String username;
-
 	private String email;
 
 	@JsonIgnore
 	private String password;
 
 	
-	public UserDetailsImpl(Long id, String username, String email, String password) {
+	public UserDetailsImpl(Long id, String email, String password) {
 		this.id = id;
-		this.username = username;
 		this.email = email;
 		this.password = password;
 	}
@@ -32,7 +29,6 @@ public class UserDetailsImpl implements UserDetails {
 	public static UserDetailsImpl build(UserLogin user) {
 		return new UserDetailsImpl(
 				user.getId(), 
-				user.getUsername(), 
 				user.getEmail(),
 				user.getPassword() 
 				);
@@ -56,10 +52,6 @@ public class UserDetailsImpl implements UserDetails {
 		return password;
 	}
 
-	@Override
-	public String getUsername() {
-		return username;
-	}
 
 	@Override
 	public boolean isAccountNonExpired() {
@@ -94,5 +86,11 @@ public class UserDetailsImpl implements UserDetails {
 	@Override
 	public int hashCode(){
 		return 0;
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

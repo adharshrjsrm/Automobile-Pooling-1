@@ -1,5 +1,6 @@
 package com.srmtech.automobilepoolingapp.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -19,10 +20,6 @@ public class UserLogin{
 	private Long id;
 
 	@NotBlank
-	@Size(max = 20)
-	private String username;
-
-	@NotBlank
 	@Size(max = 50)
 	@Email
 	private String email;
@@ -31,12 +28,15 @@ public class UserLogin{
 	@Size(max = 120)
 	private String password;
 
+	private boolean enabled;
+
+	@Column(name = "verification_code", updatable = false)
+	private String verificationCode;
 
 	public UserLogin() {
 	}
 
-	public UserLogin(String username, String email, String password) {
-		this.username = username;
+	public UserLogin(String email, String password) {
 		this.email = email;
 		this.password = password;
 	}
@@ -47,14 +47,6 @@ public class UserLogin{
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
 	}
 
 	public String getEmail() {
@@ -73,6 +65,20 @@ public class UserLogin{
 		this.password = password;
 	}
 
+
+	public boolean isEnabled() {
+		return this.enabled;
+	}
+
+	public boolean getEnabled() {
+		return this.enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	
 }
 
     

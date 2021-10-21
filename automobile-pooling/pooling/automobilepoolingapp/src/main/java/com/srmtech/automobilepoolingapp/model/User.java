@@ -31,33 +31,13 @@ public class User implements Serializable{
     @Column(name="name")
     private String name;
     
-   
+	@NotBlank(message = "Mobile Number is mandatory")
     @Column(name="mobile_number")
     private long mobile;
     
-    
-	//@NotBlank(message = "Designation is mandatory")
     @Column(name="designation")
     private String designation;
 
-   
-    // @Column(name="source_latitude")
-    // private double sourcelat;
-    
-    
-    
-    // @Column(name="source_longitude")
-    // private double sourcelon;
-    
-
-	// @Column(name="destination_latitude")
-    // private double destinationlat;
-    
-    
-    // @Column(name="destination_longitude")
-    // private double destinationlon;
-    
-    	
     
     @Column(name="availability_status")
     private boolean availabilitystatus;
@@ -99,13 +79,13 @@ public class User implements Serializable{
 	}
 
 
-
-
-
 	public boolean isAvailabilitystatus() {
 		return availabilitystatus;
 	}
 
+	public boolean getAvailabilitystatus() {
+		return this.availabilitystatus;
+	}
 
 	public void setAvailabilitystatus(boolean availabilitystatus) {
 		this.availabilitystatus = availabilitystatus;
@@ -128,48 +108,6 @@ public class User implements Serializable{
 		this.designation = designation;
 	}
 
-	// public double getSourcelat() {
-	// 	return sourcelat;
-	// }
-
-
-	// public void setSourcelat(double sourcelat) {
-	// 	this.sourcelat = sourcelat;
-	// }
-
-
-	// public double getSourcelon() {
-	// 	return sourcelon;
-	// }
-
-
-	// public void setSourcelon(double sourcelon) {
-	// 	this.sourcelon = sourcelon;
-	// }
-
-
-	// public double getDestinationlat() {
-	// 	return destinationlat;
-	// }
-
-
-	// public void setDestinationlat(double destinationlat) {
-	// 	this.destinationlat = destinationlat;
-	// }
-
-
-	// public double getDestinationlon() {
-	// 	return destinationlon;
-	// }
-
-
-	// public void setDestinationlon(double destinationlon) {
-	// 	this.destinationlon = destinationlon;
-	// }
-
-	public boolean getAvailabilitystatus() {
-		return this.availabilitystatus;
-	}
 
 	public Vehicle getVehicle() {
 		return vehicle;
@@ -214,8 +152,6 @@ public class User implements Serializable{
 		this.stopb = stopb;
 	}
 	
-
-
 
 }
 	
