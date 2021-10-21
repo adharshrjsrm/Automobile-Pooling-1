@@ -27,11 +27,6 @@ public class User implements Serializable{
     @Column(name="id")
     private Long id;
     
-//    @NotBlank(message = "Name is mandatory")
-//    @Column(name="name")
-//    private String name;
-    
-    
     @Column(name="firstname")
     private String firstname;
     
@@ -71,33 +66,6 @@ public class User implements Serializable{
 	}
 	
 	
-
-//
-//	public String getName() {
-//		return name;
-//	}
-//
-//
-//	public void setName(String name) {
-//		this.name = name;
-//	}
-//
-//
-//	public boolean isAvailabilitystatus() {
-//		return availabilitystatus;
-//	}
-//
-//	public boolean getAvailabilitystatus() {
-//		return this.availabilitystatus;
-//	}
-//
-//	public void setAvailabilitystatus(boolean availabilitystatus) {
-//		this.availabilitystatus = availabilitystatus;
-//	}
-
-
-
-
 	public long getMobile() {
 		return mobile;
 	}
