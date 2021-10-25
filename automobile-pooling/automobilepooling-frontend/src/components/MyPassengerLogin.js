@@ -18,6 +18,7 @@ const required = (value) => {
 export default function MyPassengerLogin() {
     const form = useRef();
     const checkBtn = useRef();
+    const validEmail= validEmail();
     
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -79,6 +80,7 @@ export default function MyPassengerLogin() {
            value={email}
            onChange={onChangeEmail}
            validations={[required, validEmail]}
+          validations={[required]}
            />
         </div>
 

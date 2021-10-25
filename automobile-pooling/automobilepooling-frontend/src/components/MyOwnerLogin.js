@@ -18,6 +18,7 @@ const required = (value) => {
 export default function MyOwnerLogin() {
     const form = useRef();
     const checkBtn = useRef();
+    const validEmail= validEmail();
     
 
     const [email, setEmail] = useState("");
