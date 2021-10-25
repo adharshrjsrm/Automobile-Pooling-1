@@ -27,11 +27,6 @@ public class User implements Serializable{
     @Column(name="id")
     private Long id;
     
-//    @NotBlank(message = "Name is mandatory")
-//    @Column(name="name")
-//    private String name;
-    
-    
     @Column(name="firstname")
     private String firstname;
     
@@ -70,7 +65,11 @@ public class User implements Serializable{
 		this.id = id;
 	}
 	
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> ef915b8a8b133e3ed0ed54d02282ff4a779a0915
 	public long getMobile() {
 		return mobile;
 	}
