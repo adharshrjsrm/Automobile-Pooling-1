@@ -70,33 +70,6 @@ public class User implements Serializable{
 		this.id = id;
 	}
 	
-	
-
-//
-//	public String getName() {
-//		return name;
-//	}
-//
-//
-//	public void setName(String name) {
-//		this.name = name;
-//	}
-//
-//
-//	public boolean isAvailabilitystatus() {
-//		return availabilitystatus;
-//	}
-//
-//	public boolean getAvailabilitystatus() {
-//		return this.availabilitystatus;
-//	}
-//
-//	public void setAvailabilitystatus(boolean availabilitystatus) {
-//		this.availabilitystatus = availabilitystatus;
-//	}
-
-
-
 
 	public long getMobile() {
 		return mobile;

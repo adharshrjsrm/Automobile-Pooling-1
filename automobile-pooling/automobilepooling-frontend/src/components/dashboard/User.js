@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
@@ -7,9 +7,9 @@ import {useHistory } from "react-router-dom";
 import authHeader from '../services/authHeader';
 
 
-
 export default function User() {
 
+ 
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
 
@@ -34,10 +34,10 @@ const config = {
 
 
 const hist = useHistory();
-const { handleSubmit,handleChange,values,errors} = useFormik({
+const { handleSubmit,handleChange,handleReset,reset,resetForm,values,errors} = useFormik({
 
- 
-  initialValues: {
+  
+    initialValues: {
     firstname:'',
     lastname:'',
     mobile:'',
@@ -46,11 +46,13 @@ const { handleSubmit,handleChange,values,errors} = useFormik({
     stopa:'',
     stopb:'',
     designation:'',
-    
   },
+  
   validationSchema,
-  onSubmit(values) {
-      console.log(values);
+      onSubmit(values,{resetForm}) {
+        console.log("======Form Submitted");
+        console.log(values);
+        resetForm({values:''})
 
         axios.post("http://localhost:9000/api/user/add",values,config).then(res=>{
 
@@ -64,7 +66,10 @@ const { handleSubmit,handleChange,values,errors} = useFormik({
         })   
   
       }
+
+
 }) 
+
 
  
     return (
@@ -86,19 +91,23 @@ const { handleSubmit,handleChange,values,errors} = useFormik({
   </div> */}
 
 <div class="mb-5 row">
-  <label for="firstname" class="col-sm-4 col-form-label">First Name</label>
-  <div class="col-sm-6">
+  <label for="firstname" class="col-sm-4 col-form-label">First Name</label> 
+   <div class="col-sm-7">
+
 <input type="text" class="form-control"  name="firstname" value={values.firstname} onChange={handleChange} />
-    {errors.firstname ? errors.firstname : null}
+<div className="text-danger" >
+    { errors.firstname ? errors.firstname : null}
+    </div>
   </div>
   </div>
 
+
   
 <div class="mb-5 row">
-  <label for="lastname" class="col-sm-4 col-form-label">Last Name</label>
-  <div class="col-sm-6">
+    <label for="lastname" class="col-sm-4 col-form-label">Last Name</label> 
+  <div class="col-sm-7">
 <input type="text" class="form-control"  name="lastname" value={values.lastname} onChange={handleChange} />
-    {errors.lastname ? errors.lastname : null}
+<div className="text-danger">{errors.lastname ? errors.lastname : null}</div>
   </div>
   </div>
 
@@ -106,41 +115,46 @@ const { handleSubmit,handleChange,values,errors} = useFormik({
 
   <div class="mb-5 row">
   <label for="mobile" class="col-sm-4 col-form-label">Mobile Number</label>
-  <div class="col-sm-6">
+  <div class="col-sm-7">
 <input type="text" class="form-control"  name="mobile" value={values.mobile} onChange={handleChange} />
-    {errors.mobile ? errors.mobile : null}
+<div className="text-danger" >   {errors.mobile ? errors.mobile : null} </div>
   </div>
   </div>
 
 
   <div class="mb-5 row">
   <label for="designation" class="col-sm-4 col-form-label">Designation</label>
-  <div class="col-sm-6">
+  <div class="col-sm-7">
 <input type="text" class="form-control"  name="designation" value={values.designation} onChange={handleChange} />
-    {errors.designation ? errors.designation : null}
+<div className="text-danger">  {errors.designation ? errors.designation : null}</div>
   </div>
   </div>
 
 
 <div class="mb-5 row">
-  <label for="source" class="col-sm-4 col-form-label">Source</label>
-  <div class="col-sm-6">
+<label for="source" class="col-sm-4 col-form-label">Source</label>
+  <div class="col-sm-7">
 <input type="text" class="form-control"  name="source" value={values.source} onChange={handleChange} />
+<div className="text-danger">
     {errors.source ? errors.source : null}
+    </div>
   </div>
   </div>
 
 <div class="mb-5 row">
-  <label for="destination" class="col-sm-4 col-form-label">Destination</label>
-  <div class="col-sm-6">
+ <label for="destination" class="col-sm-4 col-form-label">Destination</label>
+  <div class="col-sm-7">
 <input type="text" class="form-control"  name="destination" value={values.destination} onChange={handleChange} />
+
+<div className="text-danger">
     {errors.destination ? errors.destination : null}
+    </div>
   </div>
   </div>
 
 
 <div class="mb-5 row">
-<label for="stopa" class="col-sm-4 col-form-label">Location 1</label>
+   <label for="stopa" class="col-sm-4 col-form-label">Location 1</label>
     <div class="col-sm-6">
         <select class="form-select" name="stopa" onChange={handleChange} value={values.stopa}>
           <option value="-1">Please select your near loaction</option>
@@ -310,7 +324,7 @@ const { handleSubmit,handleChange,values,errors} = useFormik({
           <option value="163">Washermanpet</option>
           <option value="164">West Mambalam </option>
         </select>
-        {errors.stopa ? errors.stopa: null}      
+        <div className="text-danger">{errors.stopa ? errors.stopa: null}</div>    
       </div>
 </div>
   
@@ -486,15 +500,15 @@ const { handleSubmit,handleChange,values,errors} = useFormik({
           <option value="163">Washermanpet</option>
           <option value="164">West Mambalam </option>
         </select>
-        {errors.stopb ? errors.stopb: null}      
+        <div className="text-danger">{errors.stopb ? errors.stopb: null}</div>      
       </div>
 </div>
-  
-  
-  <button class="btn btn-primary" type="submit" >Register</button>
-  <button class="btn btn-primary" type="reset" >Reset</button>
+
 
   
+  <button class="btn btn-primary" type="submit">Register</button>
+  <button class= "btn btn-primary" type="reset" onClick={resetForm}>Reset</button>
+
 </form>
         </div></div></div></div>
         
