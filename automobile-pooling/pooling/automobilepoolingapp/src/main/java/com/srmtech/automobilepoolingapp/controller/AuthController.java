@@ -2,8 +2,26 @@ package com.srmtech.automobilepoolingapp.controller;
 
 import javax.validation.Valid;
 
+import com.srmtech.automobilepoolingapp.exception.ResourceNotFoundException;
+import com.srmtech.automobilepoolingapp.model.ConfirmationTokenModel;
+import com.srmtech.automobilepoolingapp.model.RefreshToken;
+import com.srmtech.automobilepoolingapp.model.UserLogin;
+import com.srmtech.automobilepoolingapp.payload.request.LogOutRequest;
+import com.srmtech.automobilepoolingapp.payload.request.LoginRequest;
+import com.srmtech.automobilepoolingapp.payload.request.ResetRequest;
+import com.srmtech.automobilepoolingapp.payload.request.SignupRequest;
+import com.srmtech.automobilepoolingapp.payload.response.JwtResponse;
+import com.srmtech.automobilepoolingapp.payload.response.MsgResponse;
+import com.srmtech.automobilepoolingapp.repo.ConfirmationTokenRepo;
+import com.srmtech.automobilepoolingapp.repo.LoginRepo;
+import com.srmtech.automobilepoolingapp.security.jwt.JwtUtils;
+import com.srmtech.automobilepoolingapp.security.services.RefreshTokenService;
+import com.srmtech.automobilepoolingapp.security.services.UserDetailsImpl;
+import com.srmtech.automobilepoolingapp.service.EmailService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -15,15 +33,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.srmtech.automobilepoolingapp.model.*;
-import com.srmtech.automobilepoolingapp.payload.request.*;
-import com.srmtech.automobilepoolingapp.payload.response.*;
-import com.srmtech.automobilepoolingapp.repo.*;
-import com.srmtech.automobilepoolingapp.security.jwt.*;
-import com.srmtech.automobilepoolingapp.security.services.*;
-import com.srmtech.automobilepoolingapp.exception.*;
 
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3000)
 @RestController
@@ -36,10 +48,16 @@ public class AuthController {
 	LoginRepo userRepository;
 
 	@Autowired
+	ConfirmationTokenRepo confirmationTokenRepo;
+
+	@Autowired
 	PasswordEncoder encoder;
 
 	@Autowired
 	JwtUtils jwtUtils;
+
+	@Autowired
+    private EmailService emailService;
 
 	@Autowired
 	RefreshTokenService refreshTokenService;
@@ -65,7 +83,39 @@ public class AuthController {
 
 		userRepository.save(user);
 
+
+		ConfirmationTokenModel confirmationToken = new ConfirmationTokenModel(user);
+		confirmationTokenRepo.save(confirmationToken);
+
+		SimpleMailMessage mailMessage = new SimpleMailMessage();
+            mailMessage.setTo(user.getEmail());
+            mailMessage.setSubject("Complete Registration!");
+			mailMessage.setText("To confirm your account, please click here : "
+            +"http://localhost:8080/confirm-account?token="+confirmationToken.getConfirmationToken());
+		
+		emailService.sendEmail(mailMessage);
+
 		return ResponseEntity.ok(new MsgResponse("Registered successfully!"));
+	}
+
+	@RequestMapping(value="/confirm-account", method= {RequestMethod.GET, RequestMethod.POST})
+	public ResponseEntity<MsgResponse> confirmUser(@Valid @RequestBody LoginRequest loginRequest, @RequestParam("token")String confirmationToken) throws ResourceNotFoundException {
+		{
+			ConfirmationTokenModel token = confirmationTokenRepo.findByConfirmationToken(confirmationToken);
+	
+			if(token != null)
+			{
+				UserLogin user = userRepository.findByemail(token.getUserLogin().getEmail()).orElseThrow();
+				user.setEnabled(true);
+				userRepository.save(user);
+			}
+			else
+			{
+				throw new ResourceNotFoundException("Not fouund");
+			}
+
+			
+		} return ResponseEntity.ok(new MsgResponse("Account Verified"));
 	}
 
 	@PostMapping("/signin")

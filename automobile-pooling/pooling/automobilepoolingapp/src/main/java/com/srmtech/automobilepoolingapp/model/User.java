@@ -35,6 +35,7 @@ public class User implements Serializable{
     @Column(name="mobile_number")
     private long mobile;
     
+
     @Column(name="designation")
     private String designation;
 

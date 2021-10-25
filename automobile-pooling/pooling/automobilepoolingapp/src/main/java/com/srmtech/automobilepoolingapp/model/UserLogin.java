@@ -1,5 +1,6 @@
 package com.srmtech.automobilepoolingapp.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -9,11 +10,12 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-
+import java.io.Serializable;
 
 @Entity
 @Table(name = "user_login", uniqueConstraints = {@UniqueConstraint(columnNames = "email")})
-public class UserLogin{
+public class UserLogin implements Serializable{
+	private static final long serialVersionUID = 1L;
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -21,11 +23,14 @@ public class UserLogin{
 	@NotBlank
 	@Size(max = 50)
 	@Email
+	@Column(name = "email")
 	private String email;
 
 	@NotBlank
 	@Size(max = 120)
+	@Column(name = "password")
 	private String password;
+
 
 	private boolean enabled;
 
@@ -73,6 +78,10 @@ public class UserLogin{
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
+
+    public UserLogin orElseThrow(Object object) {
+        return null;
+    }
 
 	
 }

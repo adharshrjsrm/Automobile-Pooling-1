@@ -19,6 +19,7 @@ public class UserDetailsImpl implements UserDetails {
 	@JsonIgnore
 	private String password;
 
+	private UserLogin userLogin;
 	
 	public UserDetailsImpl(Long id, String email, String password) {
 		this.id = id;
@@ -70,7 +71,7 @@ public class UserDetailsImpl implements UserDetails {
 
 	@Override
 	public boolean isEnabled() {
-		return true;
+		return userLogin.isEnabled();
 	}
 
 	@Override
