@@ -34,7 +34,7 @@ const config = {
 
 
 const hist = useHistory();
-const { handleSubmit,handleChange,handleReset,reset,resetForm,values,errors} = useFormik({
+const { handleSubmit,handleChange,resetForm,values,errors} = useFormik({
 
   
     initialValues: {
