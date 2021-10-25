@@ -6,7 +6,7 @@ import {
  Home,
   DirectionsCar
  
-} from "@material-ui/icons";
+} from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Vehicle from './Vehicle';
 import Ride from './Ride';

@@ -6,6 +6,7 @@ import "./MyLogin.css";
 import {useHistory} from "react-router-dom"
 import {login} from "./services/authService";
 
+
 const required = (value) => {
     if (!value) {
       return (
@@ -15,10 +16,13 @@ const required = (value) => {
       );
     }
   };
+
+
+
 export default function MyOwnerLogin() {
     const form = useRef();
     const checkBtn = useRef();
-    const validEmail= validEmail();
+   
     
 
     const [email, setEmail] = useState("");
@@ -80,7 +84,7 @@ export default function MyOwnerLogin() {
            name="email"
            value={email}
            onChange={onChangeEmail}
-           validations={[required, validEmail]}
+           validations={[required]}
            />
         </div>
 

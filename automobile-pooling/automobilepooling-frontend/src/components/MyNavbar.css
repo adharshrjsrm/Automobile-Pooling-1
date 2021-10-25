@@ -1,6 +1,7 @@
 
 .modal{
     background-blend-mode:overlay;
+    font-weight: bolder;
 }
 #nav-bar{
     background-color: black;
@@ -31,3 +32,45 @@ color: white;
 font-weight: bolder;
     
 }
+
+.form-control{
+    width: 75% !important;
+}
+
+
+.btn-custom {
+    padding: 10px 20px;
+    margin: 10px 4px;
+    color: rgb(10, 78, 17);
+    font-family:  Roboto;
+    text-transform: uppercase;
+    text-align: center;
+    position: relative;
+    text-decoration: none;
+    display: inline-block;
+    border: 2px solid;
+  }
+  .btn-custom::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    -webkit-transform: scaleY(.1);
+    transform: scaleY(.1);
+    transition: all .4s
+  }
+  .btn-custom:hover {
+    color: #14bb1c;
+  }
+  .btn-custom:hover::before {
+    opacity: 1;
+    background-color: #f7c2f9;
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+    transition: -webkit-transform .6s cubic-bezier(.08, .35, .13, 1.02), opacity .4s;
+    transition: transform .6s cubic-bezier(.08, .35, .13, 1.02), opacity
+  }
