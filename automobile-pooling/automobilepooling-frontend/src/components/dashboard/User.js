@@ -57,7 +57,7 @@ const { handleSubmit,handleChange,resetForm,values,errors} = useFormik({
         axios.post("http://localhost:9000/api/user/add",values,config).then(res=>{
 
           swal({
-              text: "user register successfully!",
+              text: "User Register Successfully!",
               icon: "success",
             });
     }
