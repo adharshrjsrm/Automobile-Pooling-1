@@ -79,10 +79,7 @@ public class UserLogin implements Serializable{
 		this.enabled = enabled;
 	}
 
-    public UserLogin orElseThrow(Object object) {
-        return null;
-    }
-
+  
 	
 }
 

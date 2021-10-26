@@ -12,7 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.NotBlank;
+
 
 
 
@@ -56,6 +56,12 @@ public class User implements Serializable{
 	@Column(name="stopb")
 	public String stopb;
 
+	@Column(name="availability_status")
+	public boolean availabilitystatus;
+	
+    @OneToOne(targetEntity = UserLogin.class, fetch = FetchType.EAGER)
+    @JoinColumn(nullable = false, name = "user_details_id")
+    private UserLogin userLogin;
 
 	public Long getId() {
 		return id;
@@ -147,6 +153,32 @@ public class User implements Serializable{
 		this.stopb = stopb;
 	}
 	
+
+	public boolean isAvailabilitystatus() {
+		return this.availabilitystatus;
+	}
+
+	public boolean getAvailabilitystatus() {
+		return this.availabilitystatus;
+	}
+
+	public void setAvailabilitystatus(boolean availabilitystatus) {
+		this.availabilitystatus = availabilitystatus;
+	}
+
+
+	public UserLogin getUserLogin() {
+		return this.userLogin;
+	}
+
+	public void setUserLogin(UserLogin userLogin) {
+		this.userLogin = userLogin;
+	}
+
+
+	public User() {
+		//Empty Constructor
+	}
 
 }
 	

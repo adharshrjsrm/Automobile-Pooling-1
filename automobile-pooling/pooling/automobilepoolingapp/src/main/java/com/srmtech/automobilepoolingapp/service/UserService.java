@@ -45,13 +45,14 @@ public class UserService {
 	public User updateUser(User user) throws ResourceNotFoundException {
 		User existingUser = repository.findById(user.getId()).orElseThrow(() -> new ResourceNotFoundException("User not found: "+user.getId()));
 		existingUser.setId(user.getId());
-//		existingUser.setName(user.getName());
+		existingUser.setFirstname(user.getFirstname());
+		existingUser.setLastname(user.getLastname());
 		existingUser.setMobile(user.getMobile());
 		existingUser.setSource(user.getSource());
 		existingUser.setDestination(user.getDestination());
 		existingUser.setStopa(user.getStopa());
 		existingUser.setStopb(user.getStopb());
-//		existingUser.setAvailabilitystatus(user.isAvailabilitystatus());
+		existingUser.setAvailabilitystatus(user.isAvailabilitystatus());
 		existingUser.setDesignation(user.getDesignation());
 		existingUser.setVehicle(user.getVehicle());
 		return repository.save(existingUser);

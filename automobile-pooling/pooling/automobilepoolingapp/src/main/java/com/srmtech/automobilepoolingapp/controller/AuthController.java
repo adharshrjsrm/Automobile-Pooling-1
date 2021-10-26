@@ -10,6 +10,7 @@ import com.srmtech.automobilepoolingapp.payload.request.LogOutRequest;
 import com.srmtech.automobilepoolingapp.payload.request.LoginRequest;
 import com.srmtech.automobilepoolingapp.payload.request.ResetRequest;
 import com.srmtech.automobilepoolingapp.payload.request.SignupRequest;
+import com.srmtech.automobilepoolingapp.payload.request.VerifyRequest;
 import com.srmtech.automobilepoolingapp.payload.response.JwtResponse;
 import com.srmtech.automobilepoolingapp.payload.response.MsgResponse;
 import com.srmtech.automobilepoolingapp.repo.ConfirmationTokenRepo;
@@ -91,7 +92,7 @@ public class AuthController {
             mailMessage.setTo(user.getEmail());
             mailMessage.setSubject("Complete Registration!");
 			mailMessage.setText("To confirm your account, please click here : "
-            +"http://localhost:8080/confirm-account?token="+confirmationToken.getConfirmationToken());
+            +"http://localhost:9000/api/auth/confirm-account?token="+confirmationToken.getConfirmationToken());
 		
 		emailService.sendEmail(mailMessage);
 
@@ -99,7 +100,7 @@ public class AuthController {
 	}
 
 	@RequestMapping(value="/confirm-account", method= {RequestMethod.GET, RequestMethod.POST})
-	public ResponseEntity<MsgResponse> confirmUser(@Valid @RequestBody LoginRequest loginRequest, @RequestParam("token")String confirmationToken) throws ResourceNotFoundException {
+	public ResponseEntity<MsgResponse> confirmUser(@Valid VerifyRequest verifyRequest, @RequestParam("token")String confirmationToken) throws ResourceNotFoundException {
 		{
 			ConfirmationTokenModel token = confirmationTokenRepo.findByConfirmationToken(confirmationToken);
 	
@@ -111,7 +112,7 @@ public class AuthController {
 			}
 			else
 			{
-				throw new ResourceNotFoundException("Not fouund");
+				throw new ResourceNotFoundException("Not found");
 			}
 
 			

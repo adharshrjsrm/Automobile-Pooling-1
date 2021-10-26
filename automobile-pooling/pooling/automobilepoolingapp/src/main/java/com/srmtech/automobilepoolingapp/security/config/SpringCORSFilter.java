@@ -16,7 +16,7 @@ public class SpringCORSFilter {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("http://localhost:3000");
+        config.addAllowedOrigin("*");
         config.setAllowedMethods(Arrays.asList("POST", "OPTIONS", "GET", "DELETE", "PUT"));
         config.setAllowedHeaders(Arrays.asList("X-Requested-With", "No-Auth","Origin", "Content-Type", "Accept", "isrefreshtoken","authorization", "Authorization"));
         source.registerCorsConfiguration("/**", config);
