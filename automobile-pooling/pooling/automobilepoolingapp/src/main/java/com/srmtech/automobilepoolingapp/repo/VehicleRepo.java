@@ -8,4 +8,6 @@ import com.srmtech.automobilepoolingapp.model.Vehicle;
 @Repository
 public interface VehicleRepo extends JpaRepository<Vehicle,Integer> {
 
+    
+
 }

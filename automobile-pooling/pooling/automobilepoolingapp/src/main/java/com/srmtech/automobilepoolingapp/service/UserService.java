@@ -33,8 +33,8 @@ public class UserService {
 	}
 
 	public User getUserById(Long id) {
-
-		return repository.findById(id).orElse(null);
+		System.out.println("id"+id);
+		return repository.findByUserId(id).orElse(null);
 
 	}
 
@@ -52,11 +52,19 @@ public class UserService {
 		existingUser.setDestination(user.getDestination());
 		existingUser.setStopa(user.getStopa());
 		existingUser.setStopb(user.getStopb());
-		existingUser.setAvailabilitystatus(user.isAvailabilitystatus());
+		existingUser.setAvailabilitystatus(user.getAvailabilitystatus());
 		existingUser.setDesignation(user.getDesignation());
 		existingUser.setVehicle(user.getVehicle());
 		return repository.save(existingUser);
 	}
+
+    public List<User> getOwner() {
+        return repository.getOnwer();
+    }
+
+    public void updateVehicleId(long userId,long vehicleId) {
+		repository.updateVehicleId(userId,vehicleId);
+    }
 	
 
 

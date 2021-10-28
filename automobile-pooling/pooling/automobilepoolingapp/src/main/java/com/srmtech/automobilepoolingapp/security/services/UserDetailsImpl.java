@@ -92,4 +92,6 @@ public class UserDetailsImpl implements UserDetails {
 		// TODO Auto-generated method stub
 		return this.email;
 	}
+
+	
 }

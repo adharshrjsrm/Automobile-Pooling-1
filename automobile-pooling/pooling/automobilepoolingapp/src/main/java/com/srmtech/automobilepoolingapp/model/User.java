@@ -57,12 +57,28 @@ public class User implements Serializable{
 	public String stopb;
 
 	@Column(name="availability_status")
-	public boolean availabilitystatus;
-	
-    @OneToOne(targetEntity = UserLogin.class, fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false, name = "user_details_id")
-    private UserLogin userLogin;
+	public Boolean availabilitystatus;
 
+	@OneToOne(targetEntity = UserLogin.class, fetch = FetchType.EAGER)
+    @JoinColumn(nullable = false, name = "user_details_id")
+  	private UserLogin userLogin;
+
+	public UserLogin getUserLogin() {
+		return this.userLogin;
+	}
+
+	public void setUserLogin(UserLogin userLogin) {
+		this.userLogin = userLogin;
+	}
+	
+	public Boolean getAvailabilitystatus() {
+		return this.availabilitystatus;
+	}
+
+	public void setAvailabilitystatus(Boolean availabilitystatus) {
+		this.availabilitystatus = availabilitystatus;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -152,29 +168,6 @@ public class User implements Serializable{
 	public void setStopb(String stopb) {
 		this.stopb = stopb;
 	}
-	
-
-	public boolean isAvailabilitystatus() {
-		return this.availabilitystatus;
-	}
-
-	public boolean getAvailabilitystatus() {
-		return this.availabilitystatus;
-	}
-
-	public void setAvailabilitystatus(boolean availabilitystatus) {
-		this.availabilitystatus = availabilitystatus;
-	}
-
-
-	public UserLogin getUserLogin() {
-		return this.userLogin;
-	}
-
-	public void setUserLogin(UserLogin userLogin) {
-		this.userLogin = userLogin;
-	}
-
 
 	public User() {
 		//Empty Constructor

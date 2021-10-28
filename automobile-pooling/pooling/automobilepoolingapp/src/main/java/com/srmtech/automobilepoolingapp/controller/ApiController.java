@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +22,8 @@ import javax.validation.Valid;
 import com.srmtech.automobilepoolingapp.exception.ResourceNotFoundException;
 import com.srmtech.automobilepoolingapp.model.*;
 import com.srmtech.automobilepoolingapp.payload.response.MsgResponse;
+import com.srmtech.automobilepoolingapp.security.services.UserDetailsImpl;
+import com.srmtech.automobilepoolingapp.security.services.UserDetailsServiceImpl;
 import com.srmtech.automobilepoolingapp.service.*;
 
 
@@ -33,9 +37,15 @@ public class ApiController extends BaseController {
     @Autowired
     private UserService userservice;
 
+
+   
+
     @PreAuthorize("isAuthenticated()")
     @PostMapping(value = "/user/add")
     public ResponseEntity<MsgResponse> addDetails(@Valid @RequestBody User user) {
+        UserLogin userLogin=new UserLogin();
+        userLogin.setId(getUserId());
+        user.setUserLogin(userLogin);
         userservice.saveUser(user);
         return new ResponseEntity<>(new MsgResponse("User added successfully."), HttpStatus.CREATED);
     }
@@ -44,15 +54,26 @@ public class ApiController extends BaseController {
     @GetMapping(value = "/user/get")
     public ResponseEntity<List<User>> findAllUsers() throws ResourceNotFoundException {
         List<User> userList = userservice.getUser();
+        System.out.println("userId: "+ getUserId());
+        
         return new ResponseEntity<>(userList, HttpStatus.OK);
 
     }
 
     @PreAuthorize("isAuthenticated()")
-    @GetMapping(value = "/user/{Id}")
-    public ResponseEntity<User> findUserById(@PathVariable Long userId) throws ResourceNotFoundException {
-        User userList = userservice.getUserById(userId);
+    @GetMapping(value = "/user/getuser")
+    public ResponseEntity<User> findUserById() throws ResourceNotFoundException {
+        System.out.println(getUserId());
+        User userList = userservice.getUserById(getUserId());
         return new ResponseEntity<>(userList, HttpStatus.OK);
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping(value = "/owner")
+    public ResponseEntity<List<User>> getOwner() throws ResourceNotFoundException {
+        List<User> userList = userservice.getOwner();
+        return new ResponseEntity<>(userList, HttpStatus.OK);
+
     }
 
     @PreAuthorize("isAuthenticated()")
@@ -84,6 +105,8 @@ public class ApiController extends BaseController {
     @PostMapping(value = "/vehicle/add")
     public ResponseEntity<MsgResponse> saveVehicle(@RequestBody Vehicle vehicle) {
         vehicleservice.getdetails(vehicle);
+        Long vehicleId=vehicle.getId();
+        userservice.updateVehicleId(getUserId(),vehicleId);
         return new ResponseEntity<>(new MsgResponse("Vehicle added successfully"), HttpStatus.CREATED);
     }
 
@@ -93,6 +116,14 @@ public class ApiController extends BaseController {
         List<Vehicle> vehicleList = vehicleservice.getVehicle();
         return new ResponseEntity<>(vehicleList, HttpStatus.OK);
     }
+
+    @PreAuthorize("isAuthenticated()")
+    @PutMapping("/vehicle/idupdate")
+    public ResponseEntity<MsgResponse> updateVehicleId() {
+       // userservice.updateVehicleId(getUserId());
+        return new ResponseEntity<>(new MsgResponse("VehicleId updated successfully"), HttpStatus.ACCEPTED);
+    }
+    
 
     @PreAuthorize("isAuthenticated()")
     @PutMapping("/vehicle/update")

@@ -1,4 +1,5 @@
 package com.srmtech.automobilepoolingapp.security.jwt;
+import java.nio.file.attribute.UserPrincipal;
 import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,17 +28,20 @@ public class JwtUtils {
 	
 
 	public String generateJwtToken(UserDetailsImpl userPrincipal) {
-		return generateTokenFromUsername(userPrincipal.getUsername());
+		return generateTokenFromUsername(userPrincipal.getUsername(),userPrincipal.getId().toString());
 	  }
 	
-	  public String generateTokenFromUsername(String username) {
-		return Jwts.builder().setSubject(username).setIssuedAt(new Date())
+	  public String generateTokenFromUsername(String username,String id) {
+		return Jwts.builder().setId(id).setSubject(username).setIssuedAt(new Date())
 			.setExpiration(new Date((new Date()).getTime() + jwtExpirationMs)).signWith(SignatureAlgorithm.HS512, jwtSecret)
 			.compact();
 	  }
 	
 	  public String getUserNameFromJwtToken(String token) {
 		return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
+	  }
+	  public String getUserIdFromJwtToken(String token) {
+		return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getId();
 	  }
 
 	public boolean validateJwtToken(String authToken) {
