@@ -1,0 +1,21 @@
+MyRegister{
+    align-items: center;
+    min-width: 50%
+  }
+
+.form-group{
+  align-items: center !important;
+}
+  
+  
+  .form-control {
+  width: 100% !important;
+  size: 500px;
+  }
+  
+
+  
+  .btn-custom{
+    background-color: black;
+    color: white;
+  }
