@@ -33,7 +33,6 @@ public class UserService {
 	}
 
 	public User getUserById(Long id) {
-		System.out.println("id"+id);
 		return repository.findByUserId(id).orElse(null);
 
 	}
@@ -59,7 +58,7 @@ public class UserService {
 	}
 
     public List<User> getOwner() {
-        return repository.getOnwer();
+        return repository.getOwner();
     }
 
     public void updateVehicleId(long userId,long vehicleId) {
