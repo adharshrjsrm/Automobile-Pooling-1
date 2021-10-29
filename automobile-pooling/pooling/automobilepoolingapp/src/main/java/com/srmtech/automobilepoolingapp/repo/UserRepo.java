@@ -25,4 +25,9 @@ public interface UserRepo extends JpaRepository<User, Long> {
     @Query("update com.srmtech.automobilepoolingapp.model.User set vehicle_id=?2 where user_details_id=?1")
     void updateVehicleId(long userId,long vehicleId);
 
+    @Query("select count(id)>0 from  com.srmtech.automobilepoolingapp.model.User where user_details_id=?1")
+    Boolean existByUserDetails(Long userid);
+
+  
+
 }

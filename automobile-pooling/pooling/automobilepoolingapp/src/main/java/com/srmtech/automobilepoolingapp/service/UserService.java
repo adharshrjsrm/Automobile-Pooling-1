@@ -64,7 +64,12 @@ public class UserService {
 
     public void updateVehicleId(long userId,long vehicleId) {
 		repository.updateVehicleId(userId,vehicleId);
+	}
+
+    public Boolean existByUserLogin(Long userid) {
+        return repository.existByUserDetails(userid);
     }
+		
 	
 
 
