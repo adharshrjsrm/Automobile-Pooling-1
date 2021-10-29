@@ -181,5 +181,16 @@ public class ApiController extends BaseController {
         return new ResponseEntity<>(rideDetailsList, HttpStatus.OK);
     }
 
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping(value = "/existuser")
+    public  boolean existByUserLogin() throws ResourceNotFoundException {
+        Long userid=getUserId();
+        Boolean user = userservice.existByUserLogin(userid);
+        return user;
+    }
 
 }
+
+
+
+
