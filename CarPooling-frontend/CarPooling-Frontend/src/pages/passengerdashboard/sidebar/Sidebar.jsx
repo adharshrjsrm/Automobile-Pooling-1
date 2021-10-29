@@ -4,36 +4,12 @@ import {
   Timeline,
   PermIdentity,
  Commute,
- DirectionsCar,
- ExitToApp
+ CalendarToday,
+ DirectionsCar
 } from "@material-ui/icons";
 import { Link } from "react-router-dom";
-import { useHistory } from 'react-router';
-import axios from 'axios';
-import authHeader from '../../services/authHeader';
 
 export default function Sidebar() {
-  const history = useHistory();
-  const config = {
-    headers: authHeader() 
-  };
- 
-  const handleLogout = () => {
-    const user=JSON.parse(localStorage.getItem('user')); 
-    const value={
-      "userId":user.id
-    }
-    console.log(value);
-    axios.post("http://localhost:9000/api/auth/logout",value,config).then(res=>{
-      localStorage.removeItem('user');
-      history.push('/');
-      
-     
- }
- ).catch((err)=>{
-         console.log("There are Errors in the Entry")
-     }) 
-};
   return (
     <div className="sidebar">
     <div className="sidebarWrapper">
@@ -46,30 +22,43 @@ export default function Sidebar() {
             Home
           </li>
           </Link>
-          <Link to="/profile" className="link">
+          <Link to="/passengerprofile" className="link">
           <li className="sidebarListItem">
             <PermIdentity className="sidebarIcon" />
             Profile
           </li>
-          </Link>
-          <Link to="/vehicle" className="link">
+           </Link>
+           <Link to="/calender" className="link">
+          <li className="sidebarListItem">
+            <CalendarToday className="sidebarIcon" />
+            Calender
+          </li>
+
+             {/* <Link to="/vehicle" className="link">
           <li className="sidebarListItem">
             <DirectionsCar className="sidebarIcon" />
             Vehicle
           </li>
-          </Link>
-          <Link to="/ride" className="link">
+          </Link>  */}
+
+          <Link to="/passengerride" className="link">
           <li className="sidebarListItem">
             <Commute className="sidebarIcon" />
             Ride
           </li>
-          </Link>
-          <Link className="link" onClick={handleLogout}>
-          <li className="sidebarLogout">
-            <ExitToApp className="sidebarIcon" />
-            Logout
+          </Link> 
+
+         
+
+           </Link>
+           <Link to="/logout" className="link">
+           <li className="logout">
+            <CalendarToday className="sidebarIcon" />
+            LogOut
           </li>
-          </Link>
+           </Link>
+        
+           
         </ul>
       </div>
       

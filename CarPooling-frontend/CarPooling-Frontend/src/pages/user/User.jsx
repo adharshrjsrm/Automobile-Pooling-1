@@ -5,6 +5,8 @@ import {
   PermIdentity,
   PhoneAndroid,
   Publish,
+  AccountCircle,
+  LocationOn
 } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar";
@@ -23,6 +25,7 @@ export default function User() {
     const result = await axios.get(`http://localhost:9000/api/user/getuser`,config);
     setValues(result.data);
     console.log(result.data)
+    
   };
   useEffect(() => {
    console.log("User-useeffect");
@@ -67,6 +70,7 @@ export default function User() {
       stopa: '',
       stopb: '',
       designation: '',
+      
 
     },
     validationSchema,
@@ -133,11 +137,11 @@ export default function User() {
                   <span className="userShowInfoTitle">{values.destination}</span>
                 </div>
                 <div className="userShowInfo">
-                  <LocationSearching className="userShowIcon" />
+                  <LocationOn className="userShowIcon" />
                   <span className="userShowInfoTitle">{values.stopa}</span>
                 </div>
                 <div className="userShowInfo">
-                  <LocationSearching className="userShowIcon" />
+                  <LocationOn className="userShowIcon" />
                   <span className="userShowInfoTitle">{values.stopb}</span>
                 </div>
               </div>

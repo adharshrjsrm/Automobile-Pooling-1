@@ -8,6 +8,9 @@ import OwnerDashboard from "./pages/dashboard/OwnerDashboard";
 import MyHome from "./pages/home/MyHome";
 import NewVehicle from "./pages/newUser/NewVehicle";
 import PrivateRoute from "./PrivateRoute";
+import Passengerdashboard from "./pages/passengerdashboard/Passengerdashboard";
+import PassengerProfile from "./pages/passengerdashboard/PassengerProfile";
+import PassengerRide from "./pages/passengerdashboard/PassengerRide";
 
 function App() {
   return (
@@ -28,6 +31,15 @@ function App() {
           </Route>
           <Route path="/ride">
             <Ride />
+          </Route>
+          <Route path="/passengerdashboard">
+            <Passengerdashboard />
+          </Route>
+          <Route path="/passengerprofile">
+            <PassengerProfile />
+          </Route>
+          <Route path="/passengerride">
+            <PassengerRide />
           </Route>
          
           <PrivateRoute exact path='/newvehicle' component={NewVehicle} />

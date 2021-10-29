@@ -7,6 +7,7 @@ import {useHistory} from "react-router-dom"
 import {login} from "../../services/authService";
 import authHeader from '../../services/authHeader';
 import axios from 'axios';
+import { LocalLaundryService } from "@material-ui/icons";
 
 const required = (value) => {
     if (!value) {
@@ -42,8 +43,28 @@ export default function MyOwnerLogin() {
         const email = e.target.value;
         setEmail(email);
       };
+      
 
     const history = useHistory();
+    const [user,setUser]=useState({
+      id:'',
+      firstname: '',
+      lastname: '',
+      mobile: '',
+      source: '',
+      destination: '',
+      stopa: '',
+      stopb: '',
+      designation: ''
+    })
+    const loadUser = async () => {
+      const result = await axios.get(`http://localhost:9000/api/existuser`,config);
+      console.log("user"+result.data)
+     if(result.data)
+     history.push('/ownerdashboard')
+     else
+     history.push('/newuser')
+    };
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -56,9 +77,9 @@ export default function MyOwnerLogin() {
         if (checkBtn.current.context._errors.length === 0) {
           login(email, password).then(
             () => {
-              
-              history.push('/ownerdashboard')
-              window.location.reload();
+              loadUser();
+             
+             // window.location.reload();
               
             }, (error) => {
               const resMessage =
