@@ -7,6 +7,7 @@ import {login} from "../services/authService";
 import authHeader from '../services/authHeader';
 import axios from 'axios';
 
+
 const required = (value) => {
     if (!value) {
       return (
@@ -17,38 +18,53 @@ const required = (value) => {
     }
   };
 export default function MyPassengerLogin() {
-  const config = {
-    headers: authHeader()
-  }; 
-    const [isValid, setIsValid] = useState(false);
+ 
     const form = useRef();
     const checkBtn = useRef();
+    // const validEmail= validEmail();
+    
 
-    const emailRegex = /\S+@\S+\.\S+/;
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
-
-    const onChangeEmail = (e) => {
-      const email = e.target.value;
-      setEmail(email);
-      if (emailRegex.test(email)) {
-        setIsValid(true);
-        setMessage('');
-      } else {
-        setIsValid(false);
-        setMessage('Please enter a valid email!');
-      }
-    };
- 
-
+    const[values,setValues]=useState([]);
+   
+    
       const onChangePassword = (e) => {
         const password = e.target.value;
         setPassword(password);
       };
 
+      const onChangeEmail = (e) => {
+        const email = e.target.value;
+        setEmail(email);
+      };
+      
+
     const history = useHistory();
+    const [user,setUser]=useState({
+      id:'',
+      firstname: '',
+      lastname: '',
+      mobile: '',
+      source: '',
+      destination: '',
+      stopa: '',
+      stopb: '',
+      designation: ''
+    })
+    const loadUser = async () => {
+      const config = {
+        headers: authHeader()
+      };
+      const result = await axios.get(`http://localhost:9000/api/existuser`,config);
+      console.log("user"+result.data)
+     if(result.data)
+     history.push('/passengerdash')
+     else
+     history.push('/newuser')
+    };
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -61,16 +77,12 @@ export default function MyPassengerLogin() {
         if (checkBtn.current.context._errors.length === 0) {
           login(email, password).then(
             () => {
-              const loadUser = async () => {
-                const result = await axios.get(`http://localhost:9000/api/existuser`,config);
-                console.log("user"+result.data)
-               if(result.data)
-               history.push('/passengerdash')
-               else
-               history.push('/newpassenger')
-              };
+      
+              loadUser();
+            
+             
+             // window.location.reload();
               
-              //window.location.reload();
             }, (error) => {
               const resMessage =
                 (error.response &&
@@ -89,7 +101,7 @@ export default function MyPassengerLogin() {
       };
     
     return (
-        <div className="MyLogin" align ="center">
+        <div className="MyOwnerLogin" align ="center">
         <Form onSubmit={handleLogin} ref={form}>
         <div className="form-group">
           <label htmlFor="email">Email</label>
@@ -99,9 +111,10 @@ export default function MyPassengerLogin() {
            name="email"
            value={email}
            onChange={onChangeEmail}
-
+          //  validations={[required, validEmail]}
            />
         </div>
+
 
       <div className="form-group">
         <label htmlFor="password">Password</label>
@@ -116,7 +129,7 @@ export default function MyPassengerLogin() {
       </div>
 
       <div className="form-group">
-        <button className="btn-custom" disabled={loading}>
+        <button href="/newuser" className="btn-custom" disabled={loading}>
           {loading && (
             <span className="spinner-border spinner-border-sm"></span>
           )}

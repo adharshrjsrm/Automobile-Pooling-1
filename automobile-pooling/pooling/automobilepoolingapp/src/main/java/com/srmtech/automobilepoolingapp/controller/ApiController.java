@@ -86,8 +86,21 @@ public class ApiController extends BaseController {
     @PreAuthorize("isAuthenticated()")
     @PutMapping("/user/update")
     public ResponseEntity<MsgResponse> updateUser(@Valid @RequestBody User user) throws ResourceNotFoundException {
+        Long userid=getUserId();
+        Long userId = userservice.getUserIdRide(userid);
+        user.setId(userId);
         userservice.updateUser(user);
         return new ResponseEntity<>(new MsgResponse("User updated successfully."), HttpStatus.ACCEPTED);
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @PutMapping("/user/updatestatus")
+    public ResponseEntity<MsgResponse> updateUserStatus(@Valid @RequestBody User user) throws ResourceNotFoundException {
+        Long userid=getUserId();
+        Long userId = userservice.getUserIdRide(userid);
+        user.setId(userId);
+        userservice.updateUserStatus(user);
+        return new ResponseEntity<>(new MsgResponse("User Status updated successfully."), HttpStatus.ACCEPTED);
     }
 
     // Vehicle

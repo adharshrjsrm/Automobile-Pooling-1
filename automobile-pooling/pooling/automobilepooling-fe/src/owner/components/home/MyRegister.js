@@ -4,7 +4,7 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 
-import  {register} from "../services/authService" 
+import  {register} from "../../services/authService" 
 
 const required = (value) => {
   if (!value) {
@@ -40,24 +40,18 @@ const vpassword = (value) => {
 const MyRegister = (props) => {
   const form = useRef();
   const checkBtn = useRef();
-  const [isValid, setIsValid] = useState(false);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
-  const emailRegex = /\S+@\S+\.\S+/;
+
 
   const onChangeEmail = (e) => {
     const email = e.target.value;
     setEmail(email);
-    if (emailRegex.test(email)) {
-      setIsValid(true);
-      setMessage('');
-    } else {
-      setIsValid(false);
-      setMessage('Please enter a valid email!');
-    }
   };
+
   const onChangePassword = (e) => {
     const password = e.target.value;
     setPassword(password);

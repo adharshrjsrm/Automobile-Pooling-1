@@ -1,0 +1,18 @@
+/* .MyLogin{
+    align-items: center;
+    min-width: 200%
+}
+ 
+.MyPassengerLogin{
+    align-items: center;
+    min-width: 200%
+} */
+  
+.form-control{
+    width: 75% !important;
+}
+    
+.btn-custom{
+    background-color: black;
+    color: white;
+}

@@ -3,8 +3,31 @@ import './UserList.css'
 import axios from 'axios';
 import Select from 'react-select';
 import { Button } from '@material-ui/core';
+import authHeader from '../../../services/authHeader';
+import Sidebar from '../sidebar/Sidebar';
+import Topbar from '../topbar/Topbar';
 
 export default function UserList() {
+  const config = {
+    headers: authHeader() 
+  };
+
+
+  const handleClick=(e)=>{
+    const value={
+      "owner":{id:e.target.id}
+    }
+    console.log(value);
+    axios.post("http://localhost:9000/api/ride/add",value,config).then(res=>{
+     alert("ride booked");
+      
+     
+  }
+  ).catch((err)=>{
+         console.log("There are Errors in the Entry")
+     }) 
+  }
+  
 
   const [jdata, setJData] = useState([]);
   const [sdata, setSData] = useState([]);
@@ -178,9 +201,9 @@ export default function UserList() {
   ];
 
   useEffect(() => {
-    axios.get("http://localhost:8000/user")
+    axios.get("http://localhost:9000/api/owner",config)
       .then((res) => {
-        console.log(res)
+        console.log("owner"+res.data)
         setJData(res.data);
       })
       .catch(err => {
@@ -192,18 +215,16 @@ export default function UserList() {
   console.log(place);
   return (
     <div>
-      <div>
-      <div>
-        <Select className="searchcol"
-          options={places}
-          isMulti
-          onChange={opt => setPlace(opt[0].value)}
-        />
-        <div>
-          <Button type="Submit">Submit</Button>
-        </div>
-        </div>
-      </div>
+      <Topbar/>
+      <div className="container">
+        <Sidebar/>
+     
+     
+     
+       
+        
+       
+     
         <div className="widgetLg">
         <table className="widgetLgTable">
           <thead>
@@ -224,22 +245,23 @@ export default function UserList() {
             {jdata.map((x) => {
               return (
                 <tr>
-                  <td className="widgetLgUser"> {x.name}</td>
-                  <td className="td"> {x.phone}</td>
+                  <td className=""> {x.firstname+" "}{x.lastname}</td>
+                  <td className="td"> {x.mobile}</td>
                   <td className="td"> {x.source}</td>
                   <td className="td"> {x.destination}</td>
-                  <td className="td"> {x.vn}</td>
-                  <td className="td" style={{ color: x.vc }}> {x.vc}</td>
-                  <td className="td"> {x.vt}</td>
-                  <td className="td"> {x.seat}</td>
+                  <td className="td"> {x.vehicle.vehiclenumber}</td>
+                  <td className="td" style={{ color: x.vehicle.vehiclecolor }}> {x.vehicle.vehiclecolor}</td>
+                  <td className="td"> {x.vehicle.vehiclemodel}</td>
+                  <td className="td"> {x.vehicle.numberofseats}</td>
                   <td className="td"> {x.time}</td>
-                  <td className="td"><button className="userListEdit" onClick={() => setSData(x)}>Request</button></td>
+                  <td className="td"><button className="userListEdit" id={x.id} onClick={handleClick}>Request</button></td>
                 </tr>
               )
             })}
           </tbody>
         </table>
       </div>
+    </div>
     </div>
   )
 }

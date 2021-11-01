@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import "./RideHistory.css";
+import Topbar from '../topbar/Topbar';
+import Sidebar from '../sidebar/Sidebar';
 
 export default function RideHistory() {
     const [jdata, setJData] = useState([]);
@@ -18,6 +20,11 @@ export default function RideHistory() {
     }, [])
     console.log(sdata);
     return (
+        <>
+        <Topbar/>
+        <div className="container">
+            <Sidebar/>
+        
         <div className="widgetLg">
             <table className="widgetLgTable">
                 <thead>
@@ -56,5 +63,7 @@ export default function RideHistory() {
                 </tbody>
             </table>
         </div>
+        </div>
+        </>
     )
 }

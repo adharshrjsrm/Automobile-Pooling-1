@@ -1,9 +1,11 @@
 import React from 'react'
 import {
-    LineStyle,
-    PermIdentity,
-    Storefront,
-  } from '@material-ui/icons' //    AttachMoney, BarChart, MailOutline, DynamicFeed, ChatBubbleOutline, WorkOutline, Report, Timeline, TrendingUp,
+ Home,
+PermIdentity,
+ Commute,
+ DirectionsCar,
+ ExitToApp
+} from "@material-ui/icons";
   import { Link } from 'react-router-dom'
   import './Sidebar.css'
 
@@ -14,27 +16,27 @@ export default function Sidebar() {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Dashboard</h3>
           <ul className="sidebarList">
-            <Link to="/" className="link">
+            <Link to="/passengerdash" className="link">
             <li className="sidebarListItem active">
-              <LineStyle className="sidebarIcon" />
+              <Home className="sidebarIconHome" />
               Home
             </li>
             </Link>
-            <Link to="/profile" className="link">
+            <Link to="/passengerprofile" className="link">
               <li className="sidebarListItem">
-                <Storefront className="sidebarIcon" />
+                <PermIdentity className="sidebarIcon" />
                 Profile
               </li>
             </Link>
             <Link to="/users" className="link">
               <li className="sidebarListItem">
-                <PermIdentity className="sidebarIcon" />
+                <DirectionsCar className="sidebarIcon" />
                 Ride Offers
               </li>
             </Link>
             <Link to="/ridehistory" className="link">
               <li className="sidebarListItem">
-                <Storefront className="sidebarIcon" />
+                <Commute className="sidebarIcon" />
                 Ride History
               </li>
             </Link>

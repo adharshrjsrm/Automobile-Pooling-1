@@ -1,31 +1,27 @@
 import './PassengerDB.css'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Topbar from './components/topbar/Topbar'
 import Sidebar from './components/sidebar/Sidebar'
-import Home from './components/home/Home'
-import UserList from './components/userList/UserList'
-import RideHistory from './components/ridehistory/RideHistory'
-import Profile from './components/profile/Profile'
-import PrivateRoute from '../PrivateRoute'
+import FeaturedInfo from './components/featuredinfo/FeaturedInfo'
+import WidgetLg from '../passenger/components/widgetLg/WidgetLg'
+import WidgetSm from '../passenger/components/widgetSm/WidgetSm'
 
 export default function PassengerDB() {
   return (
-    <Router>
-      <Topbar/>
-      <div className="container">
-        <Sidebar/>
-        <Switch>
-          <PrivateRoute exact path="/" component={Home}/>
-         
-          <PrivateRoute path="/users" component={UserList}/>
-       
-          <PrivateRoute path="/ridehistory" component={RideHistory}/>
-       
-          <PrivateRoute path="/profile" component={Profile}/>
-         
-        </Switch>
+    <>
+   
+   <Topbar />
+    <div className="container">
+      <Sidebar />
+    <div className="home">
+      <FeaturedInfo />
+      <div className="homeWidgets">
+        <WidgetSm/>
+        <WidgetLg/>
       </div>
-    </Router>
+    </div>
+    </div>
+      </>
+   
   );
 }
 
