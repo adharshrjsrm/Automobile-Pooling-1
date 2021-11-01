@@ -1,0 +1,10 @@
+.typical{
+    font-size: large;
+    font-style: bold;
+    color:black;
+}
+
+body{
+    background-image: url(../assets/bg.jpg);
+    background-size: 120%;
+  }

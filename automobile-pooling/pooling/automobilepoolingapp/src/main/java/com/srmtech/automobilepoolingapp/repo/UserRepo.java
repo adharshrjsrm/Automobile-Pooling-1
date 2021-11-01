@@ -15,7 +15,7 @@ import com.srmtech.automobilepoolingapp.model.User;
 public interface UserRepo extends JpaRepository<User, Long> {
 
     @Query("from com.srmtech.automobilepoolingapp.model.User where availabilitystatus=true")
-    List<User> getOnwer();
+    List<User> getOwner();
 
     @Query("from com.srmtech.automobilepoolingapp.model.User where user_details_id=?1")
     Optional<User> findByUserId(Long id);

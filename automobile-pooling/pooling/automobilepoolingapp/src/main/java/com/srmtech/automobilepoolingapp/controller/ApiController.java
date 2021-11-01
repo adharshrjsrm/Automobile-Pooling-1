@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,17 +20,14 @@ import javax.validation.Valid;
 import com.srmtech.automobilepoolingapp.exception.ResourceNotFoundException;
 import com.srmtech.automobilepoolingapp.model.*;
 import com.srmtech.automobilepoolingapp.payload.response.MsgResponse;
-import com.srmtech.automobilepoolingapp.security.services.UserDetailsImpl;
-import com.srmtech.automobilepoolingapp.security.services.UserDetailsServiceImpl;
 import com.srmtech.automobilepoolingapp.service.*;
-
 
 
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
 @RequestMapping("/api")
 public class ApiController extends BaseController {
-
+   
     // User
     @Autowired
     private UserService userservice;
@@ -51,11 +46,17 @@ public class ApiController extends BaseController {
     }
 
     @PreAuthorize("isAuthenticated()")
+    @GetMapping(value = "/existuser")
+    public  boolean existByUserLogin(){
+        Long userid=getUserId();
+        Boolean user = userservice.existByUserLogin(userid);
+        return user;
+    }
+
+    @PreAuthorize("isAuthenticated()")
     @GetMapping(value = "/user/get")
     public ResponseEntity<List<User>> findAllUsers() throws ResourceNotFoundException {
         List<User> userList = userservice.getUser();
-        System.out.println("userId: "+ getUserId());
-        
         return new ResponseEntity<>(userList, HttpStatus.OK);
 
     }
@@ -63,7 +64,6 @@ public class ApiController extends BaseController {
     @PreAuthorize("isAuthenticated()")
     @GetMapping(value = "/user/getuser")
     public ResponseEntity<User> findUserById() throws ResourceNotFoundException {
-        System.out.println(getUserId());
         User userList = userservice.getUserById(getUserId());
         return new ResponseEntity<>(userList, HttpStatus.OK);
     }
@@ -116,14 +116,6 @@ public class ApiController extends BaseController {
         List<Vehicle> vehicleList = vehicleservice.getVehicle();
         return new ResponseEntity<>(vehicleList, HttpStatus.OK);
     }
-
-    @PreAuthorize("isAuthenticated()")
-    @PutMapping("/vehicle/idupdate")
-    public ResponseEntity<MsgResponse> updateVehicleId() {
-       // userservice.updateVehicleId(getUserId());
-        return new ResponseEntity<>(new MsgResponse("VehicleId updated successfully"), HttpStatus.ACCEPTED);
-    }
-    
 
     @PreAuthorize("isAuthenticated()")
     @PutMapping("/vehicle/update")
@@ -203,13 +195,6 @@ public class ApiController extends BaseController {
         return new ResponseEntity<>(rideDetailsList, HttpStatus.OK);
     }
 
-    @PreAuthorize("isAuthenticated()")
-    @GetMapping(value = "/existuser")
-    public  boolean existByUserLogin() throws ResourceNotFoundException {
-        Long userid=getUserId();
-        Boolean user = userservice.existByUserLogin(userid);
-        return user;
-    }
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping(value = "/ridecount")
