@@ -1,5 +1,6 @@
 package com.srmtech.automobilepoolingapp.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,4 +30,18 @@ public class RideService {
 		return riderepo.findById(id).orElse(null);
 
 	}
+
+
+    public List<Ride> getRideDetails(Long userId) {
+		Date date=new Date();
+        return riderepo.getRideDetails(userId,date);
+    }
+	public List<Ride> getAllRide(Long userId) {
+        return riderepo.getAllRide(userId);
+    }
+
+
+    public Long getRideCount(Long user) {
+        return riderepo.getRideCount(user);
+    }
 }

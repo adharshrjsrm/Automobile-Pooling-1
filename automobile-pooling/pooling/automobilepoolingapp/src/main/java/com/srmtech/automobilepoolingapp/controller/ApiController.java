@@ -139,6 +139,11 @@ public class ApiController extends BaseController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping(value = "/ride/add")
     public ResponseEntity<MsgResponse> addRide(@RequestBody Ride ride) {
+        Long userid=getUserId();
+        Long userId = userservice.getUserIdRide(userid);
+        User user=new User();
+        user.setId(userId);
+        ride.setPassenger(user);
         rideservice.saveRide(ride);
         return new ResponseEntity<>(new MsgResponse("Ride added successfully."), HttpStatus.CREATED);
     }
@@ -154,6 +159,23 @@ public class ApiController extends BaseController {
     @GetMapping(value = "/ride/{Id}")
     public ResponseEntity<Ride> findRideById(@PathVariable Long rideId) throws ResourceNotFoundException {
         Ride rideList = rideservice.getRideById(rideId);
+        return new ResponseEntity<>(rideList, HttpStatus.OK);
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping(value = "/getride")
+    public ResponseEntity<List<Ride>> findRide() throws ResourceNotFoundException {
+        Long userid=getUserId();
+        Long userId = userservice.getUserIdRide(userid);
+        List<Ride> rideList = rideservice.getRideDetails(userId);
+        return new ResponseEntity<>(rideList, HttpStatus.OK);
+    }
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping(value = "/getallride")
+    public ResponseEntity<List<Ride>> findRides() throws ResourceNotFoundException {
+        Long userid=getUserId();
+        Long userId = userservice.getUserIdRide(userid);
+        List<Ride> rideList = rideservice.getAllRide(userId);
         return new ResponseEntity<>(rideList, HttpStatus.OK);
     }
 
@@ -187,6 +209,15 @@ public class ApiController extends BaseController {
         Long userid=getUserId();
         Boolean user = userservice.existByUserLogin(userid);
         return user;
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping(value = "/ridecount")
+    public  Long getUserIdRide() throws ResourceNotFoundException {
+        Long userid=getUserId();
+        Long user = userservice.getUserIdRide(userid);
+        Long ridecount=rideservice.getRideCount(user);
+        return ridecount;
     }
 
 }

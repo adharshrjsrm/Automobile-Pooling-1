@@ -21,13 +21,25 @@ public class Ride implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	 private Long id;
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dateTime = new Date(System.currentTimeMillis());
+	@Temporal(TemporalType.DATE)
+	private Date date = new Date();
 
 		
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="owner_id", referencedColumnName = "id")
 	private User owner;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="passenger_id", referencedColumnName = "id")
+	private User passenger;
+
+	public User getPassenger() {
+		return this.passenger;
+	}
+
+	public void setPassenger(User passenger) {
+		this.passenger = passenger;
+	}
 
 	public User getOwner() {
 		return owner;
@@ -49,13 +61,13 @@ public class Ride implements Serializable {
 		this.id = id;
 	}
 
-	
-	public Date getDateTime() {
-		return this.dateTime;
+
+	public Date getDate() {
+		return this.date;
 	}
 
-	public void setDateTime(Date dateTime) {
-		this.dateTime = dateTime;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	  

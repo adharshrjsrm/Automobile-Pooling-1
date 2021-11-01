@@ -69,6 +69,10 @@ public class UserService {
     public Boolean existByUserLogin(Long userid) {
         return repository.existByUserDetails(userid);
     }
+
+    public Long getUserIdRide(Long userid) {
+        return repository.getUserIdRide(userid);
+    }
 		
 	
 
