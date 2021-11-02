@@ -9,7 +9,7 @@ export default function RideHistory() {
     const [sdata, setSData] = useState([]);
   
     useEffect(() => {
-      axios.get("http://localhost:8000/ridehistory")
+      axios.get("http://localhost:9000/ridehistory")
         .then((res) => {
           console.log(res)
           setJData(res.data);

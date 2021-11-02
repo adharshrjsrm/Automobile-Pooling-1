@@ -21,6 +21,7 @@ function App() {
           <Route exact path="/">
             <MyHome />
           </Route>
+          <Route exact path = '/home' component = {MyHome}/>
           <PrivateRoute exact path='/users' component={UserList} />
           <PrivateRoute exact path='/vehicle' component={Vehicle} />
           <PrivateRoute exact path='/ridehistory' component={RideHistory} />

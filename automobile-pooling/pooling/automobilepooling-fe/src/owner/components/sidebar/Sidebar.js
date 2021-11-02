@@ -28,7 +28,7 @@ export default function Sidebar() {
     console.log(value);
     axios.post("http://localhost:9000/api/auth/logout",value,config).then(res=>{
       localStorage.removeItem('user');
-      history.push('/');
+      history.push('/home');
       
      
  }
