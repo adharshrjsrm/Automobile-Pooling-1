@@ -32,8 +32,9 @@
   align-items: center;
   border-radius: 10px;
   margin-top: 10px;
-  font-size: 15px;
+  font-size: 17px;
   font-family: system-ui;
+  color:black;
 }
 .sidebarLogout {
   position:fixed;
@@ -53,11 +54,11 @@
 .sidebarIconHome:hover,
 .s:hover
 {
-  background-color: black!important;
+  background-color: rgb(225, 226, 236)!important;
 }
 
 .sidebarIconHome{
-  color:rgb(204, 60, 197);
+  color:rgb(139, 23, 134);
     margin-right: 15px; 
     font-size: 20px !important;
    
@@ -78,17 +79,17 @@
    
 }
 .sidebarIconRide{
-  color:rgb(227, 235, 124);
+  color:rgb(37, 212, 110);
     margin-right: 15px;
     font-size: 20px !important;
 }
 .sidebarIconVehicle{
-  color:rgb(224, 115, 130);
+  color:rgb(219, 38, 62);
     margin-right: 15px;
     font-size: 20px !important;
 }
 .sidebarIconProfile{
-  color:rgb(104, 157, 228);
+  color:rgb(66, 138, 231);
     margin-right: 15px;
     font-size: 20px !important;
 }

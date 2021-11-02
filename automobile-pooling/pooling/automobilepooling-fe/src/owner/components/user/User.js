@@ -5,7 +5,8 @@ import {
   PermIdentity,
   PhoneAndroid,
   LocationOn,
-  Label
+  Label,
+ 
 } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar";
@@ -91,9 +92,7 @@ export default function User() {
         <div className="user">
           <div className="userTitleContainer">
             <h1 className="userTitle">My Profile</h1>
-            <Link to="/newUser">
-              <button className="userAddButton">Create</button>
-            </Link>
+          
           </div>
           <div className="userContainer">
             <div className="userShow">
@@ -215,9 +214,9 @@ export default function User() {
                     {errors.destination ? errors.destination : null}
 
                   </div>
-                  <div className="newUserItem">
+                  <div className="userUpdateItem">
           <label >Location 1</label>
-          <select name="stopa" onChange={handleChange} value={values.stopa}>
+          <select  className="userUpdateInput" name="stopa" onChange={handleChange} value={values.stopa}>
           <option value="-1">Please select your near loaction</option>
           <option value="Adambakkam">Adambakkam</option>
           <option value="Adyar">Adyar</option> 
@@ -389,7 +388,7 @@ export default function User() {
         </div>
         <div className="newUserItem">
           <label className="userLabel">Location 2</label>
-          <select  name="stopb" onChange={handleChange} value={values.stopb}>
+          <select  className="userUpdateInput" name="stopb" onChange={handleChange} value={values.stopb}>
           <option value="-1">Please select your near loaction</option>
           <option value="Adambakkam">Adambakkam</option>
           <option value="Adyar">Adyar</option> 
@@ -561,7 +560,6 @@ export default function User() {
         </div>
                 </div>
                 <div className="userUpdateRight">
-<div></div>
                   <button className="userUpdateButton" onClick={handleSubmit}>Update</button>
                 </div>
               </form>

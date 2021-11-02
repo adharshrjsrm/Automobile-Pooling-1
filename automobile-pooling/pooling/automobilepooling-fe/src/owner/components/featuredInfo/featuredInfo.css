@@ -6,6 +6,9 @@
   
   
 }
+.Icon{
+    color:red;
+}
 
 .featuredItem {
   flex: 1;
@@ -14,7 +17,7 @@
   border-radius: 10px;
   cursor: pointer;
   -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 7px 3px rgb(94 159 198);
  background-color: white;
 }
 

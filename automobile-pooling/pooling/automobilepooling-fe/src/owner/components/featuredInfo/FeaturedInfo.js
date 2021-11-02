@@ -1,5 +1,8 @@
 import "./featuredInfo.css";
-
+import {
+  Favorite,
+  NotificationsNone
+ } from "@material-ui/icons";
 import Clock from 'react-live-clock';
 import axios from "axios";
 import authHeader from '../../services/authHeader';
@@ -14,16 +17,20 @@ export default function FeaturedInfo() {
   const[status,setStatus]=useState([]);
   let count=5;
  
-  const loadUser = async () => {
-    const res = await axios.get(`http://localhost:9000/api/user/getuser`,config);
-    setStatus(res.data);
-   toggle=status.availabilitystatus;
-    console.log(res.data);
-  };
-  useEffect(() => {
-   console.log("useeffect");
-    loadUser(); 
-}, [toggle]);
+  const[values,setValues]=useState([]);
+
+const loadUser = async () => {
+  const result = await axios.get(`http://localhost:9000/api/ridecount`,config);
+  setValues(result.data);
+  console.log("count"+result.data)
+  
+};
+useEffect(() => {
+ console.log("User-useeffect");
+  loadUser();
+  
+ 
+}, []);
 
 
  const handleChange = (e) => {
@@ -64,10 +71,13 @@ export default function FeaturedInfo() {
        
       </div>
       <div className="featuredItem">
-        <span className="featuredTitle"></span>
+      
+       
         <div className="featuredMoneyContainer">
-          <span className="featuredMoney">
-          {count}
+          <span className="featuredMoney">{"Today Request  "}
+            <span className="Icon">< NotificationsNone/>
+          
+          </span>{values}
           </span>
           
           <span className="featuredMoneyRate">

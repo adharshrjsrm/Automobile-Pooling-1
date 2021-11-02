@@ -13,7 +13,7 @@ export default function WidgetLg() {
   const loadUser = async () => {
     const res = await axios.get(`http://localhost:9000/api/owner`,config);
     setValues(res.data);
-    console.log(res.data)
+    console.log("owner"+res.data)
   };
   useEffect(() => {
    console.log("useeffect");
@@ -34,7 +34,7 @@ export default function WidgetLg() {
                             <th> Designation </th>
                             <th> Source </th>
                             <th> Destination </th>
-                            <th> Seat Availability </th>
+                            <th> Mobile </th>
                           </tr>
                         </thead>
                         <tbody>

@@ -13,20 +13,21 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  
+  background-color: rgb(15, 15, 117);
 }
 
 .Title {
   font-weight: bold;
   font-size: 30px;
   cursor: pointer;
-  color:rgb(32, 23, 116);
+  color:rgb(255, 255, 255);
   font-family: "Gill Sans", sans-serif;
 }
 
 .topRight{
     display: flex;
     align-items: center;
+    color:white;
    
 }
 
@@ -53,7 +54,8 @@
 }
 
 .topAvatar{
-    width: 40px;
+ 
+    width: fit-content;
     height: 40px;
     border-radius: 50%;
     cursor: pointer;

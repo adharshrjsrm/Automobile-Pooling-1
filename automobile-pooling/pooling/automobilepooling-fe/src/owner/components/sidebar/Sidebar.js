@@ -12,11 +12,13 @@ import { useHistory } from 'react-router';
 import axios from 'axios';
 import authHeader from '../../services/authHeader';
 
+
 export default function Sidebar() {
   const history = useHistory();
   const config = {
     headers: authHeader() 
   };
+  
  
   const handleLogout = () => {
     const user=JSON.parse(localStorage.getItem('user')); 
