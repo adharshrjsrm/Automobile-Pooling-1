@@ -3,7 +3,6 @@ import MyHome from "./home/MyHome"
 import PassengerDB from './passenger/PassengerDB';
 import PrivateRoute from './PrivateRoute';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from './passenger/components/home/Home';
 import UserList from './passenger/components/userList/UserList';
 import RideHistory from './passenger/components/ridehistory/RideHistory';
 import PassengerProfile from './passenger/components/profile/PassengerProfile';
@@ -15,12 +14,13 @@ import NewVehicle from "./owner/components/newUser/NewVehicle";
 import Ride from "./owner/components/ride/Ride";
 function App() {
   return (
-     
+    
       <Router>
+         <UserList/>
      <Switch>
-          <Route exact path="/">
+          {/* <Route exact path="/">
             <MyHome />
-          </Route>
+          </Route> */}
           <Route exact path = '/home' component = {MyHome}/>
           <PrivateRoute exact path='/users' component={UserList} />
           <PrivateRoute exact path='/vehicle' component={Vehicle} />

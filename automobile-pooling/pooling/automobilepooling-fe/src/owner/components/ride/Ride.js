@@ -1,5 +1,4 @@
-import FeaturedInfo from "../../components/featuredInfo/FeaturedInfo";
-import "../home/home.css";
+import "./Ride.css"
 import WidgetSm from "../../components/widgetSm/WidgetSm";
 import WidgetLg from "../../components/widgetLg/WidgetLg";
 import Topbar from "../../components/topbar/Topbar";

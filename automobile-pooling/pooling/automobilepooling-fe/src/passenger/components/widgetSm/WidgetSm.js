@@ -1,5 +1,4 @@
 import "./widgetSm.css";
-import { Visibility } from "@material-ui/icons";
 import axios from 'axios';
 import authHeader from '../../../services/authHeader';
 import { useEffect,useState } from "react";
@@ -19,7 +18,7 @@ export default function WidgetSm() {
   useEffect(() => {
    console.log("useeffect");
     loadUser(); 
-}, []);
+},[]);
   return (
     <div className="widgetSm">
       <span className="widgetSmTitle">Ride History</span>
@@ -32,12 +31,8 @@ export default function WidgetSm() {
             <div className="widgetSmUserTitle">{x.passenger.designation}</div>
             <div className="widgetSmUserTitle">{x.date}</div>
           </div>
-         
-        </div>
-        
-      })}
-      
-        
+        </div> 
+      })} 
       </div>
     
   );

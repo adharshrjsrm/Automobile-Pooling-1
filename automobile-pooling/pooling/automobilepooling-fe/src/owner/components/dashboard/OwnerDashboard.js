@@ -1,4 +1,3 @@
-
 import FeaturedInfo from "../featuredInfo/FeaturedInfo";
 import "./dashboard.css";
 import WidgetSm from "../widgetSm/WidgetSm";

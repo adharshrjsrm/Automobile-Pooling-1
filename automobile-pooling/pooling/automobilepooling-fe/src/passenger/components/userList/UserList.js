@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './UserList.css'
 import axios from 'axios';
-import Select from 'react-select';
-import { Button } from '@material-ui/core';
 import authHeader from '../../../services/authHeader';
 import Sidebar from '../sidebar/Sidebar';
 import Topbar from '../topbar/Topbar';
@@ -218,15 +216,18 @@ export default function UserList() {
       <Topbar/>
       <div className="container">
         <Sidebar/>
-     
-     
-     
-       
-        
-       
-     
         <div className="widgetLg">
         <table className="widgetLgTable">
+
+      
+        <Select className="searchcol"
+          options={places}
+          isMulti
+          onChange={opt => setPlace(opt[0].value)}
+        />
+        <div>
+          <Button type="Submit">Submit</Button>
+        </div>
           <thead>
             <tr className="widgetLgTr">
               <th className="widgetLgTh">Name</th>

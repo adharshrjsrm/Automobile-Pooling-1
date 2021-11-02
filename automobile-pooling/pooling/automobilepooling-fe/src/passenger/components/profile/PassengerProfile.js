@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import axios from 'axios';
 import './Profile.css'
 import Sidebar from '../sidebar/Sidebar';
 import Topbar from '../topbar/Topbar';
 import {
-  CalendarToday,
   LocationSearching,
   MailOutline,
   PermIdentity,
   PhoneAndroid,
-  LocationOn,
   Label
 } from "@material-ui/icons";
 import { Link } from "react-router-dom";

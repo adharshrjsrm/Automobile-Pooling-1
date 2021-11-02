@@ -6,7 +6,7 @@ import {useHistory} from "react-router-dom"
 import {login} from "../services/authService";
 import authHeader from '../services/authHeader';
 import axios from 'axios';
-
+import { isEmail } from "validator";
 
 const required = (value) => {
     if (!value) {
@@ -17,18 +17,30 @@ const required = (value) => {
       );
     }
   };
+
+  const validEmail = (value) => {
+    if (!isEmail(value)) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          This is not a valid email.
+        </div>
+      );
+    }
+  };
+
+
 export default function MyPassengerLogin() {
  
     const form = useRef();
     const checkBtn = useRef();
-    // const validEmail= validEmail();
+   
     
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
-    const[values,setValues]=useState([]);
+
    
     
       const onChangePassword = (e) => {
@@ -79,10 +91,6 @@ export default function MyPassengerLogin() {
             () => {
       
               loadUser();
-            
-             
-             // window.location.reload();
-              
             }, (error) => {
               const resMessage =
                 (error.response &&
@@ -111,7 +119,7 @@ export default function MyPassengerLogin() {
            name="email"
            value={email}
            onChange={onChangeEmail}
-          //  validations={[required, validEmail]}
+          validations={[required, validEmail]}
            />
         </div>
 
@@ -124,7 +132,7 @@ export default function MyPassengerLogin() {
           name="password"
           value={password}
           onChange={onChangePassword}
-          validations={[required]}
+          validations={[required, validEmail]}
         />
       </div>
 

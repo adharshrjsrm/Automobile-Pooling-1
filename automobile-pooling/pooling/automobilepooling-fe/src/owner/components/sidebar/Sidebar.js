@@ -1,6 +1,5 @@
 import "./sidebar.css";
 import {
-  LineStyle,
  Home,
   PermIdentity,
  Commute,
@@ -10,7 +9,7 @@ import {
 import { Link } from "react-router-dom";
 import { useHistory } from 'react-router';
 import axios from 'axios';
-import authHeader from '../../services/authHeader';
+import authHeader from '../../../services/authHeader';
 
 
 export default function Sidebar() {

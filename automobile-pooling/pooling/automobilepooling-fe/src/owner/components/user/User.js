@@ -8,14 +8,13 @@ import {
   Label,
  
 } from "@material-ui/icons";
-import { Link } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Topbar from "../../components/topbar/Topbar";
 import "./user.css";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-import authHeader from '../../services/authHeader';
+import authHeader from '../../../services/authHeader';
 import { useEffect } from "react";
 
 export default function User() {
@@ -33,7 +32,7 @@ export default function User() {
    
 }, []);
 
-  const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+  const phoneRegExp = /^[6-9]\d{9}$/
 
 
   const validationSchema = Yup.object({

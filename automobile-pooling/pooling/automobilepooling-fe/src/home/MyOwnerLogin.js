@@ -6,7 +6,7 @@ import {useHistory} from "react-router-dom"
 import {login} from "../services/authService";
 import authHeader from '../services/authHeader';
 import axios from 'axios';
-
+import { isEmail } from "validator";
 
 const required = (value) => {
     if (!value) {
@@ -17,29 +17,44 @@ const required = (value) => {
       );
     }
   };
+
+  const validEmail = (value) => {
+    if (!isEmail(value)) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          This is not a valid email.
+        </div>
+      );
+    }
+  };
+
 export default function MyOwnerLogin() {
  
     const form = useRef();
     const checkBtn = useRef();
-    // const validEmail= validEmail();
+   
+
     
+
+
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
-    const[values,setValues]=useState([]);
+
    
-    
+    const onChangeEmail = (e) => {
+      const email = e.target.value;
+      setEmail(email);
+    };
+
       const onChangePassword = (e) => {
         const password = e.target.value;
         setPassword(password);
       };
 
-      const onChangeEmail = (e) => {
-        const email = e.target.value;
-        setEmail(email);
-      };
+  
       
 
     const history = useHistory();
@@ -79,9 +94,6 @@ export default function MyOwnerLogin() {
             () => {
       
               loadUser();
-            
-             
-             // window.location.reload();
               
             }, (error) => {
               const resMessage =
@@ -106,12 +118,12 @@ export default function MyOwnerLogin() {
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <Input
-           type="text"
+           type="email"
            className="form-control"
            name="email"
            value={email}
            onChange={onChangeEmail}
-          //  validations={[required, validEmail]}
+          validations={[required,validEmail]}
            />
         </div>
 

@@ -5,7 +5,7 @@ import {
  } from "@material-ui/icons";
 import Clock from 'react-live-clock';
 import axios from "axios";
-import authHeader from '../../services/authHeader';
+import authHeader from '../../../services/authHeader';
 import { useEffect, useState } from "react";
 
 export default function FeaturedInfo() {

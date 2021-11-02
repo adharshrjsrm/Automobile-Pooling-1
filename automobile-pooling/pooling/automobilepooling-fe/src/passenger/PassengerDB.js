@@ -1,5 +1,4 @@
 import './PassengerDB.css'
-import { BrowserRouter as Router, Switch} from 'react-router-dom'
 import Topbar from './components/topbar/Topbar'
 import Sidebar from './components/sidebar/Sidebar'
 import FeaturedInfo from './components/featuredinfo/FeaturedInfo'

@@ -1,7 +1,6 @@
 import "./widgetSm.css";
-import { Visibility } from "@material-ui/icons";
 import axios from 'axios';
-import authHeader from '../../services/authHeader';
+import authHeader from '../../../services/authHeader';
 import { useEffect,useState } from "react";
 
 export default function WidgetSm() {
