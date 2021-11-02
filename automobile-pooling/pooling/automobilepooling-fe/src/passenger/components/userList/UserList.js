@@ -4,6 +4,8 @@ import axios from 'axios';
 import authHeader from '../../../services/authHeader';
 import Sidebar from '../sidebar/Sidebar';
 import Topbar from '../topbar/Topbar';
+import Select from 'react-select';
+import { Button } from '@material-ui/core';
 
 export default function UserList() {
   const config = {
@@ -219,16 +221,18 @@ export default function UserList() {
         <div className="widgetLg">
         <table className="widgetLgTable">
 
-      
-        <Select className="searchcol"
-          options={places}
-          isMulti
-          onChange={opt => setPlace(opt[0].value)}
-        />
-        <div>
-          <Button type="Submit">Submit</Button>
-        </div>
           <thead>
+          <tr className="widgetLgTr">
+      <th>
+      <Select className="searchcol"
+        options={places}
+        isMulti
+        onChange={opt => setPlace(opt[0].value)}
+      /></th> <th>
+        <Button type="Submit">Submit</Button>
+      </th> </tr><br/>
+        </thead>
+        <thead>
             <tr className="widgetLgTr">
               <th className="widgetLgTh">Name</th>
               <th className="widgetLgTh">Phone</th>
