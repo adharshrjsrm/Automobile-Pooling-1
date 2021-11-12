@@ -12,15 +12,16 @@ import Vehicle from "./owner/components/user/Vehicle";
 import NewUser from "./owner/components/newUser/NewUser";
 import NewVehicle from "./owner/components/newUser/NewVehicle";
 import Ride from "./owner/components/ride/Ride";
+import View from './passenger/components/ownerlist/View';
 function App() {
   return (
     
       <Router>
-         <UserList/>
+
      <Switch>
-          {/* <Route exact path="/">
+          <Route exact path="/">
             <MyHome />
-          </Route> */}
+          </Route>
           <Route exact path = '/home' component = {MyHome}/>
           <PrivateRoute exact path='/users' component={UserList} />
           <PrivateRoute exact path='/vehicle' component={Vehicle} />
@@ -32,6 +33,7 @@ function App() {
           <PrivateRoute exact path='/newuser' component={NewUser} />
           <PrivateRoute exact path='/ownerdashboard' component={OwnerDashboard} />
           <PrivateRoute exact path='/passengerprofile' component={PassengerProfile} />
+          <PrivateRoute exact path='/view' component={View} />
         </Switch>
     </Router>
     

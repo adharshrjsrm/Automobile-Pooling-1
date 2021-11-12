@@ -132,7 +132,7 @@ export default function MyPassengerLogin() {
           name="password"
           value={password}
           onChange={onChangePassword}
-          validations={[required, validEmail]}
+          validations={[required]}
         />
       </div>
 
