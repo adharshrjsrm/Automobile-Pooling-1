@@ -1,14 +1,18 @@
 package com.srmtech.automobilepoolingapp.service;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.srmtech.automobilepoolingapp.exception.ResourceNotFoundException;
 import com.srmtech.automobilepoolingapp.model.User;
+import com.srmtech.automobilepoolingapp.model.UserJoin;
 import com.srmtech.automobilepoolingapp.repo.UserRepo;
 
 
@@ -59,8 +63,9 @@ public class UserService {
 		return repository.save(existingUser);
 	}
 
-    public List<User> getOwner() {
-        return repository.getOwner();
+    public List<UserJoin> getOwner() {
+		Date date=new Date();
+        return repository.getOwners(date);
     }
 
     public void updateVehicleId(long userId,long vehicleId) {
@@ -75,10 +80,13 @@ public class UserService {
         return repository.getUserIdRide(userid);
     }
 
-	public void  updateUserStatus(@Valid User user)  throws ResourceNotFoundException{
-		User existingUser = repository.findById(user.getId()).orElseThrow(() -> new ResourceNotFoundException("User not found: "+user.getId()));
-		existingUser.setAvailabilitystatus(user.getAvailabilitystatus());
-		repository.save(existingUser);
+	public void  updateUserStatus(Boolean status,Long userId)  throws ResourceNotFoundException{
+		User existingUser = repository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User not found: "+userId));
+		repository.updateStatus(status,userId);
+	}
+
+	public Boolean getUserStatus(Long user) {
+		return repository.getUserStatus(user);
 	}
 		
 	

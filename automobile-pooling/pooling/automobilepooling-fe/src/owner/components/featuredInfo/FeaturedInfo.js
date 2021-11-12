@@ -12,10 +12,7 @@ export default function FeaturedInfo() {
   const config = {
     headers: authHeader()
   };
-  let toggle=false;
- 
-  const[status,setStatus]=useState([]);
-  let count=5;
+  const[toggle,setToggle]=useState();
  
   const[values,setValues]=useState([]);
 
@@ -25,21 +22,30 @@ const loadUser = async () => {
   console.log("count"+result.data)
   
 };
+const getStatus = async () => {
+  const result = await axios.get(`http://localhost:9000/api/userstatus`,config);
+  setToggle(result.data)
+  console.log("status"+result.data)
+  
+};
 useEffect(() => {
  console.log("User-useeffect");
   loadUser();
+  getStatus();
   
  
 }, []);
 
 
  const handleChange = (e) => {
-  toggle=!toggle;
-  const value={
-    "availabilitystatus":toggle
-  }
- console.log(value);
- axios.put("http://localhost:9000/api/user/update",value,config)
+ setToggle(!toggle);
+ const params = {
+  availabilitystatus: !toggle
+};
+
+ 
+ axios.put(`http://localhost:9000/api/user/updatestatus`,params,config);
+ 
 
   }
   return (

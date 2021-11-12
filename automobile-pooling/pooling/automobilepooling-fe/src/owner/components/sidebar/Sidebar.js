@@ -7,8 +7,7 @@ import {
  DirectionsCar,
  ExitToApp
 } from "@material-ui/icons";
-import { Link } from "react-router-dom";
-import { useHistory } from 'react-router';
+import { Link,useHistory } from "react-router-dom";
 import axios from 'axios';
 import authHeader from '../../services/authHeader';
 
@@ -27,8 +26,9 @@ export default function Sidebar() {
     }
     console.log(value);
     axios.post("http://localhost:9000/api/auth/logout",value,config).then(res=>{
-      localStorage.removeItem('user');
-      history.push('/');
+     
+      history.push(`/`);
+     localStorage.removeItem('user');
       
      
  }

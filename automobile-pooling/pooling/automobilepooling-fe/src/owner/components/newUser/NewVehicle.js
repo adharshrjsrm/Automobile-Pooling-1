@@ -62,7 +62,7 @@ export default function NewVehicle() {
         <div className="newUserItem">
           <label>Vehicle Type</label>
           <select name="vehiclemodel" onChange={handleChange} value={values.vehiclemodel}>
-          <option value="-1">Please select vehicle Model</option>
+          <option value="-1">Please select vehicle type</option>
           <option value="Car">Car</option>
           <option value="Bike">Bike</option> 
           </select>
@@ -77,13 +77,13 @@ export default function NewVehicle() {
         <div className="newUserItem">
           <label>Seat capacity</label>
           <select  name="numberofseats" onChange={handleChange} value={values.numberofseats}>
-          <option value="-1">Please select vehicle type</option>
+          <option value="-1">Please select seat availability</option>
           <option value="1">1</option>
           <option value="2">2</option> 
-          <option value="1">3</option>
-          <option value="2">4</option> 
-          <option value="1">5</option>
-          <option value="2">6</option> 
+          <option value="3">3</option>
+          <option value="4">4</option> 
+          <option value="5">5</option>
+          <option value="6">6</option> 
           </select>
           {errors.numberofseats ? errors.numberofseats : null}
         </div>

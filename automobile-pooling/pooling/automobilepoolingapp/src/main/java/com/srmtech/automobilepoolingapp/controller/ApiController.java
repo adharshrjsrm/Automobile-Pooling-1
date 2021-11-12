@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+
 import java.util.List;
 
 import javax.validation.Valid;
@@ -70,8 +72,8 @@ public class ApiController extends BaseController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping(value = "/owner")
-    public ResponseEntity<List<User>> getOwner() throws ResourceNotFoundException {
-        List<User> userList = userservice.getOwner();
+    public ResponseEntity<List<UserJoin>> getOwner() throws ResourceNotFoundException {
+        List<UserJoin> userList = userservice.getOwner();
         return new ResponseEntity<>(userList, HttpStatus.OK);
 
     }
@@ -98,8 +100,7 @@ public class ApiController extends BaseController {
     public ResponseEntity<MsgResponse> updateUserStatus(@Valid @RequestBody User user) throws ResourceNotFoundException {
         Long userid=getUserId();
         Long userId = userservice.getUserIdRide(userid);
-        user.setId(userId);
-        userservice.updateUserStatus(user);
+        userservice.updateUserStatus(user.getAvailabilitystatus(),userId);
         return new ResponseEntity<>(new MsgResponse("User Status updated successfully."), HttpStatus.ACCEPTED);
     }
 
@@ -216,6 +217,24 @@ public class ApiController extends BaseController {
         Long user = userservice.getUserIdRide(userid);
         Long ridecount=rideservice.getRideCount(user);
         return ridecount;
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping(value = "/requeststatus")
+    public  Boolean getRequestStatus() throws ResourceNotFoundException {
+        Long userid=getUserId();
+        Long user = userservice.getUserIdRide(userid);
+        Boolean requeststatus=rideservice.requestStatus(user);
+        return requeststatus;
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping(value = "/userstatus")
+    public  Boolean getUserStatus() throws ResourceNotFoundException {
+        Long userid=getUserId();
+        Long user = userservice.getUserIdRide(userid);
+        Boolean status=userservice.getUserStatus(user);
+        return status;
     }
 
 }

@@ -1,62 +1,104 @@
 import "./widgetLg.css";
+import { Visibility } from "@material-ui/icons";
+import { DataGrid } from "@material-ui/data-grid";
 import axios from 'axios';
 import authHeader from '../../../services/authHeader';
+import { useHistory } from 'react-router-dom';
 import { useEffect,useState } from "react";
+import * as React from 'react';
 
 export default function WidgetLg() {
-  const config = {
-    headers: authHeader() 
-  };
 
-  const[res,setValues]=useState([]);
+  const [data, setData] = useState();
+  const [res, setResult] = useState([]);
+  // const [columns, setColumns] = useState([]);
+  const [rows, setRows] = useState([]);
+
+
+  const[result,setValues]=useState([]);
+
+ 
 
   const loadUser = async () => {
-    const res = await axios.get(`http://localhost:9000/api/owner`,config);
-    setValues(res.data);
-    console.log("owner"+res.data)
+    const result = await axios.get(`http://localhost:9000/api/owner`,config);
+    setValues(result.data);
+    console.log(result.data)
   };
   useEffect(() => {
    console.log("useeffect");
-    loadUser(); 
-}, []);
-  return (
+    loadUser();
     
-    <div class="col-lg-8 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Owner Details</h4>
-                   
-                    <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                          <tr>
-                            <th> Name </th>
-                            <th> Designation </th>
-                            <th> Source </th>
-                            <th> Destination </th>
-                            <th> Mobile </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                        {res.map((x) => {
-                return <tr className="widgetLgTr">
-                <th >
-                 
-                  <span className="widgetLgName">{x.firstname+" "}{x.lastname}</span>
-                </th>
-                <th className="widgetLgName">{x.designation}</th>
-                <th className="widgetLgName">{x.source}</th>
-                <th className="widgetLgName">{x.destination}</th>
-                <th className="widgetLgName">{x.mobile}</th>
-                
-               
-              </tr>
-              })}
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
+   
+}, []);
+
+const [pageSize, setPageSize] = React.useState(5);
+
+const config = {
+  headers: authHeader()
+};
+
+const hist = useHistory();
+  
+  const Button = ({ type }) => {
+    return <button className={"widgetLgButton " + type}>{type}</button>;
+  };
+
+
+   
+  return (
+    <div className="widgetLg">
+      <h3 className="widgetLgTitle">Owner Details</h3>
+      <table className="widgetLgTable">
+        <tr className="widgetLgTr">
+          <th className="widgetLgTh">Name</th>
+          <th className="widgetLgTh">Source</th>
+          <th className="widgetLgTh">Destination</th>
+          <th className="widgetLgTh">Details</th>
+          <th className="widgetLgTh">Ride Request</th>
+        </tr>
+          
+        {result.map((x) => {
+          return <tr className="widgetLgTr">
+          <th className="widgetLgGet" ><label key={x.id}>{x.firstname+" "}{x.lastname}</label></th>
+          <th className="widgetLgGet" ><label key={x.id}>{x.source}</label></th>
+          <th className="widgetLgGet"><label key={x.id}>{x.destination}</label></th>
+          
+          <th className="widgetLgStatus">
+            <button  className="widgetSmButton" onClick={() => hist.push("/view")}>
+              <Visibility className="widgetSmIcon" />
+              View 
+              </button>
+          </th>
+
+          <th className="widgetLgButton">
+            <Button type="Request" />
+          </th>
+
+          
+     
+          </tr>
+
+           
+        })} 
+            
+      </table>
+
+      {/* <div className="userList">
+        < div style={{height: 700, width: '100%'}}> 
+          <DataGrid
+            rows={result}
+            disableSelectionOnClick
+            columns={columns}
+            pageSize={4}
+         
+            pageSize={pageSize}
+        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+        rowsPerPageOptions={[5, 10, 20]}
+        pagination
+        {...data}
+          />
+        </div> 
+        </div> */}
+    </div>
   );
 }

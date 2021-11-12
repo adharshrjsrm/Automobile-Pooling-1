@@ -42,6 +42,12 @@ public class RideService {
 
 
     public Long getRideCount(Long user) {
-        return riderepo.getRideCount(user);
+		Date date=new Date();
+        return riderepo.getRideCount(user,date);
+    }
+
+	public Boolean requestStatus(Long user) {
+		Date date=new Date();
+        return riderepo.requestStatus(user,date);
     }
 }

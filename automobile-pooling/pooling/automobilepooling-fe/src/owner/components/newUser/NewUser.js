@@ -104,7 +104,7 @@ export default function NewUser() {
         <div className="newUserItem">
           <label>Stopping1</label>
           <select name="stopa" onChange={handleChange} value={values.stopa}>
-          <option value="-1">Please select your near loaction</option>
+          <option value="-1">Please select your near location</option>
           <option value="Adambakkam">Adambakkam</option>
           <option value="Adyar">Adyar</option> 
           <option value="Alandur">Alandur</option>
@@ -276,7 +276,7 @@ export default function NewUser() {
         <div className="newUserItem">
           <label>Stopping2</label>
           <select  name="stopb" onChange={handleChange} value={values.stopb}>
-          <option value="-1">Please select your near loaction</option>
+          <option value="-1">Please select your near location</option>
           <option value="Adambakkam">Adambakkam</option>
           <option value="Adyar">Adyar</option> 
           <option value="Alandur">Alandur</option>

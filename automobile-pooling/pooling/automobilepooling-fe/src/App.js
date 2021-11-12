@@ -13,14 +13,16 @@ import Vehicle from "./owner/components/user/Vehicle";
 import NewUser from "./owner/components/newUser/NewUser";
 import NewVehicle from "./owner/components/newUser/NewVehicle";
 import Ride from "./owner/components/ride/Ride";
+import { ViewAgenda } from '@mui/icons-material';
+import View from './passenger/components/widgetLg/View';
+
 function App() {
   return (
      
       <Router>
      <Switch>
-          <Route exact path="/">
-            <MyHome />
-          </Route>
+         <Route exact path='/' component={MyHome} />
+         <Route exact path='/home' component={MyHome} />
           <PrivateRoute exact path='/users' component={UserList} />
           <PrivateRoute exact path='/vehicle' component={Vehicle} />
           <PrivateRoute exact path='/ridehistory' component={RideHistory} />
@@ -31,10 +33,15 @@ function App() {
           <PrivateRoute exact path='/newuser' component={NewUser} />
           <PrivateRoute exact path='/ownerdashboard' component={OwnerDashboard} />
           <PrivateRoute exact path='/passengerprofile' component={PassengerProfile} />
+          <PrivateRoute exact path='/view' component={View} />
+         
         </Switch>
     </Router>
     
+    
   );
+ 
+    
 }
 
 export default App;

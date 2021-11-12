@@ -45,7 +45,7 @@ const MyRegister = (props) => {
   const [password, setPassword] = useState("");
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
-  const emailRegex = /\S+@\S+\.\S+/;
+  const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@srmtech.com$/;
 
   const onChangeEmail = (e) => {
     const email = e.target.value;
@@ -70,6 +70,8 @@ const MyRegister = (props) => {
     setSuccessful(false);
 
     form.current.validateAll();
+    if(isValid)
+    {
 
     if (checkBtn.current.context._errors.length === 0) {
       register(email, password).then(
@@ -90,7 +92,9 @@ const MyRegister = (props) => {
         }
       );
     }
-  };
+  }
+else
+setMessage('Please enter a valid email!')};
 
   return (
     <div className="col-md-12" align="center">

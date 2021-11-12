@@ -13,6 +13,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 
 
 
@@ -42,7 +45,37 @@ public class User implements Serializable{
 
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "vehicle_id", referencedColumnName = "id")
+	@Fetch(FetchMode.JOIN)
 	private Vehicle vehicle;
+
+	public User( String firstname, String lastname, long mobile, String designation, Vehicle vehicle, String source, String destination, String stopa, String stopb, Boolean availabilitystatus, UserLogin userLogin) {
+		
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.mobile = mobile;
+		this.designation = designation;
+		this.vehicle = vehicle;
+		this.source = source;
+		this.destination = destination;
+		this.stopa = stopa;
+		this.stopb = stopb;
+		this.availabilitystatus = availabilitystatus;
+		this.userLogin = userLogin;
+	}
+	public User(Long id,String firstname, String lastname, long mobile, String designation, Vehicle vehicle, String source, String destination, String stopa, String stopb, Boolean availabilitystatus, UserLogin userLogin) {
+		this.id=id;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.mobile = mobile;
+		this.designation = designation;
+		this.vehicle = vehicle;
+		this.source = source;
+		this.destination = destination;
+		this.stopa = stopa;
+		this.stopb = stopb;
+		this.availabilitystatus = availabilitystatus;
+		this.userLogin = userLogin;
+	}
 
 	@Column(name="source")
 	private String source;
