@@ -25,14 +25,14 @@ export default function Sidebar() {
     }
     console.log(value);
     axios.post("http://localhost:9000/api/auth/logout",value,config).then(res=>{
-<<<<<<< HEAD:automobile-pooling/pooling/automobilepooling-fe/src/owner/components/sidebar/Sidebar.js
+
      
       history.push(`/`);
      localStorage.removeItem('user');
-=======
+
       localStorage.removeItem('user');
       history.push('/home');
->>>>>>> 0939057ae1fadfceebdbfbd9a727138523d4af51:automobile-pooling-bk/pooling/automobilepooling-fe/src/owner/components/sidebar/Sidebar.js
+
       
      
  }
