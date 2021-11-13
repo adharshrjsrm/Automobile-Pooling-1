@@ -2,41 +2,45 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    margin-top: 10%;
   }
   
   .featuredItem {
     flex: 1;
     margin: 0px 20px;
     padding: 30px;
-    border-radius: 10px;
+    border-radius: 20px;
     cursor: pointer;
     -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-    background-color: rgb(207, 207, 253);
+    /* background-color: rgb(207, 207, 253); */
+    background-color: white;
+  
   }
   
   .featuredTitle{
       font-size: 20px;
+      font-weight: 500;
   }
   
   .featuredMoneyContainer{
       margin: 10px 0px;
       display: flex;
       align-items: center;
+     
   }
   
   .featuredMoney{
-      font-size: 30px;
-      font-weight: 600;
+      font-size: 15px;
+      font-weight: 400;
+      /* display: flex; */
+      align-items: center;
+      margin-left: 40px;
   }
   
   .featuredMoneyRate{
       display: flex;
       align-items: center;
-      margin-left: 50px;
-      margin-top: -250px;
-      font-size: 200%;
+      margin-left: 20px;
   }
   
   .featuredIcon{
@@ -53,7 +57,17 @@
       font-size: 15px;
       color: gray;
   }
-  .pwe{
-      font-size: 50%;
-
+  .featuredMoneyclock{
+      font-size: 20px;
+      padding-left: 70px;
+      font-weight: 400;
+    
   }
+  .featuredMoneyDay{
+      font-size: 20px;
+      align-items: center;
+      padding-left: 50px;
+      font-weight: 400;
+  }
+  
+  

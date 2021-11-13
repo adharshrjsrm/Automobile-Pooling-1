@@ -3,47 +3,30 @@
   -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
   padding: 20px;
-  
-}
-.card{
- 
-  height:480px;
 
-  
-}
-.tr:hover{
-  color: white !important;
-}
-.table{
-  color:#6c7293 !important;
-  border-width: 1px;
+
 }
 
 .widgetLgTitle {
   font-size: 22px;
   font-weight: 600;
+ 
 }
 
 .widgetLgTable{
   width: 100%;
   border-spacing: 20px;
 }
-.widgetLgGet{
-  font-weight: 300;
-  align-items: left;
-  padding-right: 60px;
-  font-weight: 300;
-  /* font-size: 18px; */
- 
-}
 
 .widgetLgTh{
   text-align: left;
+  
 }
 
 .widgetLgUser{
   display: flex;
-  align-items: center;
+  align-items: left;
+  padding-left: 50px;
   font-weight: 600;
 }
 
@@ -55,9 +38,15 @@
   margin-right: 10px;
 }
 
-.widgetLgDate,.widgetLgAmount{
+.widgetLgGet{
   font-weight: 300;
+  align-items: left;
+  padding-right: 60px;
+  font-weight: 300;
+ 
 }
+
+
 
 .widgetLgButton {
   padding: 5px 7px;
@@ -80,10 +69,10 @@
 
 }
 
-.widgetLgGet{
-  font-weight: 300;
-  align-items: left;
-  padding-right: 60px;
-  font-weight: 300;
- 
+.widgetLgButton.Request{
+  background-color: #ebf1fe;
+  color: #2a7ade;
+  font-size: 15px;
+
 }
+
