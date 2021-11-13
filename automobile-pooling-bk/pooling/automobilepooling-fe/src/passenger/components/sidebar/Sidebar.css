@@ -16,10 +16,21 @@
     color:rgb(204, 60, 197);
       margin-right: 15px; 
       font-size: 20px !important;
-     
-      
   }
+
   
+  .sidebarIconRideoffer{
+    color:green;
+    margin-right: 15px; 
+    font-size: 20px !important;
+  }
+
+  .sidebarIconRideHistory{
+    color:red;
+    margin-right: 15px; 
+    font-size: 20px !important;
+
+  }
   .sidebarMenu {
     margin-bottom: 10px;
   }
@@ -49,6 +60,6 @@
   
   .sidebarIcon{
       margin-right: 5px;
-      font-size: 20px !important;
+      font-size: 5px !important;
   }
   

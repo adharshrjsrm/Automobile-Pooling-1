@@ -1,13 +1,15 @@
 .userList {
     flex: 4;
-    background-color: rgb(240, 240, 255);
+    /* background-color: white; */
     border-radius: 2%;
+  
   }
   
   .userListUser {
     display: flex;
     align-items: center;
     align-self: stretch;
+    height: 60%;
   }
   
   .userListImg {
@@ -40,6 +42,7 @@
     padding: 8px;
     background-color: rgb(240, 240, 255);
     border-radius: 2%;
+ 
   }
   
   .widgetLgTitle {
@@ -54,6 +57,7 @@
   
   .widgetLgTh{
     text-align: left;
+ 
   }
   
   .widgetLgUser{

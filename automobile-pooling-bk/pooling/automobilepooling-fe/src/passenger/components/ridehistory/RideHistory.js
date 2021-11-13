@@ -3,22 +3,30 @@ import axios from 'axios';
 import "./RideHistory.css";
 import Topbar from '../topbar/Topbar';
 import Sidebar from '../sidebar/Sidebar';
+import authHeader from '../../../services/authHeader'
 
 export default function RideHistory() {
-    const [jdata, setJData] = useState([]);
-    const [sdata, setSData] = useState([]);
+    const [res, setResult] = useState([]);
+    
+
   
+    const loadUser = async () => {
+        const result = await axios.get(`http://localhost:9000/api/getallride`, config);
+        setResult(result.data);
+        console.log(result.data);
+        
+    };
+
     useEffect(() => {
-      axios.get("http://localhost:9000/ridehistory")
-        .then((res) => {
-          console.log(res)
-          setJData(res.data);
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    }, [])
-    console.log(sdata);
+        console.log("useeffect");
+        loadUser();
+    }, []);
+
+    
+    const config = {
+        headers: authHeader()
+    };
+
     return (
         <>
         <Topbar/>
@@ -29,34 +37,37 @@ export default function RideHistory() {
             <table className="widgetLgTable">
                 <thead>
                     <tr className="widgetLgTr">
+                    <th className="widgetLgTh">Id</th>
                         <th className="widgetLgTh">Name</th>
                         <th className="widgetLgTh">Phone</th>
                         <th className="widgetLgTh">Source</th>
                         <th className="widgetLgTh">Destination</th>
                         <th className="widgetLgTh">Vehicle Details</th>
-                        <th className="widgetLgTh">Time</th>
-                        <th className="widgetLgTh">Action</th>
+                     
+
+                      
                     </tr>
                 </thead>
                 <tbody>
-                    {jdata.map((x) => {
+                    {res.map((x) => {
                         return (
                             <tr>
-                                <td className="td"> {x.name}</td>
-                                <td className="td"> {x.phone}</td>
-                                <td className="td"> {x.source}</td>
-                                <td className="td"> {x.destination}</td>
+                                <td ><label key={x.id}>{x.passenger.id}</label></td>
+                                <td ><label key={x.id}>{x.passenger.firstname+" "}{x.passenger.lastname}</label></td>
+                                <td ><label key={x.id}>{x.passenger.designation}</label></td>
+                                <td ><label key={x.id}>{x.passenger.source}</label></td>
+                                <td ><label key={x.id}>{x.passenger.destination}</label></td>
+                               
                                 <td className="td">
                                     <details>
                                         <summary>View Details</summary>
-                                        Number - {x.vn}<br/>
-                                        Color  - {x.vc}<br/>
-                                        Type   - {x.vt}<br/>
-                                        Seat   - {x.seat}
+                                        Number - {x.passenger.vehicle.vehiclenumber}<br/>
+                                        Color  - {x.passenger.vehicle.vehiclecolor}<br/>
+                                        Type   - {x.passenger.vehicle.vehiclemodel}<br/>
+                                        Seat   - {x.passenger.vehicle.numberofseats}
                                     </details>
                                 </td>
-                                <td className="td"> {x.time}</td>
-                                <td className="td"><button className="userListEdit" onClick={() => setSData(x)}>Request</button></td>
+                            
                             </tr>
                         )
                     })}

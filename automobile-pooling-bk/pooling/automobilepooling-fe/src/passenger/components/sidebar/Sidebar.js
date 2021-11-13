@@ -4,6 +4,7 @@ import {
 PermIdentity,
  Commute,
  DirectionsCar,
+ Favorite,
  ExitToApp
 } from "@material-ui/icons";
   import { Link } from 'react-router-dom'
@@ -16,7 +17,7 @@ export default function Sidebar() {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Dashboard</h3>
           <ul className="sidebarList">
-            <Link to="/passengerdash" className="link">
+            <Link to="/passengerdashboard" className="link">
             <li className="sidebarListItem active">
               <Home className="sidebarIconHome" />
               Home
@@ -24,22 +25,28 @@ export default function Sidebar() {
             </Link>
             <Link to="/passengerprofile" className="link">
               <li className="sidebarListItem">
-                <PermIdentity className="sidebarIcon" />
+                <PermIdentity className="sidebarIconProfile" />
                 Profile
               </li>
             </Link>
             <Link to="/users" className="link">
               <li className="sidebarListItem">
-                <DirectionsCar className="sidebarIcon" />
+                <DirectionsCar className="sidebarIconRideoffer" />
                 Ride Offers
               </li>
             </Link>
             <Link to="/ridehistory" className="link">
               <li className="sidebarListItem">
-                <Commute className="sidebarIcon" />
+                <Commute className="sidebarIconRideHistory" />
                 Ride History
               </li>
             </Link>
+            {/* <Link to="/favorite" className="link">
+              <li className="sidebarListItem">
+                <Favorite className="sidebarIconRideFavorite" />
+                Favorites
+              </li>
+            </Link> */}
           </ul>
         </div>
       </div>

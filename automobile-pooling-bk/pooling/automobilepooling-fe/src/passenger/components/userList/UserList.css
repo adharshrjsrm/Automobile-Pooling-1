@@ -2,6 +2,7 @@
     flex: 4;
    
     border-radius: 2%;
+
   }
   
   .UserListUser {
@@ -18,38 +19,8 @@
     margin-right: 10px;
   }
   
-  .UserListEdit{
-      border: none;
-      border-radius: 10px;
-      padding: 5px 10px;
-      background-color: #3b6ab0;
-      color: white;
-      cursor: pointer;
-      margin-right: 20px;
-  }
-  
-  .UserListDelete{
-      color: red;
-      cursor: pointer;
-  }
 
-  .widgetLg {
-   
-    flex: 5;
-    -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 0px 15px 10px rgba(0, 0, 0, 0.75);
-    padding: 8px;
-    
-    border-radius: 2%;
-    margin-left: 30px;
-    margin-top: 30px;
-    
-  }
-  
-  .widgetLgTitle {
-    font-size: 22px;
-    font-weight: 600;
-  }
+
   
   .widgetLgTable{
     width: 100%;
@@ -110,7 +81,10 @@
   }
 
   .container {
-    display: flex;
-    margin-top: 20px;
+    display: left;
+    margin-top: 10px;
+    width: 100%;
+    padding-right: 20px;
    
   }
+  
