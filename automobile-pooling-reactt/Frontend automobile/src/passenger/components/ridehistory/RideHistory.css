@@ -1,0 +1,135 @@
+.userList {
+    flex: 4;
+    /* background-color: white; */
+    border-radius: 2%;
+  
+  }
+  
+  .userListUser {
+    display: flex;
+    align-items: center;
+    align-self: stretch;
+    height: 60%;
+  }
+  
+  .userListImg {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  .userListEdit{
+      border: none;
+      border-radius: 10px;
+      padding: 5px 10px;
+      background-color: #3b6ab0;
+      color: white;
+      cursor: pointer;
+      margin-right: 20px;
+  }
+  
+  .userListDelete{
+      color: red;
+      cursor: pointer;
+  }
+
+  .widgetLg {
+    flex: 5;
+    -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+    padding: 8px;
+    background-color: rgb(240, 240, 255);
+    border-radius: 2%;
+ 
+  }
+  
+  .widgetLgTitle {
+    font-size: 22px;
+    font-weight: 600;
+  }
+  
+  .widgetLgTable{
+    width: 100%;
+    border-spacing: 20px;
+  }
+  
+  .widgetLgTh{
+    text-align: left;
+ 
+  }
+  
+  .widgetLgUser{
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+  }
+  
+  .widgetLgImg {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  .widgetLgDate,.widgetLgAmount{
+    font-weight: 300;
+  }
+  
+  .widgetLgButton {
+    padding: 5px 7px;
+    border: none;
+    border-radius: 10px;
+  }
+  
+  .widgetLgButton.Approved{
+      background-color: #e5faf2;
+      color: #3bb077;
+  }
+  .widgetLgButton.Declined{
+      background-color: #fff0f1;
+      color: #d95087;
+  
+  }
+  .widgetLgButton.Pending{
+      background-color: #ebf1fe;
+      color: #2a7ade;
+  
+  }
+  
+
+  .th{
+    padding: 1rem;
+    flex: 1;
+  }
+  .td{
+    padding: 1rem;
+    flex: 1;
+  }
+
+  details {
+    border: 1px solid #d4d4d4;    
+    padding: .75em .75em 0;
+	margin-top: 10px;
+	box-shadow:0 0 20px #d4d4d4;
+}
+
+summary {	
+    font-weight: bold;
+    margin: -.75em -.75em 0;
+    padding: .75em;
+    background-color: #5f75a4;
+    color: #fff;
+}
+
+details[open] {
+    padding: .75em;
+	border-bottom: 1px solid #d4d4d4;
+}
+
+details[open] summary {
+    border-bottom: 1px solid #d4d4d4;
+    margin-bottom: 10px;
+}

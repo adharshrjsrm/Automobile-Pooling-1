@@ -1,0 +1,19 @@
+.typical{
+    font-size: large;
+    font-style: bold;
+    color:black;
+}
+
+body{
+    background-size: inherit;
+    background-image: url(../assets/bg.jpg);
+  }
+
+
+
+.car-img{
+    display: block;
+    max-width: 100%;
+    max-height: fill-available;
+
+}

@@ -1,0 +1,95 @@
+.sidebar {
+  flex: 1;
+  height: calc(100vh - 50px);
+  position: sticky;
+  top: 50px; 
+ 
+}
+
+.sidebarWrapper {
+  padding: 20px;
+  
+}
+
+.sidebarMenu {
+  margin-bottom: 10px;
+}
+
+.sidebarTitle {
+  font-size: 13px;
+  
+}
+
+.sidebarList {
+  list-style: none;
+  padding: 5px;
+}
+
+.sidebarListItem {
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  margin-top: 10px;
+  font-size: 17px;
+  font-family: system-ui;
+  color:black;
+}
+.sidebarLogout {
+  position:fixed;
+  width: 250px;
+  bottom: 20px; 
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.sidebarListItem.active,
+.sidebarListItem:hover,
+.sidebarLogout.active,
+.sidebarLogout:hover,
+.sidebarIconHome:hover,
+.s:hover
+{
+  background-color: rgb(225, 226, 236)!important;
+}
+
+.sidebarIconHome{
+  color:rgb(139, 23, 134);
+    margin-right: 15px; 
+    font-size: 20px !important;
+   
+    
+}
+.s{
+  font-size: 17px !important;
+  border-radius: 15px;
+
+ 
+}
+.sidebarIcon{ 
+    font-size: 17px !important;
+   
+    height: 35px !important;
+    width: 35px !important;
+    border-radius: 60px;
+   
+}
+.sidebarIconRide{
+  color:rgb(37, 212, 110);
+    margin-right: 15px;
+    font-size: 20px !important;
+}
+.sidebarIconVehicle{
+  color:rgb(219, 38, 62);
+    margin-right: 15px;
+    font-size: 20px !important;
+}
+.sidebarIconProfile{
+  color:rgb(66, 138, 231);
+    margin-right: 15px;
+    font-size: 20px !important;
+}
