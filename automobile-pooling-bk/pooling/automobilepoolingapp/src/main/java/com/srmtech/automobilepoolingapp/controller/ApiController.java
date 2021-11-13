@@ -236,7 +236,31 @@ public class ApiController extends BaseController {
         Boolean status=userservice.getUserStatus(user);
         return status;
     }
+//Favorite
+    @Autowired
+    private FavoriteService favoriteservice; 
+    
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping(value = "/favorite/add")
+    public ResponseEntity<MsgResponse> addFavorite(@RequestBody Favorite favorite) {
+        Long userid=getUserId();
+        Long userId = userservice.getUserIdRide(userid);
+        User user=new User();
+        user.setId(userId);
+        favorite.setUser(user);
+        favoriteservice.saveFavorite(favorite);
+        return new ResponseEntity<>(new MsgResponse("Favorite added successfully."), HttpStatus.CREATED);
+    }
+    
 
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping(value = "/favorite/get")
+    public ResponseEntity<List<Favorite>> findFavorite() throws ResourceNotFoundException {
+        Long userid=getUserId();
+        Long userId = userservice.getUserIdRide(userid);
+        List<Favorite> favoriteList = favoriteservice.getFavoriteDetails(userId);
+        return new ResponseEntity<>(favoriteList, HttpStatus.OK);
+}
 }
 
 
