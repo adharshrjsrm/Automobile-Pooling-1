@@ -71,6 +71,13 @@ public class ApiController extends BaseController {
     }
 
     @PreAuthorize("isAuthenticated()")
+    @GetMapping(value = "/user/getvechilcebyuser")
+    public ResponseEntity<User> findVehicleidByUserId() throws ResourceNotFoundException {
+        User userList = userservice.getVehicleByUserId(getUserId());
+        return new ResponseEntity<>(userList, HttpStatus.OK);
+    }
+
+    @PreAuthorize("isAuthenticated()")
     @GetMapping(value = "/owner")
     public ResponseEntity<List<UserJoin>> getOwner() throws ResourceNotFoundException {
         List<UserJoin> userList = userservice.getOwner();

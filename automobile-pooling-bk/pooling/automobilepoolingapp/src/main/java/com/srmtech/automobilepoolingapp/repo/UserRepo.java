@@ -1,6 +1,5 @@
 package com.srmtech.automobilepoolingapp.repo;
 
-import org.hibernate.annotations.Subselect;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -28,6 +27,9 @@ public interface UserRepo extends JpaRepository<User, Long> {
 
     @Query("from com.srmtech.automobilepoolingapp.model.User where user_details_id=?1")
     Optional<User> findByUserId(Long id);
+
+    @Query("from com.srmtech.automobilepoolingapp.model.User where vehicle_id=null")
+    Optional<User> findVehicleByUserId(Long id);
 
     @Transactional
     @Modifying

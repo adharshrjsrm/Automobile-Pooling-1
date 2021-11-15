@@ -2,9 +2,7 @@ package com.srmtech.automobilepoolingapp.service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
-import javax.validation.Valid;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +38,11 @@ public class UserService {
 
 	public User getUserById(Long id) {
 		return repository.findByUserId(id).orElse(null);
+
+	}
+
+	public User getVehicleByUserId(Long id) {
+		return repository.findVehicleByUserId(id).orElse(null);
 
 	}
 
@@ -81,7 +84,6 @@ public class UserService {
     }
 
 	public void  updateUserStatus(Boolean status,Long userId)  throws ResourceNotFoundException{
-		User existingUser = repository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User not found: "+userId));
 		repository.updateStatus(status,userId);
 	}
 

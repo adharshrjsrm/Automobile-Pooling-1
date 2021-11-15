@@ -48,20 +48,7 @@ public class User implements Serializable{
 	@Fetch(FetchMode.JOIN)
 	private Vehicle vehicle;
 
-	public User( String firstname, String lastname, long mobile, String designation, Vehicle vehicle, String source, String destination, String stopa, String stopb, Boolean availabilitystatus, UserLogin userLogin) {
-		
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.mobile = mobile;
-		this.designation = designation;
-		this.vehicle = vehicle;
-		this.source = source;
-		this.destination = destination;
-		this.stopa = stopa;
-		this.stopb = stopb;
-		this.availabilitystatus = availabilitystatus;
-		this.userLogin = userLogin;
-	}
+
 	public User(Long id,String firstname, String lastname, long mobile, String designation, Vehicle vehicle, String source, String destination, String stopa, String stopb, Boolean availabilitystatus, UserLogin userLogin) {
 		this.id=id;
 		this.firstname = firstname;
