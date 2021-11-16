@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import './featuredInfo.css'
+import './FeaturedInfo.css'
 
 import Clock from 'react-live-clock';
 
@@ -77,7 +77,7 @@ export default function FeaturedInfo() {
 
         </div>
 
-        <span className="featuredSub">{monthNames[day.getUTCMonth() - 1]}</span>
+        <span className="featuredSub">{monthNames[day.getUTCMonth()]}</span>
 
       </div>
 
