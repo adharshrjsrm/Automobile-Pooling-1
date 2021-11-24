@@ -1,0 +1,176 @@
+.widgetLgHistory{
+  flex: 4;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  padding: 20px;
+  background-color: white;
+  margin-left: 20px;
+  margin-right: -120px;
+  
+}
+.card{
+ 
+  height:400px;
+
+  
+}
+.tr:hover{
+  color: white !important;
+}
+.table{
+  color:black !important;
+
+}
+
+.widgetLgTitle {
+  font-size: 35px;
+  font-family: cursive;
+}
+
+.widgetLgTable{
+  width: 100%;
+  border-spacing: 20px;
+}
+
+.widgetLgTh{
+  text-align: left;
+  font-weight: 500;
+}
+
+.widgetLgUser{
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+}
+
+.widgetLgImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.widgetLgDate,.widgetLgAmount{
+  font-weight: 300;
+}
+
+.widgetLgButton {
+  padding: 5px 7px;
+  border: none;
+  border-radius: 10px;
+}
+.view{
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: rgb(120, 120, 226);
+  color: white;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+
+.viewvehicle{
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: rgb(96, 209, 153);
+  color: white;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.widgetLgButton.Approved{
+    background-color: #e5faf2;
+    color: #3bb077;
+}
+.widgetLgButton.Declined{
+    background-color: #fff0f1;
+    color: #d95087;
+
+}
+.widgetLgButtonRequest{
+    background-color: #ebf1fe;
+    color: #0d70e9;
+    padding: 5px 7px;
+    border: none;
+    border-radius: 10px;
+
+}
+.widgetLgButtonView{
+  background-color: #ebf1fe;
+  color: #e02dd1;
+  padding: 5px 7px;
+  border: none;
+  border-radius: 10px;
+
+}
+
+.widgetLgGet{
+  font-weight: 300;
+  align-items: left;
+  font-weight: 300;
+}
+
+.tippy{
+  
+  width: 300px;
+
+  display: flex;
+  align-items: flex;
+  justify-content: justify;
+  background-color:white !important;
+}
+
+
+    .tippydata{
+      display: right;
+      align-items: right;
+      justify-content: right;
+     /* padding-left: 30px; */
+     text-align:right;
+
+    
+    }
+  
+
+  /* .tippytittle{
+    background-color: darkgrey;
+    background-color: #DBEEF5;
+    border-radius: 25px;
+    color: rgb(170, 23, 184);
+  } */
+
+
+
+  .col-9{
+    font-weight: 600;
+    background-color:whitesmoke;
+    color: black !important;
+   
+  } 
+
+  
+  .col-4{
+ 
+
+align-items: left;
+color: rgb(30, 19, 126) !important;
+  
+
+  }
+
+  .title{
+    background-color: whitesmoke;
+    color: black !important;
+  }
+
+  .col-6{
+
+    background-color:whitesmoke;
+    align-items: left;
+    color: black !important;
+
+  }
+

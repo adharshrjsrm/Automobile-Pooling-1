@@ -1,0 +1,61 @@
+
+.modal{
+    background-blend-mode:soft-light;
+    font-weight: bolder;
+}
+#nav-bar{
+    background-color: black;
+
+}
+
+#nav-link{
+    color: aliceblue;
+    font-weight: bolder;
+}
+
+#responsive-nav-dropdown{
+    color: aliceblue;
+    font-weight: bolder;
+}
+.navbar-toggler{
+    color:aliceblue;
+    font-weight: bolder;
+}
+.mr-auto{
+    color: whitesmoke;
+}
+
+.btn-outline-success{
+
+background-color: black;
+color: white;
+font-weight: bolder;
+    
+}
+#nav-dd-item{
+    align-items: center;
+    font-weight: bolder;
+}
+
+.form-control{
+    width: 85% !important;
+}
+
+
+.btn-custom{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.modal.Header{
+    font-weight: bolder;
+}

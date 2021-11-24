@@ -1,0 +1,16 @@
+.home{
+    flex: 4;
+    margin-right: -150px;
+    margin-left: 80px;
+  
+}
+
+.homeWidgets{
+    display: flex;
+    margin: 20px;
+}
+.container{
+    display: flex;
+    margin-top: 10px;
+  }
+  
